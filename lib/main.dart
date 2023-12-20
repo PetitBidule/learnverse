@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learnverse/screen/login.dart';
 import 'package:learnverse/screen/homepage.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const ScreenLog(),
+      home: const Login(),
     );
   }
 }
