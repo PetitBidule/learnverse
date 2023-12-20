@@ -1,4 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:learnverse/widgets/FbButton.dart';
+import 'package:learnverse/widgets/GoogleButton.dart';
+import 'package:learnverse/widgets/squareBackground.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -6,15 +11,68 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Log in')),
-      backgroundColor: const Color.fromRGBO(117, 123, 200, 1),
-      body: SafeArea(
+        body: Stack(children: [
+      Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomLeft,
+                colors: [
+              Color.fromRGBO(224, 195, 252, 1),
+              Color.fromRGBO(203, 178, 254, 1),
+              Color.fromRGBO(159, 160, 255, 1),
+              Color.fromRGBO(117, 123, 200, 1),
+            ])),
+      ),
+      const SquareBackground(
+        right: 100,
+        top: 100,
+        backgroundSquare: Color.fromRGBO(142, 148, 242, 1),
+      ),
+      const SquareBackground(
+        right: 75,
+        top: 350,
+        backgroundSquare: Color.fromRGBO(117, 123, 233, 1),
+      ),
+      const SquareBackground(
+        left: 50,
+        top: 350,
+        backgroundSquare: Color.fromRGBO(218, 182, 252, 1),
+      ),
+      const SquareBackground(
+        left: 125,
+        bottom: 50,
+        backgroundSquare: Color.fromRGBO(203, 178, 254, 1),
+      ),
+      const SquareBackground(
+        right: 100,
+        bottom: 250,
+        backgroundSquare: Color.fromRGBO(224, 195, 252, 1),
+      ),
+      BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 50.0, sigmaY: 50.0),
+        child: Container(
+          color: Colors.black.withOpacity(0.1),
+        ),
+      ),
+      SafeArea(
           child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(
               height: 10,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 26.0),
+              child: Text('Log In',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    fontSize: 40,
+                    fontWeight: FontWeight.w300,
+                  )),
             ),
             const Padding(
               padding: EdgeInsets.only(bottom: 64.0),
@@ -36,7 +94,8 @@ class Login extends StatelessWidget {
                         borderRadius: BorderRadius.circular(25),
                         borderSide: const BorderSide(color: Colors.white),
                       ),
-                      hintText: 'Email'),
+                      labelText: 'Email',
+                      labelStyle: TextStyle(color: Colors.white)),
                 ),
               ),
             ),
@@ -46,14 +105,13 @@ class Login extends StatelessWidget {
                 width: 250,
                 height: 60,
                 child: TextField(
-                  style:
-                      const TextStyle(color: Color.fromARGB(255, 255, 255, 0)),
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),
                         borderSide: const BorderSide(color: Colors.white),
                       ),
-                      hintText: 'Password'),
+                      labelText: 'Password',
+                      labelStyle: TextStyle(color: Colors.white)),
                 ),
               ),
             ),
@@ -67,7 +125,7 @@ class Login extends StatelessWidget {
                   )),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 48.0),
+              padding: const EdgeInsets.only(top: 32.0),
               child: SizedBox(
                 width: 250,
                 height: 60,
@@ -85,10 +143,25 @@ class Login extends StatelessWidget {
                           letterSpacing: 0.8),
                     )),
               ),
-            )
+            ),
+            const Padding(
+              padding: EdgeInsets.only(top: 150.0),
+              child: SizedBox(
+                  width: 250,
+                  height: 60,
+                  child: GoogleButton(textConnexion: "google")),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: SizedBox(
+                width: 250,
+                height: 60,
+                child: FbButton(textConnexion: "facebook"),
+              ),
+            ),
           ],
         ),
       )),
-    );
+    ]));
   }
 }

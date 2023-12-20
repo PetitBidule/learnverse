@@ -14,7 +14,7 @@ class ScreenLog extends StatelessWidget {
         body: Stack(children: [
       Container(
         width: double.infinity,
-        height: 932,
+        height: double.infinity,
         decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
