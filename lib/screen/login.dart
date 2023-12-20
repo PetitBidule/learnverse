@@ -19,27 +19,36 @@ class Login extends StatelessWidget {
                 fontSize: 40,
               ),
             ),
-            const Text('log in to your account',
-                style: TextStyle(
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  fontSize: 20,
-                  fontWeight: FontWeight.w200,
-                )),
-            TextField(
-              decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(40),
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  hintText: 'Email'),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: const Text('log in to your account',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w200,
+                  )),
             ),
-            TextField(
-              decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(40),
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  hintText: 'Password'),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(40),
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    hintText: 'Email'),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(40),
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    hintText: 'Password'),
+              ),
             ),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
