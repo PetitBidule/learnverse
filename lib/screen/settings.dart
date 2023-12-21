@@ -72,7 +72,7 @@ class Settings extends StatelessWidget {
               child: Container(
                 width: 145,
                 height: 145,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage('asset/image/Profil.png'))),
               ),
@@ -86,8 +86,8 @@ class Settings extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   )),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 8.0),
               child: SizedBox(
                 width: 350,
                 height: 60,
@@ -97,8 +97,8 @@ class Settings extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 8.0),
               child: SizedBox(
                 width: 350,
                 height: 60,
@@ -108,8 +108,8 @@ class Settings extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 32.0),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 32.0),
               child: SizedBox(
                 width: 350,
                 height: 60,
@@ -119,8 +119,8 @@ class Settings extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 8.0),
               child: SizedBox(
                 width: 350,
                 height: 60,
@@ -130,8 +130,8 @@ class Settings extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 8.0),
               child: SizedBox(
                 width: 350,
                 height: 60,
