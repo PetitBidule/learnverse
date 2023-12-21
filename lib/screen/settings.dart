@@ -75,7 +75,7 @@ class Settings extends StatelessWidget {
                     width: 52.0,
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.white),
-                        color: Color.fromRGBO(117, 123, 200, 1),
+                        color: Color.fromRGBO(159, 160, 255, 1),
                         borderRadius: BorderRadius.circular(100)),
                     child: IconButton(
                       onPressed: () {},
