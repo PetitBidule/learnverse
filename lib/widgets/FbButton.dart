@@ -22,8 +22,8 @@ class _ButtonConnexionState extends State<FbButton> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            FaIcon(FontAwesomeIcons.facebook),
-            SizedBox(width: 50),
+            const FaIcon(FontAwesomeIcons.facebook),
+            const SizedBox(width: 50),
             Text(
               widget.textConnexion,
               style: const TextStyle(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learnverse/screen/login.dart';
 
 class ButtonConnexion extends StatefulWidget {
   final String textConnexion;
@@ -13,7 +14,12 @@ class _ButtonConnexionState extends State<ButtonConnexion> {
   Widget build(BuildContext context) {
     return TextButton(
         onPressed: () {
-          setState(() {}); // routes
+          setState(() {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Login()),
+            );
+          }); // routes
         },
         style: ButtonStyle(
             padding: MaterialStateProperty.all<EdgeInsets>(
