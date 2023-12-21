@@ -67,6 +67,27 @@ class Settings extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Container(
+                    width: 52.0,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white),
+                        color: Color.fromRGBO(117, 123, 200, 1),
+                        borderRadius: BorderRadius.circular(100)),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
             Padding(
               padding: EdgeInsets.only(bottom: 26.0),
               child: Container(
