@@ -1,15 +1,32 @@
 import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/widgets/squareBackground.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 
-class Dashboard extends StatelessWidget {
+class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 
-  
+  @override
+  State<Dashboard> createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dashboard> {
+  final List<String> filtres = [
+  "Date d'ajout",
+  'Anciens',
+  'Populaires',
+];final List<String> style = [
+  'Manga',
+  'Séries',
+  'Manwhua',
+  'Film',
+];
+
+String? selectedValue;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +85,7 @@ class Dashboard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
-                   child: Text('Dashboard',
+                   child: const Text('Dashboard',
                        style: TextStyle(
                                        color: Color.fromARGB(255, 255, 255, 255),
                                        fontSize: 40,
@@ -84,7 +101,7 @@ class Dashboard extends StatelessWidget {
                 ],
               ),
               Padding(
-               padding: EdgeInsets.only(
+               padding: const EdgeInsets.only(
                         right: 150.0, 
                         top: 50.0,),
                 child: Container(
@@ -99,7 +116,7 @@ class Dashboard extends StatelessWidget {
                             blurRadius: 6,
                             offset: Offset(4, 4), // changes position of shadow
                           ),
-                          BoxShadow(
+                          const BoxShadow(
                             color: Color.fromARGB(255, 114, 114, 114),
                             spreadRadius: -4,
                             blurRadius: 6,
@@ -146,7 +163,7 @@ class Dashboard extends StatelessWidget {
 
               ),
                Padding(
-               padding: EdgeInsets.only(
+               padding: const EdgeInsets.only(
                         left: 150.0, 
                         top: 70.0,),
                 child: Container(
@@ -159,9 +176,9 @@ class Dashboard extends StatelessWidget {
                               color: Colors.grey.withOpacity(0.7),
                               spreadRadius: -4,
                               blurRadius: 6,
-                              offset: Offset(4, 4), // changes position of shadow
+                              offset: const Offset(4, 4), // changes position of shadow
                             ),
-                            BoxShadow(
+                            const BoxShadow(
                               color: Color.fromARGB(255, 114, 114, 114),
                               spreadRadius: -4,
                               blurRadius: 6,
@@ -169,7 +186,7 @@ class Dashboard extends StatelessWidget {
                             ),
                           ],
                       border: Border.all(
-                              color: Color.fromARGB(255, 255, 255, 255)),
+                              color: const Color.fromARGB(255, 255, 255, 255)),
                       borderRadius: BorderRadius.circular(40),
                           ),
                           child: Container(
@@ -209,27 +226,244 @@ class Dashboard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Container(
-                     child: Text('Watchlist',
+                     child: const Text('Watchlist',
                          style: TextStyle(
                                          color: Color.fromARGB(255, 255, 255, 255),
-                                         fontSize: 40,
+                                         fontSize: 30,
                                          fontWeight: FontWeight.w700,
                                         )),
                     ),
                 ),
-
+   Container(
+      child: Container(
+                      width: 110,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.7),
+                            spreadRadius: -4,
+                            blurRadius: 6,
+                            offset: Offset(4, 4), // changes position of shadow
+                          ),
+                          const BoxShadow(
+                            color: Color.fromARGB(255, 114, 114, 114),
+                            spreadRadius: -4,
+                            blurRadius: 6,
+                            offset: Offset(-4, -4), // changes position of shadow
+                          ),
+                        ],
+                      border: Border.all(
+                              color: Color.fromARGB(255, 255, 255, 255)),
+                      
+                      borderRadius: BorderRadius.circular(40),
+                          ),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton2<String>(
+            isExpanded: true,
+            hint: Text(
+              'filtres',
+              style: TextStyle(
+                fontSize: 14,
+                color: Theme.of(context).hintColor,
+              ),
+            ),
+            items: filtres
+                .map((String item) => DropdownMenuItem<String>(
+                      value: item,
+                      child: Text(
+                        item,
+                        style: const TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
+                    ))
+                .toList(),
+            value: selectedValue,
+            onChanged: (String? value) {
+              setState(() {
+                selectedValue = value;
+              });
+            },
+            buttonStyleData: const ButtonStyleData(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              height: 40,
+              width: 140,
+            ),
+            menuItemStyleData: const MenuItemStyleData(
+              height: 40,
+            ),
+          ),
+        ),
+      ),
+   ),
+   Padding(
+     padding: const EdgeInsets.all(8.0),
+     child: Container(
+                        width: 110,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.7),
+                              spreadRadius: -4,
+                              blurRadius: 6,
+                              offset: Offset(4, 4), // changes position of shadow
+                            ),
+                            const BoxShadow(
+                              color: Color.fromARGB(255, 114, 114, 114),
+                              spreadRadius: -4,
+                              blurRadius: 6,
+                              offset: Offset(-4, -4), // changes position of shadow
+                            ),
+                          ],
+                        border: Border.all(
+                                color: Color.fromARGB(255, 255, 255, 255)),
+                        
+                        borderRadius: BorderRadius.circular(40),
+                            ),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton2<String>(
+              isExpanded: true,
+              hint: Text(
+                'Styles',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Theme.of(context).hintColor,
+                ),
+              ),
+              items: style
+                  .map((String item) => DropdownMenuItem<String>(
+                        value: item,
+                        child: Text(
+                          item,
+                          style: const TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                      ))
+                  .toList(),
+              value: selectedValue,
+              onChanged: (String? value) {
+                setState(() {
+                  selectedValue = value;
+                });
+              },
+              buttonStyleData: const ButtonStyleData(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                height: 40,
+                width: 140,
+              ),
+              menuItemStyleData: const MenuItemStyleData(
+                height: 40,
+              ),
+            ),
+          ),
+        ),
+   ),
          ],
 
+  ),
+   Padding(
+  padding: const EdgeInsets.all(8.0),
+  child: Container(
+    width: 400,
+    height: 50,
+    decoration: BoxDecoration(
+      color: Colors.white,
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.7),
+          spreadRadius: -4,
+          blurRadius: 6,
+          offset: Offset(4, 4), 
+        ),
+        BoxShadow(
+          color: Color.fromARGB(255, 114, 114, 114),
+          spreadRadius: -4,
+          blurRadius: 6,
+          offset: Offset(-4, -4), 
+        ),
+      ],
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        const Text(
+          "1",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 30,
+            fontWeight: FontWeight.w800,
+            letterSpacing: 0.8,
+          ),
+        ),
+        const SizedBox(width: 10), 
+        const Text(
+          "One Piece",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 30,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0.8,
+          ),
+        ),
+      ],
+    ),
+  ),
+)
 
 
+        
+
+
+
+            ],
             
             ),
-          ],
         ),
 
           
         ),
-      ),
-    ]));
+    
+    ]),
+    bottomNavigationBar: NavigationBar(
+        indicatorColor: const Color.fromRGBO(145, 144, 236, 0),
+        indicatorShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30.0),
+        ),
+        backgroundColor: const Color.fromRGBO(145, 144, 236, 1),
+        destinations: const [
+          NavigationDestination(
+              icon: FaIcon(
+                FontAwesomeIcons.house,
+                size: 30,
+                color: Colors.white,
+              ),
+              label: ""),
+          NavigationDestination(
+              icon: FaIcon(
+                FontAwesomeIcons.chartPie,
+                size: 30,
+              ),
+              label: ""),
+          NavigationDestination(
+              icon: FaIcon(
+                FontAwesomeIcons.gear,
+                size: 30,
+              ),
+              label: ""),
+        ],
+      )
+    
+    
+    
+    
+    );
+          
+
   }
 }
+ 
