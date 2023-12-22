@@ -1,8 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/widgets/FbButton.dart';
 import 'package:learnverse/widgets/GoogleButton.dart';
+import 'package:learnverse/widgets/allBouton.dart';
 import 'package:learnverse/widgets/squareBackground.dart';
 
 class Login extends StatelessWidget {
@@ -65,20 +67,38 @@ class Login extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 26.0),
-              child: Text('Log In',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    fontSize: 40,
-                    fontWeight: FontWeight.w300,
-                  )),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 26.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                      size: 35,
+                    ),
+                  ),
+                  const Text('Log In  ',
+                      style: TextStyle(
+                        color: AllConstants.textColors,
+                        fontSize: 40,
+                        fontWeight: FontWeight.w300,
+                      )),
+                  const SizedBox(
+                    width: 20,
+                  )
+                ],
+              ),
             ),
             const Padding(
               padding: EdgeInsets.only(bottom: 64.0),
               child: Text('log in to your account',
                   style: TextStyle(
-                    color: Color.fromARGB(255, 255, 255, 255),
+                    color: AllConstants.textColors,
                     fontSize: 20,
                     fontWeight: FontWeight.w200,
                   )),
@@ -95,7 +115,7 @@ class Login extends StatelessWidget {
                         borderSide: const BorderSide(color: Colors.white),
                       ),
                       labelText: 'Email',
-                      labelStyle: TextStyle(color: Colors.white)),
+                      labelStyle: const TextStyle(color: Colors.white)),
                 ),
               ),
             ),
@@ -111,7 +131,7 @@ class Login extends StatelessWidget {
                         borderSide: const BorderSide(color: Colors.white),
                       ),
                       labelText: 'Password',
-                      labelStyle: TextStyle(color: Colors.white)),
+                      labelStyle: const TextStyle(color: Colors.white)),
                 ),
               ),
             ),
@@ -119,7 +139,7 @@ class Login extends StatelessWidget {
               padding: EdgeInsets.only(top: 4.0),
               child: Text('forgot your password ?',
                   style: TextStyle(
-                    color: Color.fromARGB(255, 255, 255, 255),
+                    color: AllConstants.textColors,
                     fontSize: 10,
                     fontWeight: FontWeight.w200,
                   )),
@@ -129,19 +149,7 @@ class Login extends StatelessWidget {
               child: SizedBox(
                 width: 250,
                 height: 60,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      "Log in",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          letterSpacing: 0.8),
-                    )),
+                child: LogInButton(),
               ),
             ),
             const Padding(

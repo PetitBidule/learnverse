@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/widgets/allBouton.dart';
 import 'package:learnverse/widgets/squareBackground.dart';
 
@@ -66,18 +67,24 @@ class ScreenLog extends StatelessWidget {
             const Text(
               'LearnVerse',
               style: TextStyle(
-                  color: Color.fromARGB(255, 255, 255, 255),
+                  color: AllConstants.textColors,
                   fontSize: 40,
                   fontWeight: FontWeight.w700),
             ),
             const SizedBox(
               height: 30,
             ),
-            const ButtonConnexion(textConnexion: "Sign Up"),
+            ButtonConnexion(
+              textConnexion: "Sign Up",
+              isConnexion: true,
+            ),
             const SizedBox(
               height: 30,
             ),
-            const ButtonConnexion(textConnexion: "Log In  "),
+            ButtonConnexion(
+              textConnexion: "Log In  ",
+              isConnexion: false,
+            ),
           ],
         ),
       )),
