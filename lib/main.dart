@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learnverse/screen/homepage.dart';
+import 'package:learnverse/screen/settings.dart';
 
 void main() {
   runApp(const MyApp());
