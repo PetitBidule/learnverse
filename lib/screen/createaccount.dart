@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/widgets/FbButton.dart';
 import 'package:learnverse/widgets/GoogleButton.dart';
 import 'package:learnverse/widgets/squareBackground.dart';
@@ -65,26 +66,44 @@ class Account extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 26.0),
-              child: Text('Sign In',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    fontSize: 40,
-                    fontWeight: FontWeight.w300,
-                  )),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 26.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                      size: 35,
+                    ),
+                  ),
+                  const Text('Sign In',
+                      style: TextStyle(
+                        color: AllConstants.textColors,
+                        fontSize: 40,
+                        fontWeight: FontWeight.w300,
+                      )),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                ],
+              ),
             ),
             const Padding(
               padding: EdgeInsets.only(bottom: 48.0),
               child: Text('Create your account',
                   style: TextStyle(
-                    color: Color.fromARGB(255, 255, 255, 255),
+                    color: AllConstants.textColors,
                     fontSize: 20,
                     fontWeight: FontWeight.w200,
                   )),
             ),
             Padding(
-              padding: const EdgeInsets.only(top:8.0),
+              padding: const EdgeInsets.only(top: 8.0),
               child: SizedBox(
                 width: 250,
                 height: 60,
@@ -95,7 +114,7 @@ class Account extends StatelessWidget {
                         borderSide: const BorderSide(color: Colors.white),
                       ),
                       labelText: 'Pseudo',
-                      labelStyle: TextStyle(color: Colors.white)),
+                      labelStyle: const TextStyle(color: Colors.white)),
                 ),
               ),
             ),
@@ -111,12 +130,12 @@ class Account extends StatelessWidget {
                         borderSide: const BorderSide(color: Colors.white),
                       ),
                       labelText: 'Email',
-                      labelStyle: TextStyle(color: Colors.white)),
+                      labelStyle: const TextStyle(color: Colors.white)),
                 ),
               ),
             ),
-             Padding(
-              padding: const EdgeInsets.only(top:12.0),
+            Padding(
+              padding: const EdgeInsets.only(top: 12.0),
               child: SizedBox(
                 width: 250,
                 height: 60,
@@ -127,7 +146,7 @@ class Account extends StatelessWidget {
                         borderSide: const BorderSide(color: Colors.white),
                       ),
                       labelText: 'Pseudo',
-                      labelStyle: TextStyle(color: Colors.white)),
+                      labelStyle: const TextStyle(color: Colors.white)),
                 ),
               ),
             ),
@@ -143,7 +162,7 @@ class Account extends StatelessWidget {
                         borderSide: const BorderSide(color: Colors.white),
                       ),
                       labelText: 'Email',
-                      labelStyle: TextStyle(color: Colors.white)),
+                      labelStyle: const TextStyle(color: Colors.white)),
                 ),
               ),
             ),
