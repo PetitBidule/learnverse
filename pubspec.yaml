@@ -40,7 +40,18 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   fl_chart: ^0.65.0
   dropdown_button2: ^2.3.9
+  flutter_svg: ^2.0.9
+  google_fonts: ^6.1.0
+  flutter_native_splash: ^2.3.8
 
+flutter_native_splash:
+  android: true
+  ios: true
+  web: false
+
+  color: "#757BC8"
+  # background_image: "assets/images/Purple.png"
+  image: "asset/image/iconLauncher2.png"
 
 dev_dependencies:
   flutter_test:

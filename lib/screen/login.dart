@@ -144,8 +144,8 @@ class Login extends StatelessWidget {
                     fontWeight: FontWeight.w200,
                   )),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 32.0),
+            const Padding(
+              padding: EdgeInsets.only(top: 32.0),
               child: SizedBox(
                 width: 250,
                 height: 60,
@@ -157,14 +157,14 @@ class Login extends StatelessWidget {
               child: SizedBox(
                   width: 250,
                   height: 60,
-                  child: GoogleButton(textConnexion: "google")),
+                  child: GoogleButton(textConnexion: "Google")),
             ),
             const Padding(
               padding: EdgeInsets.all(16.0),
               child: SizedBox(
                 width: 250,
                 height: 60,
-                child: FbButton(textConnexion: "facebook"),
+                child: FbButton(textConnexion: "Facebook"),
               ),
             ),
           ],

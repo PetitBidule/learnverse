@@ -49,7 +49,6 @@ class ThemeChooseHome extends StatelessWidget {
                 ),
               )),
         ),
-
         Positioned(
           bottom: 0,
           child: Container(
@@ -88,25 +87,66 @@ class ThemeChooseHome extends StatelessWidget {
             ),
           ),
         ),
-        // Positioned(
-        //     bottom: 0,
-        //     right: 0,
-        //     child: Container(
-        //       width: 63,
-        //       height: 63,
-        //       decoration: const BoxDecoration(
-        //           color: Color.fromRGBO(145, 144, 236, 1),
-        //           borderRadius: BorderRadius.only(
-        //               topLeft: Radius.circular(30),
-        //               bottomRight: Radius.circular(44))),
-        //       child: IconButton(
-        //         onPressed: () {},
-        //         icon: const Icon(
-        //           Icons.play_arrow_rounded,
-        //           color: Colors.white,
-        //         ),
-        //       ),
-        //     ))
+      ]),
+    );
+  }
+}
+
+class MostPopularCategories extends StatelessWidget {
+  final int firstCategories;
+  const MostPopularCategories({super.key, required this.firstCategories});
+
+  crown() {
+    if (firstCategories == 0) {
+      return Positioned(
+          top: -6, left: -2, child: Image.asset("asset/image/crown. png"));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 8.0,
+      ),
+      child: Stack(children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 15),
+          child: Container(
+            width: 180,
+            height: 100,
+            decoration: BoxDecoration(
+                color: const Color.fromRGBO(140, 178, 114, 1),
+                borderRadius: BorderRadius.circular(21.5)),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Anime",
+                        style: TextStyle(color: AllConstants.textColors),
+                      ),
+                      Text(
+                        "One Piece",
+                        style: TextStyle(
+                            color: AllConstants.textColors,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 14),
+                      )
+                    ],
+                  ),
+                  Image.asset("asset/image/onePieceZoro.png"),
+                ],
+              ),
+            ),
+          ),
+        ),
+        // crown(),
       ]),
     );
   }

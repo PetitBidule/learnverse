@@ -2,8 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/widgets/FbButton.dart';
-import 'package:learnverse/widgets/GoogleButton.dart';
 import 'package:learnverse/widgets/squareBackground.dart';
 
 class Account extends StatelessWidget {
@@ -145,7 +143,7 @@ class Account extends StatelessWidget {
                         borderRadius: BorderRadius.circular(25),
                         borderSide: const BorderSide(color: Colors.white),
                       ),
-                      labelText: 'Pseudo',
+                      labelText: 'Password',
                       labelStyle: const TextStyle(color: Colors.white)),
                 ),
               ),
@@ -161,13 +159,13 @@ class Account extends StatelessWidget {
                         borderRadius: BorderRadius.circular(25),
                         borderSide: const BorderSide(color: Colors.white),
                       ),
-                      labelText: 'Email',
+                      labelText: 'Confirm Password',
                       labelStyle: const TextStyle(color: Colors.white)),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 32.0),
+              padding: const EdgeInsets.only(top: 80.0),
               child: SizedBox(
                 width: 250,
                 height: 60,
@@ -184,21 +182,6 @@ class Account extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                           letterSpacing: 0.8),
                     )),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(top: 70.0),
-              child: SizedBox(
-                  width: 250,
-                  height: 60,
-                  child: GoogleButton(textConnexion: "Google")),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: SizedBox(
-                width: 250,
-                height: 60,
-                child: FbButton(textConnexion: "Facebook"),
               ),
             ),
           ],

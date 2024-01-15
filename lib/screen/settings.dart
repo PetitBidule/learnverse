@@ -2,14 +2,17 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:learnverse/widgets/FbButton.dart';
-import 'package:learnverse/widgets/GoogleButton.dart';
 import 'package:learnverse/widgets/mailButton.dart';
 import 'package:learnverse/widgets/squareBackground.dart';
 
-class Settings extends StatelessWidget {
+class Settings extends StatefulWidget {
   const Settings({super.key});
 
+  @override
+  State<Settings> createState() => _SettingsState();
+}
+
+class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,11 +78,15 @@ class Settings extends StatelessWidget {
                     width: 52.0,
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.white),
-                        color: Color.fromRGBO(159, 160, 255, 1),
+                        color: const Color.fromRGBO(159, 160, 255, 1),
                         borderRadius: BorderRadius.circular(100)),
                     child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
+                      onPressed: () {
+                        setState(() {
+                          Navigator.pop(context);
+                        });
+                      },
+                      icon: const Icon(
                         Icons.arrow_back,
                         color: Colors.white,
                       ),
@@ -89,7 +96,7 @@ class Settings extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 26.0),
+              padding: const EdgeInsets.only(bottom: 26.0),
               child: Container(
                 width: 145,
                 height: 145,

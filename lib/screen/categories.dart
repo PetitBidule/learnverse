@@ -37,40 +37,48 @@ class _CategoriesState extends State<Categories> {
                     fit: BoxFit.cover,
                   )),
                 ),
-                SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Container(
-                      height: 70,
-                      width: 400,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(44),
-                          color: const Color.fromRGBO(117, 123, 200, 1)),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    Navigator.pop(context);
-                                  });
-                                },
-                                icon: const FaIcon(
-                                  FontAwesomeIcons.arrowLeft,
-                                  size: 30,
-                                  color: Colors.white,
-                                )),
-                            Text(
-                              widget.title,
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 24),
-                            ),
-                            const CircleAvatar(
-                              backgroundColor: Color.fromRGBO(37, 46, 169, 1),
-                            )
-                          ]),
-                    ),
-                  ),
+                Container(
+                  height: 200,
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                        Color.fromARGB(223, 0, 0, 0),
+                        Color.fromARGB(155, 0, 0, 0),
+                        Color.fromARGB(120, 0, 0, 0),
+                        Color.fromARGB(60, 0, 0, 0),
+                        Color.fromARGB(0, 0, 0, 0)
+                      ])),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  Navigator.pop(context);
+                                });
+                              },
+                              icon: const FaIcon(
+                                FontAwesomeIcons.chevronLeft,
+                                size: 23,
+                                color: Colors.white,
+                              )),
+                        ),
+                        const SizedBox(
+                          width: 40,
+                        ),
+                        const CircleAvatar(
+                          minRadius: 30,
+                          maxRadius: 30,
+                          backgroundImage: AssetImage("asset/image/Profil.png"),
+                        )
+                      ]),
                 ),
                 Positioned(
                   top: 368,

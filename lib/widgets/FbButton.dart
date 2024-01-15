@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class FbButton extends StatefulWidget {
   final String textConnexion;
@@ -22,7 +21,7 @@ class _ButtonConnexionState extends State<FbButton> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const FaIcon(FontAwesomeIcons.facebook),
+            Image.asset("asset/image/facebook (2).png"),
             const SizedBox(width: 50),
             Text(
               widget.textConnexion,

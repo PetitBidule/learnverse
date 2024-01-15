@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class GoogleButton extends StatefulWidget {
   final String textConnexion;
@@ -22,8 +21,8 @@ class _ButtonConnexionState extends State<GoogleButton> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            FaIcon(FontAwesomeIcons.google),
-            SizedBox(width: 50),
+            Image.asset("asset/image/google.png"),
+            const SizedBox(width: 50),
             Text(
               widget.textConnexion,
               style: const TextStyle(
