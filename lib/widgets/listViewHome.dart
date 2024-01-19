@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learnverse/utils/constants.dart';
+import 'package:learnverse/dbHelper/mongoDB.dart';
 
 class ThemeChooseHome extends StatelessWidget {
   final String noteTheme;
@@ -30,7 +31,7 @@ class ThemeChooseHome extends StatelessWidget {
           ],
           borderRadius: BorderRadius.circular(44),
           image: DecorationImage(
-              image: AssetImage(backGroundTheme), fit: BoxFit.cover)),
+              image: NetworkImage(backGroundTheme), fit: BoxFit.cover)),
       child: Stack(children: [
         Positioned(
           top: 20,
@@ -93,15 +94,26 @@ class ThemeChooseHome extends StatelessWidget {
 }
 
 class MostPopularCategories extends StatelessWidget {
-  final int firstCategories;
-  const MostPopularCategories({super.key, required this.firstCategories});
+  // final int firstCategories;
+  final String nameCategories;
+  final String nameNotion;
+  final background;
+  final backGroundColor;
 
-  crown() {
-    if (firstCategories == 0) {
-      return Positioned(
-          top: -6, left: -2, child: Image.asset("asset/image/crown. png"));
-    }
-  }
+  const MostPopularCategories(
+      {super.key,
+      required this.background,
+      required this.nameCategories,
+      required this.nameNotion,
+      required this.backGroundColor});
+
+  // a faire la courronne
+  // crown() {
+  //   if (firstCategories == 0) {
+  //     return Positioned(
+  //         top: -6, left: -2, child: Image.asset("asset/image/crown. png"));
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -116,31 +128,32 @@ class MostPopularCategories extends StatelessWidget {
             width: 180,
             height: 100,
             decoration: BoxDecoration(
-                color: const Color.fromRGBO(140, 178, 114, 1),
+                color: backGroundColor,
                 borderRadius: BorderRadius.circular(21.5)),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Column(
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Anime",
-                        style: TextStyle(color: AllConstants.textColors),
+                        nameCategories,
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 0, 0, 0)),
                       ),
                       Text(
-                        "One Piece",
-                        style: TextStyle(
-                            color: AllConstants.textColors,
+                        nameNotion,
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 0, 0, 0),
                             fontWeight: FontWeight.w900,
                             fontSize: 14),
                       )
                     ],
                   ),
-                  Image.asset("asset/image/onePieceZoro.png"),
+                  Image.asset(background),
                 ],
               ),
             ),

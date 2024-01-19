@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:learnverse/dbHelper/futureBuilder.dart';
+import 'package:learnverse/dbHelper/mongoDB.dart';
 import 'package:learnverse/screen/categories.dart';
-import 'package:learnverse/screen/dashboard.dart';
-import 'package:learnverse/screen/settings.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/widgets/listViewHome.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -19,16 +18,77 @@ class _ThemeScreenState extends State<ThemeScreen> {
   final controller =
       PageController(viewportFraction: 0.7, keepPage: true, initialPage: 3);
   int currentPageIndex = 0;
-
-  List allThemes = [
-    ["4.5", "Manga", "One Piece", "asset/image/onepiecemanga.jpeg", "1"],
-    ["4.3", "Série", "Breaking Bad", "asset/image/breakingbad.jpeg", 2],
-    ["4.1", "Manhwa", "Solo Leveling", "asset/image/sololevening.jpeg", 3],
-    ["4.9", "Anime", "Cote", "asset/image/cote.jpeg", 4],
-    ["2.5", "Sport", "Hockey", "asset/image/hockey.jpg", 5],
-    ["4.7", "Film", "Avatar", "asset/image/avatar.jpeg", 6],
-    ["4.5", "Animals", "Dauphin", "asset/image/dauphin.jpeg", 7],
+  List allCollection = [
+    // MongoDB.getDataCollectionAnimals(),
+    MongoDB.getDataCollectionAnime(),
+    MongoDB.getDataCollectionManga(),
+    // MongoDB.getDataCollectionFilm(),
+    // MongoDB.getDataCollectionFood(),
+    // MongoDB.getDataCollectionLivre(),
   ];
+  List allNameFields = [
+    "title",
+    "title",
+  ];
+  List allThemes = [
+    [
+      "4.5",
+      "Manga",
+      "One Piece",
+      "asset/image/onepiecemanga.jpeg",
+      "asset/image/onePieceZoro.png",
+      const Color.fromRGBO(140, 178, 114, 1),
+    ],
+    // [
+    //   "4.3",
+    //   "Food",
+    //   "Burger",
+    //   "asset/image/breakingbad.jpeg",
+    //   "asset/image/burgerIcon.png",
+    //   const Color.fromRGBO(240, 255, 186, 1),
+    // ],
+    // [
+    //   "4.1",
+    //   "Manhwa",
+    //   "Solo Leveling",
+    //   "asset/image/sololevening.jpeg",
+    //   "asset/image/burgerIcon.png",
+    //   const Color.fromARGB(255, 90, 136, 59),
+    // ],
+    // [
+    //   "4.9",
+    //   "Anime",
+    //   "Cote",
+    //   "asset/image/cote.jpeg",
+    //   "asset/image/burgerIcon.png",
+    //   const Color.fromARGB(255, 90, 136, 59),
+    // ],
+    // [
+    //   "2.5",
+    //   "Sport",
+    //   "Hockey",
+    //   "asset/image/hockey.jpg",
+    //   "asset/image/burgerIcon.png",
+    //   const Color.fromARGB(255, 90, 136, 59),
+    // ],
+    // [
+    //   "4.7",
+    //   "Film",
+    //   "Avatar",
+    //   "asset/image/avatar.jpeg",
+    //   "asset/image/burgerIcon.png",
+    //   const Color.fromARGB(255, 90, 136, 59),
+    // ],
+    // [
+    //   "4.5",
+    //   "Animals",
+    //   "Dauphin",
+    //   "asset/image/dauphin.jpeg",
+    //   "asset/image/burgerIcon.png",
+    //   const Color.fromARGB(255, 90, 136, 59),
+    // ],
+  ];
+
   List classement = [
     1,
     2,
@@ -125,22 +185,32 @@ class _ThemeScreenState extends State<ThemeScreen> {
                     height: 435,
                     child: PageView.builder(
                         controller: controller,
-                        itemCount: allThemes.length,
+                        itemCount: allCollection.length,
                         itemBuilder: (BuildContext context, int index) {
                           return GestureDetector(
                             onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Categories(
-                                      title: allThemes[index][2],
-                                      backgroundBanner: allThemes[index][3])),
+                                builder: (context) => DisplayDataCategories(
+                                  snapshot2: allCollection[index],
+                                ),
+                                // Categories(
+                                //     title: allThemes[index][2],
+                                //     backgroundBanner: allThemes[index][3])
+                              ),
                             ),
-                            child: ThemeChooseHome(
-                              noteTheme: allThemes[index][0],
-                              nametheme: allThemes[index][1],
-                              nameCategories: allThemes[index][2],
-                              backGroundTheme: allThemes[index][3],
+                            // faire la meme chose pour categories.dart
+                            child: CollectionMongoDB(
+                              snapshot2: allCollection[index],
+                              nameField: allNameFields[index],
+                              // nameField: allNameFields[index],
                             ),
+                            // ThemeChooseHome(
+                            //   noteTheme: allThemes[index][0],
+                            //   nametheme: allThemes[index][1],
+                            //   nameCategories: allThemes[index][2],
+                            //   backGroundTheme: allThemes[index][3],
+                            // ),
                           );
                         }),
                   ),
@@ -149,7 +219,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
                   // ),
                   SmoothPageIndicator(
                       controller: controller, // PageController
-                      count: allThemes.length,
+                      count: allCollection.length,
                       textDirection: TextDirection.ltr,
                       effect: const ExpandingDotsEffect(
                         dotWidth: 13,
@@ -185,7 +255,11 @@ class _ThemeScreenState extends State<ThemeScreen> {
                         itemCount: allThemes.length,
                         itemBuilder: (BuildContext context, int index) {
                           return MostPopularCategories(
-                              firstCategories: classement[0]);
+                            nameCategories: allThemes[index][1],
+                            nameNotion: allThemes[index][2],
+                            background: allThemes[index][4],
+                            backGroundColor: allThemes[index][5],
+                          );
                         }),
                   ],
                 ),

@@ -4,11 +4,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class Categories extends StatefulWidget {
   final String title;
+  final String synopsis;
   final backgroundBanner;
   const Categories({
     super.key,
     required this.title,
     required this.backgroundBanner,
+    required this.synopsis,
   });
 
   @override
@@ -33,7 +35,7 @@ class _CategoriesState extends State<Categories> {
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                    image: AssetImage(widget.backgroundBanner),
+                    image: NetworkImage(widget.backgroundBanner),
                     fit: BoxFit.cover,
                   )),
                 ),
@@ -108,7 +110,7 @@ class _CategoriesState extends State<Categories> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               const Text(
-                                "Synopsis",
+                                "eopfse",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 24),
                               ),
@@ -171,7 +173,7 @@ class _CategoriesState extends State<Categories> {
                           child: ListView(
                             children: const [
                               Text(
-                                "Lorem ipsum dolor sit amet consectetur. Faucibus fringilla ac interdum diam feugiat porta pretium cursus. Pretium imperdiet eget diam commodo quis. A lacus pharetra cursus enim posuere pellentesque. Facilisis dignissim faucibus tortor vel. Sit dictum sodales eget tortor a cras. Suspendisse malesuada nam suscipit integer tortor amet commodo nisl. Lectus libero id natoque ac et ipsum purus leo. At ac sem ornare proin nec aliquam convallis sit. Ipsum augue suscipit maecenas aliquet.",
+                                "zkef",
                                 style: TextStyle(
                                     fontSize: 18, color: Colors.white),
                               ),
