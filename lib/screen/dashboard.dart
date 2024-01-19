@@ -121,15 +121,15 @@ class _DashboardState extends State<Dashboard> {
                         ),
                         Container(
                           child: Container(
-                            width: 110,
-                            height: 30,
+                            width: 200,
+                            height: 2,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               boxShadow: const [],
                               border: Border.all(
                                   color:
                                       const Color.fromARGB(255, 255, 255, 255)),
-                              borderRadius: BorderRadius.circular(40),
+                              borderRadius: BorderRadius.circular(1),
                             ),
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton2<String>(

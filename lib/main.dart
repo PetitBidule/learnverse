@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:learnverse/screen/chooseTheme.dart';
 import 'package:learnverse/screen/homepage.dart';
+import 'package:learnverse/screen/login.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,13 +13,13 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key}); 
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ScreenLog(),
+      home: Theme1(),
     );
   }
 }
