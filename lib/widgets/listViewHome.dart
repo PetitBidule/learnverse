@@ -72,12 +72,15 @@ class ThemeChooseHome extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  nametheme.toUpperCase(),
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      fontSize: 32,
-                      fontWeight: FontWeight.w700),
+                SizedBox(
+                  width: 250,
+                  child: Text(
+                    nametheme.toUpperCase(),
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        fontSize: 32,
+                        fontWeight: FontWeight.w700),
+                  ),
                 ),
                 Text(nameCategories,
                     style: const TextStyle(

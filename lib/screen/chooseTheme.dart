@@ -2,9 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/widgets/FbButton.dart';
-import 'package:learnverse/widgets/GoogleButton.dart';
-import 'package:learnverse/widgets/allBouton.dart';
 import 'package:learnverse/widgets/squareBackground.dart';
 
 class Theme1 extends StatelessWidget {

@@ -1,11 +1,61 @@
+import 'dart:ffi';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:learnverse/dbHelper/insertData.dart';
+import 'package:learnverse/dbHelper/mongoDB.dart';
+import 'package:learnverse/screen/homeTheme.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/widgets/squareBackground.dart';
+import 'package:mongo_dart/mongo_dart.dart' as M;
 
-class Account extends StatelessWidget {
+class Account extends StatefulWidget {
   const Account({super.key});
+
+  @override
+  State<Account> createState() => _AccountState();
+}
+
+class _AccountState extends State<Account> {
+  final TextEditingController _emailController = TextEditingController();
+
+  final TextEditingController pseudoController = TextEditingController();
+
+  final TextEditingController _passwordController = TextEditingController();
+
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+
+  String helperText = "";
+
+  Future<void> insertData(String email, String pseudo, String password) async {
+    var id = M.ObjectId();
+    final data =
+        MongoDbModel(id: id, pseudo: pseudo, email: email, password: password);
+    await MongoDB.insert(data);
+  }
+
+  bool isPassword = true;
+
+  bool verificationPasswords() {
+    if (_passwordController.text == _confirmPasswordController.text) {
+      isPassword = true;
+      return isPassword;
+    } else {
+      isPassword = false;
+      return isPassword;
+    }
+  }
+
+  String verificationTextFields() {
+    String helperText = "";
+    if (_emailController.text != "" && _emailController.text != "") {
+      helperText = "Veuillez rensigner ce champ";
+      return helperText;
+    } else {
+      return "c'est bon les champs ont été renseigner";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +114,7 @@ class Account extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
+            // update text field
             Padding(
               padding: const EdgeInsets.only(bottom: 26.0),
               child: Row(
@@ -103,63 +154,101 @@ class Account extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: SizedBox(
-                width: 250,
+                width: 350,
                 height: 60,
                 child: TextField(
+                  controller: pseudoController,
                   decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25),
-                        borderSide: const BorderSide(color: Colors.white),
-                      ),
-                      labelText: 'Pseudo',
-                      labelStyle: const TextStyle(color: Colors.white)),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      borderSide: const BorderSide(
+                          color: Color.fromARGB(255, 255, 255, 255)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      borderSide: const BorderSide(
+                          color: Color.fromARGB(255, 255, 255, 255)),
+                    ),
+                    labelText: 'Pseudo',
+                    labelStyle: const TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 12.0),
+              padding: const EdgeInsets.only(top: 20.0),
               child: SizedBox(
-                width: 250,
-                height: 60,
+                width: 350,
+                height: 82,
                 child: TextField(
+                  controller: _emailController,
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),
-                        borderSide: const BorderSide(color: Colors.white),
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(255, 255, 255, 255)),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25),
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(255, 255, 255, 255)),
                       ),
                       labelText: 'Email',
+                      helperText: helperText,
                       labelStyle: const TextStyle(color: Colors.white)),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 12.0),
+              padding: const EdgeInsets.only(top: 20.0),
               child: SizedBox(
-                width: 250,
-                height: 60,
+                width: 350,
+                height: 82,
                 child: TextField(
+                  controller: _passwordController,
+                  obscureText: true,
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),
-                        borderSide: const BorderSide(color: Colors.white),
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(255, 255, 255, 255)),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25),
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(255, 255, 255, 255)),
                       ),
                       labelText: 'Password',
+                      helperText: '',
                       labelStyle: const TextStyle(color: Colors.white)),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 12.0),
+              padding: const EdgeInsets.only(top: 20.0),
               child: SizedBox(
-                width: 250,
-                height: 60,
+                width: 350,
+                height: 82,
                 child: TextField(
+                  controller: _confirmPasswordController,
+                  obscureText: true,
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),
-                        borderSide: const BorderSide(color: Colors.white),
+                        borderSide: BorderSide(
+                            color: isPassword == true
+                                ? const Color.fromARGB(255, 255, 255, 255)
+                                : const Color.fromARGB(255, 223, 14, 14)),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25),
+                        borderSide: BorderSide(
+                            color: isPassword == true
+                                ? const Color.fromARGB(255, 255, 255, 255)
+                                : const Color.fromARGB(255, 223, 14, 14)),
                       ),
                       labelText: 'Confirm Password',
+                      helperText: '',
                       labelStyle: const TextStyle(color: Colors.white)),
                 ),
               ),
@@ -173,7 +262,23 @@ class Account extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      if (verificationPasswords()) {
+                        insertData(_emailController.text, pseudoController.text,
+                            _passwordController.text);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ThemeScreen(
+                                  createAccount: true,
+                                  pseudoUser: pseudoController.text)),
+                        );
+                        print("les données sont envoyées");
+                      } else {
+                        isPassword = true;
+                        print("c'est pas bon");
+                      }
+                    },
                     child: const Text(
                       "Sign In",
                       style: TextStyle(

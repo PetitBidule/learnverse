@@ -419,7 +419,7 @@ class _DashboardState extends State<Dashboard> {
               if (currentPageIndex == 0) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ThemeScreen()),
+                  MaterialPageRoute(builder: (context) => ThemeScreen()),
                 );
               } else {
                 Navigator.push(

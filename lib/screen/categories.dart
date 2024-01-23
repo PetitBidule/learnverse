@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class Categories extends StatefulWidget {
   final String title;
@@ -109,10 +110,13 @@ class _CategoriesState extends State<Categories> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text(
-                                "eopfse",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 24),
+                              SizedBox(
+                                width: 250,
+                                child: Text(
+                                  widget.title,
+                                  style: const TextStyle(
+                                      color: Colors.white, fontSize: 24),
+                                ),
                               ),
                               Row(
                                 children: [
@@ -169,16 +173,16 @@ class _CategoriesState extends State<Categories> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
                         child: SizedBox(
-                          height: 296,
+                          height: 276,
                           child: ListView(
-                            children: const [
+                            children: [
                               Text(
-                                "zkef",
-                                style: TextStyle(
+                                widget.synopsis,
+                                style: const TextStyle(
                                     fontSize: 18, color: Colors.white),
                               ),
-                              Text('Information'),
-                              Text(
+                              const Text('Information'),
+                              const Text(
                                 "Lorem ipsum dolor sit amet consectetur. Faucibus fringilla ac interdum diam feugiat porta pretium cursus. Pretium imperdiet eget diam commodo quis. A lacus pharetra cursus enim posuere pellentesque. Facilisis dignissim faucibus tortor vel. Sit dictum sodales eget tortor a cras. Suspendisse malesuada nam suscipit integer tortor amet commodo nisl. Lectus libero id natoque ac et ipsum purus leo. At ac sem ornare proin nec aliquam convallis sit. Ipsum augue suscipit maecenas aliquet.",
                                 style: TextStyle(
                                     fontSize: 18, color: Colors.white),

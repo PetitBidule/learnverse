@@ -1,35 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:learnverse/dbHelper/futureBuilder.dart';
+import 'package:learnverse/dbHelper/displayData.dart';
 import 'package:learnverse/dbHelper/mongoDB.dart';
-import 'package:learnverse/screen/categories.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/widgets/listViewHome.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ThemeScreen extends StatefulWidget {
-  const ThemeScreen({super.key});
+  late var createAccount;
+  late var pseudoUser;
+  ThemeScreen({super.key, this.createAccount, this.pseudoUser});
 
   @override
   State<ThemeScreen> createState() => _ThemeScreenState();
 }
 
 class _ThemeScreenState extends State<ThemeScreen> {
-  // CarouselController buttonCarouselController = CarouselController();
   final controller =
       PageController(viewportFraction: 0.7, keepPage: true, initialPage: 3);
+
   int currentPageIndex = 0;
-  List allCollection = [
-    // MongoDB.getDataCollectionAnimals(),
+
+  late List allCollection = [
     MongoDB.getDataCollectionAnime(),
     MongoDB.getDataCollectionManga(),
-    // MongoDB.getDataCollectionFilm(),
-    // MongoDB.getDataCollectionFood(),
-    // MongoDB.getDataCollectionLivre(),
+    MongoDB.getDataCollectionFilm(),
+    MongoDB.getDataCollectionMusic(),
+    MongoDB.getDataCollectionUser(widget.pseudoUser),
   ];
-  List allNameFields = [
-    "title",
-    "title",
+
+  List allNameFields = ["title", "title", "_name", "name", "pseudo"];
+
+  List classement = [
+    "collectionAnime",
+    "collectionManga",
+    "collectionFilm",
+    "collectionMusic",
+    "collectionUser"
   ];
+
   List allThemes = [
     [
       "4.5",
@@ -89,14 +97,6 @@ class _ThemeScreenState extends State<ThemeScreen> {
     // ],
   ];
 
-  List classement = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,6 +105,26 @@ class _ThemeScreenState extends State<ThemeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            //    ScaffoldMessenger.of(context).showSnackBar(
+            //   SnackBar(
+            //     action: SnackBarAction(
+            //       label: 'Action',
+            //       onPressed: () {
+            //         // Code to execute.
+            //       },
+            //     ),
+            //     content: const Text('Awesome SnackBar!'),
+            //     duration: const Duration(milliseconds: 1500),
+            //     width: 280.0, // Width of the SnackBar.
+            //     padding: const EdgeInsets.symmetric(
+            //       horizontal: 8.0, // Inner padding for SnackBar content.
+            //     ),
+            //     behavior: SnackBarBehavior.floating,
+            //     shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(10.0),
+            //     ),
+            //   ),
+            // );
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Row(
@@ -203,6 +223,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
                             child: CollectionMongoDB(
                               snapshot2: allCollection[index],
                               nameField: allNameFields[index],
+                              collectionChoose: classement[index],
                               // nameField: allNameFields[index],
                             ),
                             // ThemeChooseHome(

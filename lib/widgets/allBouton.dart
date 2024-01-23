@@ -69,7 +69,7 @@ class _LogInButtonState extends State<LogInButton> {
           setState(() {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const ThemeScreen()),
+              MaterialPageRoute(builder: (context) => ThemeScreen()),
             );
           });
         },
