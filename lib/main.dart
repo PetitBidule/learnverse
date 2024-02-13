@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:learnverse/dbHelper/mongoDB.dart';
-import 'package:learnverse/screen/homepage.dart';
+import 'package:learnverse/Model/dbHelper/mongoDB.dart';
+import 'package:learnverse/controller/account_controller.dart';
+import 'package:learnverse/view/createaccount_view.dart';
+import 'package:learnverse/view/login_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,17 +15,18 @@ void main() async {
   } catch (e) {
     print("Erreur:$e");
   }
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final CreateAccountController controller = CreateAccountController();
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ScreenLog(),
+      home: Login(),
     );
   }
 }

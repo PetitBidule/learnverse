@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:learnverse/screen/homeTheme.dart';
-import 'package:learnverse/screen/settings.dart';
+import 'package:learnverse/view/homeTheme_view.dart';
+import 'package:learnverse/view/settings_view.dart';
 import 'package:learnverse/widgets/squareBackground.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';

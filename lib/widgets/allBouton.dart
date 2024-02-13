@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:learnverse/screen/createaccount.dart';
-import 'package:learnverse/screen/homeTheme.dart';
-import 'package:learnverse/screen/login.dart';
+import 'package:learnverse/view/createaccount_view.dart';
+import 'package:learnverse/view/homeTheme_view.dart';
+import 'package:learnverse/view/login_view.dart';
 import 'package:learnverse/utils/constants.dart';
 
 class ButtonConnexion extends StatefulWidget {
@@ -26,10 +26,10 @@ class _ButtonConnexionState extends State<ButtonConnexion> {
                 MaterialPageRoute(builder: (context) => const Login()),
               );
             } else {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Account()),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => const Account()),
+              // );
             }
           }); // routes
         },

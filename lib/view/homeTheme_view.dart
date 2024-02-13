@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learnverse/dbHelper/displayData.dart';
-import 'package:learnverse/dbHelper/mongoDB.dart';
+import 'package:learnverse/Model/dbHelper/displayData.dart';
+import 'package:learnverse/Model/dbHelper/mongoDB.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/widgets/listViewHome.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';

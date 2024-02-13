@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:learnverse/dbHelper/constant.dart';
-import 'package:learnverse/dbHelper/insertData.dart';
+import 'package:learnverse/Model/dbHelper/constant.dart';
+import 'package:learnverse/Model/dbHelper/insertData.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
 class MongoDB {
@@ -77,7 +77,7 @@ class MongoDB {
   static Future<String> insert(MongoDbModel data) async {
     try {
       var resultData = await userCollectionUserAccout.insertOne(data.toJson());
-      print("grandkiwijaune");
+      // print("grandkiwijaune");
       return 'yo';
       // if (resultData.isSuccess) {
       //   print("c'est bon la création du compte est terminée");

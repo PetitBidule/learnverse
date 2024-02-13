@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learnverse/screen/categories.dart';
+import 'package:learnverse/view/categories_view.dart';
 import 'package:learnverse/widgets/listViewHome.dart';
 
 class CollectionMongoDB extends StatelessWidget {
@@ -36,8 +36,8 @@ class CollectionMongoDB extends StatelessWidget {
                     backGroundTheme: snapshot.data[0]["tracks"][0]["album"]
                         ["images"][0]["url"]);
               } else if (collectionChoose == "collectionUser") {
-                collection = ThemeChooseHome(
-                    nametheme: snapshot.data[0][nameField],
+                collection = const ThemeChooseHome(
+                    nametheme: "kiwi",
                     noteTheme: "12",
                     nameCategories: "Manga",
                     backGroundTheme: "");

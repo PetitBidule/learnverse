@@ -45,6 +45,7 @@ dependencies:
   flutter_native_splash: ^2.3.8
   mongo_dart: ^0.10.0
   webview_flutter: ^4.4.4
+  crypto: ^3.0.3
 
 flutter_native_splash:
   android: true
@@ -52,7 +53,6 @@ flutter_native_splash:
   web: false
 
   color: "#757BC8"
-  # background_image: "assets/images/Purple.png"
   image: "asset/image/iconLauncher2.png"
 
 dev_dependencies:
