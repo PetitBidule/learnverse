@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:learnverse/utils/constants.dart';
 
 class Categories extends StatefulWidget {
   final String title;
@@ -98,7 +98,7 @@ class _CategoriesState extends State<Categories> {
                     height: 400,
                     width: MediaQuery.of(context).size.width,
                     decoration: const BoxDecoration(
-                        color: Color.fromRGBO(117, 123, 200, 1),
+                        color: AllConstants.backgroundContainer,
                         borderRadius:
                             BorderRadius.only(topRight: Radius.circular(50))),
                     child: Column(children: [
@@ -182,11 +182,6 @@ class _CategoriesState extends State<Categories> {
                                     fontSize: 18, color: Colors.white),
                               ),
                               const Text('Information'),
-                              const Text(
-                                "Lorem ipsum dolor sit amet consectetur. Faucibus fringilla ac interdum diam feugiat porta pretium cursus. Pretium imperdiet eget diam commodo quis. A lacus pharetra cursus enim posuere pellentesque. Facilisis dignissim faucibus tortor vel. Sit dictum sodales eget tortor a cras. Suspendisse malesuada nam suscipit integer tortor amet commodo nisl. Lectus libero id natoque ac et ipsum purus leo. At ac sem ornare proin nec aliquam convallis sit. Ipsum augue suscipit maecenas aliquet.",
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.white),
-                              ),
                             ],
                           ),
                         ),

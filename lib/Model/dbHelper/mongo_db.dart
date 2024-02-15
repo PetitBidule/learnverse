@@ -1,14 +1,11 @@
 import 'dart:developer';
 
 import 'package:learnverse/Model/dbHelper/constant.dart';
-import 'package:learnverse/Model/dbHelper/insertData.dart';
+import 'package:learnverse/Model/dbHelper/insert_data.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
 class MongoDB {
-  // static var valuePseudoUser;
-
-  // const MongoDB({required valuePseudoUser});
-  static var db,
+  static dynamic db,
       userCollectionAnimals,
       userCollectionAnime,
       userCollectionFilm,
@@ -18,18 +15,16 @@ class MongoDB {
       userCollectionMusic,
       userCollectionUserAccout;
   static connect() async {
-    print("object");
-    db = await Db.create(MONGO_CONN_URL);
+    db = await Db.create(mongoConnUrl);
     await db.open();
-    inspect(db);
-    userCollectionAnimals = db.collection(USER_COLLECTION1);
-    userCollectionAnime = db.collection(USER_COLLECTION2);
-    userCollectionFilm = db.collection(USER_COLLECTION3);
-    userCollectionFood = db.collection(USER_COLLECTION4);
-    userCollectionLivre = db.collection(USER_COLLECTION5);
-    userCollectionManga = db.collection(USER_COLLECTION6);
-    userCollectionMusic = db.collection(USER_COLLECTION10);
-    userCollectionUserAccout = db.collection(USER_COLLECTION11);
+    userCollectionAnimals = db.collection(userCollection1);
+    userCollectionAnime = db.collection(userCollection2);
+    userCollectionFilm = db.collection(userCollection3);
+    userCollectionFood = db.collection(userCollection4);
+    userCollectionLivre = db.collection(userCollection5);
+    userCollectionManga = db.collection(userCollection6);
+    userCollectionMusic = db.collection(userCollection10);
+    userCollectionUserAccout = db.collection(userCollection11);
   }
 
   static Future<List<Map<String, dynamic>>> getDataCollectionAnimals() async {

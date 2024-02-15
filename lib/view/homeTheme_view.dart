@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:learnverse/Model/dbHelper/displayData.dart';
-import 'package:learnverse/Model/dbHelper/mongoDB.dart';
+import 'package:learnverse/Model/dbHelper/display_data.dart';
+import 'package:learnverse/Model/dbHelper/mongo_db.dart';
 import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/widgets/listViewHome.dart';
+import 'package:learnverse/widgets/list_viewHome.dart';
+import 'package:learnverse/widgets/navigation_bar.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+//ignore: must_be_immutable
 class ThemeScreen extends StatefulWidget {
   late var createAccount;
   late var pseudoUser;
@@ -30,7 +32,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
 
   List allNameFields = ["title", "title", "_name", "name", "pseudo"];
 
-  List classement = [
+  List<String> classement = [
     "collectionAnime",
     "collectionManga",
     "collectionFilm",
@@ -47,84 +49,16 @@ class _ThemeScreenState extends State<ThemeScreen> {
       "asset/image/onePieceZoro.png",
       const Color.fromRGBO(140, 178, 114, 1),
     ],
-    // [
-    //   "4.3",
-    //   "Food",
-    //   "Burger",
-    //   "asset/image/breakingbad.jpeg",
-    //   "asset/image/burgerIcon.png",
-    //   const Color.fromRGBO(240, 255, 186, 1),
-    // ],
-    // [
-    //   "4.1",
-    //   "Manhwa",
-    //   "Solo Leveling",
-    //   "asset/image/sololevening.jpeg",
-    //   "asset/image/burgerIcon.png",
-    //   const Color.fromARGB(255, 90, 136, 59),
-    // ],
-    // [
-    //   "4.9",
-    //   "Anime",
-    //   "Cote",
-    //   "asset/image/cote.jpeg",
-    //   "asset/image/burgerIcon.png",
-    //   const Color.fromARGB(255, 90, 136, 59),
-    // ],
-    // [
-    //   "2.5",
-    //   "Sport",
-    //   "Hockey",
-    //   "asset/image/hockey.jpg",
-    //   "asset/image/burgerIcon.png",
-    //   const Color.fromARGB(255, 90, 136, 59),
-    // ],
-    // [
-    //   "4.7",
-    //   "Film",
-    //   "Avatar",
-    //   "asset/image/avatar.jpeg",
-    //   "asset/image/burgerIcon.png",
-    //   const Color.fromARGB(255, 90, 136, 59),
-    // ],
-    // [
-    //   "4.5",
-    //   "Animals",
-    //   "Dauphin",
-    //   "asset/image/dauphin.jpeg",
-    //   "asset/image/burgerIcon.png",
-    //   const Color.fromARGB(255, 90, 136, 59),
-    // ],
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(117, 123, 200, 1),
+      backgroundColor: AllConstants.backgroundContainer,
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            //    ScaffoldMessenger.of(context).showSnackBar(
-            //   SnackBar(
-            //     action: SnackBarAction(
-            //       label: 'Action',
-            //       onPressed: () {
-            //         // Code to execute.
-            //       },
-            //     ),
-            //     content: const Text('Awesome SnackBar!'),
-            //     duration: const Duration(milliseconds: 1500),
-            //     width: 280.0, // Width of the SnackBar.
-            //     padding: const EdgeInsets.symmetric(
-            //       horizontal: 8.0, // Inner padding for SnackBar content.
-            //     ),
-            //     behavior: SnackBarBehavior.floating,
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(10.0),
-            //     ),
-            //   ),
-            // );
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Row(
@@ -189,7 +123,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
                       children: [
                         Text(
                           "Next 18.40",
-                          style: TextStyle(color: Colors.white, fontSize: 19),
+                          style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                       ],
                     ),
@@ -214,9 +148,6 @@ class _ThemeScreenState extends State<ThemeScreen> {
                                 builder: (context) => DisplayDataCategories(
                                   snapshot2: allCollection[index],
                                 ),
-                                // Categories(
-                                //     title: allThemes[index][2],
-                                //     backgroundBanner: allThemes[index][3])
                               ),
                             ),
                             // faire la meme chose pour categories.dart
@@ -226,30 +157,21 @@ class _ThemeScreenState extends State<ThemeScreen> {
                               collectionChoose: classement[index],
                               // nameField: allNameFields[index],
                             ),
-                            // ThemeChooseHome(
-                            //   noteTheme: allThemes[index][0],
-                            //   nametheme: allThemes[index][1],
-                            //   nameCategories: allThemes[index][2],
-                            //   backGroundTheme: allThemes[index][3],
-                            // ),
                           );
                         }),
                   ),
-                  // const SizedBox(
-                  //   height: 35,
-                  // ),
                   SmoothPageIndicator(
-                      controller: controller, // PageController
-                      count: allCollection.length,
-                      textDirection: TextDirection.ltr,
-                      effect: const ExpandingDotsEffect(
-                        dotWidth: 13,
-                        dotHeight: 13,
-                        dotColor: Colors.white,
-                        activeDotColor: Color.fromRGBO(218, 182, 252, 1),
-                        spacing: 10,
-                      ),
-                      onDotClicked: (index) {}),
+                    controller: controller, // PageController
+                    count: allCollection.length,
+                    textDirection: TextDirection.ltr,
+                    effect: const ExpandingDotsEffect(
+                      dotWidth: 13,
+                      dotHeight: 13,
+                      dotColor: Colors.white,
+                      activeDotColor: Color.fromRGBO(218, 182, 252, 1),
+                      spacing: 10,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -289,14 +211,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        alignment: Alignment.center,
-        height: 100,
-        padding: const EdgeInsets.only(bottom: 30, left: 30, right: 30),
-        child: ClipRRect(
-            borderRadius: BorderRadius.circular(50),
-            child: const SingleChildScrollView(child: BottomNavBar())),
-      ),
+      bottomNavigationBar: const NavigationBarBottom(),
     );
   }
 }
@@ -314,7 +229,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      // Navigator.pushNamed(context, '/hotels');
     });
   }
 
@@ -332,17 +246,17 @@ class _BottomNavBarState extends State<BottomNavBar> {
           icon: Icon(
             Icons.home,
           ),
-          label: 'Home',
+          label: '',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.dashboard),
-          label: 'Hotels',
+          label: '',
         ),
         BottomNavigationBarItem(
           icon: Icon(
             Icons.settings,
           ),
-          label: 'Parameters',
+          label: '',
         ),
       ],
       selectedItemColor: const Color.fromARGB(255, 255, 255, 255),

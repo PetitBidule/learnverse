@@ -2,14 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/widgets/FbButton.dart';
-import 'package:learnverse/widgets/GoogleButton.dart';
-import 'package:learnverse/widgets/allBouton.dart';
-import 'package:learnverse/widgets/squareBackground.dart';
+import 'package:learnverse/widgets/all_bouton.dart';
+import 'package:learnverse/widgets/square_background.dart';
 
 class Login extends StatelessWidget {
-  const Login({super.key});
-
+  Login({super.key});
+  final List<TextEditingController> _controller =
+      List.generate(2, (int index) => TextEditingController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +24,7 @@ class Login extends StatelessWidget {
               Color.fromRGBO(224, 195, 252, 1),
               Color.fromRGBO(203, 178, 254, 1),
               Color.fromRGBO(159, 160, 255, 1),
-              Color.fromRGBO(117, 123, 200, 1),
+              AllConstants.backgroundContainer,
             ])),
       ),
       const SquareBackground(
@@ -103,38 +102,37 @@ class Login extends StatelessWidget {
                     fontWeight: FontWeight.w200,
                   )),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SizedBox(
-                width: 250,
-                height: 60,
-                child: TextField(
+            Wrap(
+                children: List<Widget>.generate(
+              2,
+              (int index) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: TextFormField(
                   decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25),
-                        borderSide: const BorderSide(color: Colors.white),
-                      ),
-                      labelText: 'Email',
-                      labelStyle: const TextStyle(color: Colors.white)),
+                    labelText: "Email",
+                    labelStyle: const TextStyle(color: Colors.white),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      borderSide: const BorderSide(
+                          color: Color.fromARGB(255, 255, 255, 255)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      borderSide: const BorderSide(
+                          color: Color.fromARGB(255, 255, 255, 255)),
+                    ),
+                  ),
+                  obscureText: false,
+                  controller: _controller[index],
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your password';
+                    }
+                    return null;
+                  },
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 24.0),
-              child: SizedBox(
-                width: 250,
-                height: 60,
-                child: TextField(
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25),
-                        borderSide: const BorderSide(color: Colors.white),
-                      ),
-                      labelText: 'Password',
-                      labelStyle: const TextStyle(color: Colors.white)),
-                ),
-              ),
-            ),
+            )),
             const Padding(
               padding: EdgeInsets.only(top: 4.0),
               child: Text('forgot your password ?',
@@ -152,19 +150,25 @@ class Login extends StatelessWidget {
                 child: LogInButton(),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 150.0),
+            Padding(
+              padding: const EdgeInsets.only(top: 150.0),
               child: SizedBox(
                   width: 250,
                   height: 60,
-                  child: GoogleButton(textConnexion: "Google")),
+                  child: OtherBtnConnexion(
+                    textConnexion: "Google",
+                    iconConnexion: "asset/image/google.png",
+                  )),
             ),
-            const Padding(
-              padding: EdgeInsets.all(16.0),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
               child: SizedBox(
                 width: 250,
                 height: 60,
-                child: FbButton(textConnexion: "Facebook"),
+                child: OtherBtnConnexion(
+                  textConnexion: "Facebook",
+                  iconConnexion: "asset/image/facebook (2).png",
+                ),
               ),
             ),
           ],

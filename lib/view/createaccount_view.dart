@@ -2,12 +2,12 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:learnverse/Model/dbHelper/insertData.dart';
-import 'package:learnverse/Model/dbHelper/mongoDB.dart';
+import 'package:learnverse/Model/dbHelper/insert_data.dart';
+import 'package:learnverse/Model/dbHelper/mongo_db.dart';
 import 'package:learnverse/controller/account_controller.dart';
-import 'package:learnverse/view/homeTheme_view.dart';
+import 'package:learnverse/view/hometheme_view.dart';
 import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/widgets/squareBackground.dart';
+import 'package:learnverse/widgets/square_background.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
 import 'package:crypto/crypto.dart';
 
@@ -32,6 +32,7 @@ class _AccountState extends State<Account> {
   final _formKey = GlobalKey<FormState>();
   bool isPassword = true;
 
+  // update
   String encryptPassword(String password) {
     final bytes = utf8.encode(password);
     final hash = sha256.convert(bytes);
@@ -70,7 +71,7 @@ class _AccountState extends State<Account> {
               Color.fromRGBO(224, 195, 252, 1),
               Color.fromRGBO(203, 178, 254, 1),
               Color.fromRGBO(159, 160, 255, 1),
-              Color.fromRGBO(117, 123, 200, 1),
+              AllConstants.backgroundContainer,
             ])),
       ),
       const SquareBackground(
@@ -183,6 +184,7 @@ class _AccountState extends State<Account> {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your password';
                             }
+
                             return null;
                           },
                         ),
@@ -208,8 +210,8 @@ class _AccountState extends State<Account> {
                                   _formKey.currentState!.save();
                                   String encryptedPassword =
                                       encryptPassword(_controller[2].text);
-                                  print(
-                                      'Encrypted password: $encryptedPassword');
+                                  // print(
+                                  //     'Encrypted password: $encryptedPassword');
                                   insertData(_controller[1].text,
                                       _controller[0].text, encryptedPassword);
                                   Navigator.push(
@@ -219,11 +221,11 @@ class _AccountState extends State<Account> {
                                             createAccount: true,
                                             pseudoUser: _controller[1].text)),
                                   );
-                                  print("les données sont envoyées");
+                                  // print("les données sont envoyées");
                                 }
                               } else {
                                 isPassword = true;
-                                print("c'est pas bon");
+                                // print("les données n'ont pas été envoyés");
                               }
                             },
                             child: const Text(
@@ -240,110 +242,6 @@ class _AccountState extends State<Account> {
                 ),
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.only(top: 8.0),
-            //   child: SizedBox(
-            //     width: 350,
-            //     height: 60,
-            //     child: TextField(
-            //       controller: pseudoController,
-            //       decoration: InputDecoration(
-            //         enabledBorder: OutlineInputBorder(
-            //           borderRadius: BorderRadius.circular(25),
-            //           borderSide: const BorderSide(
-            //               color: Color.fromARGB(255, 255, 255, 255)),
-            //         ),
-            //         focusedBorder: OutlineInputBorder(
-            //           borderRadius: BorderRadius.circular(25),
-            //           borderSide: const BorderSide(
-            //               color: Color.fromARGB(255, 255, 255, 255)),
-            //         ),
-            //         labelText: 'Pseudo',
-            //         labelStyle: const TextStyle(color: Colors.white),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.only(top: 20.0),
-            //   child: SizedBox(
-            //     width: 350,
-            //     height: 82,
-            //     child: TextField(
-            //       controller: _emailController,
-            //       decoration: InputDecoration(
-            //           enabledBorder: OutlineInputBorder(
-            //             borderRadius: BorderRadius.circular(25),
-            //             borderSide: const BorderSide(
-            //                 color: Color.fromARGB(255, 255, 255, 255)),
-            //           ),
-            //           focusedBorder: OutlineInputBorder(
-            //             borderRadius: BorderRadius.circular(25),
-            //             borderSide: const BorderSide(
-            //                 color: Color.fromARGB(255, 255, 255, 255)),
-            //           ),
-            //           labelText: 'Email',
-            //           helperText: helperText,
-            //           labelStyle: const TextStyle(color: Colors.white)),
-            //     ),
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.only(top: 20.0),
-            //   child: SizedBox(
-            //     width: 350,
-            //     height: 82,
-            //     child: TextField(
-            //       controller: _passwordController,
-            //       obscureText: true,
-            //       //  System.out.print("033[H033[2J");
-            //       //   System.out.flush();
-            //       decoration: InputDecoration(
-            //           enabledBorder: OutlineInputBorder(
-            //             borderRadius: BorderRadius.circular(25),
-            //             borderSide: const BorderSide(
-            //                 color: Color.fromARGB(255, 255, 255, 255)),
-            //           ),
-            //           focusedBorder: OutlineInputBorder(
-            //             borderRadius: BorderRadius.circular(25),
-            //             borderSide: const BorderSide(
-            //                 color: Color.fromARGB(255, 255, 255, 255)),
-            //           ),
-            //           labelText: 'Password',
-            //           helperText: '',
-            //           labelStyle: const TextStyle(color: Colors.white)),
-            //     ),
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.only(top: 20.0),
-            //   child: SizedBox(
-            //     width: 350,
-            //     height: 82,
-            //     child: TextField(
-            //       controller: _confirmPasswordController,
-            //       obscureText: true,
-            //       decoration: InputDecoration(
-            //           enabledBorder: OutlineInputBorder(
-            //             borderRadius: BorderRadius.circular(25),
-            //             borderSide: BorderSide(
-            //                 color: isPassword == true
-            //                     ? const Color.fromARGB(255, 255, 255, 255)
-            //                     : const Color.fromARGB(255, 223, 14, 14)),
-            //           ),
-            //           focusedBorder: OutlineInputBorder(
-            //             borderRadius: BorderRadius.circular(25),
-            //             borderSide: BorderSide(
-            //                 color: isPassword == true
-            //                     ? const Color.fromARGB(255, 255, 255, 255)
-            //                     : const Color.fromARGB(255, 223, 14, 14)),
-            //           ),
-            //           labelText: 'Confirm Password',
-            //           helperText: '',
-            //           labelStyle: const TextStyle(color: Colors.white)),
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       )),

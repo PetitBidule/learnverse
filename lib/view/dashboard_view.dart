@@ -1,9 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:learnverse/view/homeTheme_view.dart';
+import 'package:learnverse/utils/constants.dart';
+import 'package:learnverse/view/hometheme_view.dart';
 import 'package:learnverse/view/settings_view.dart';
-import 'package:learnverse/widgets/squareBackground.dart';
+import 'package:learnverse/widgets/square_background.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
@@ -45,7 +46,7 @@ class _DashboardState extends State<Dashboard> {
                   Color.fromRGBO(224, 195, 252, 1),
                   Color.fromRGBO(203, 178, 254, 1),
                   Color.fromRGBO(159, 160, 255, 1),
-                  Color.fromRGBO(117, 123, 200, 1),
+                  AllConstants.backgroundContainer,
                 ])),
           ),
           const SquareBackground(

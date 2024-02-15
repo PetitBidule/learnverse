@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:learnverse/view/categories_view.dart';
-import 'package:learnverse/widgets/listViewHome.dart';
+import 'package:learnverse/widgets/list_viewHome.dart';
 
+//ignore: must_be_immutable
 class CollectionMongoDB extends StatelessWidget {
-  var snapshot2;
+  dynamic snapshot2; // si erreur changer dynamic avec var
   final String nameField;
   final String collectionChoose;
   CollectionMongoDB(
@@ -60,8 +61,9 @@ class CollectionMongoDB extends StatelessWidget {
   }
 }
 
+//ignore: must_be_immutable
 class DisplayDataCategories extends StatelessWidget {
-  var snapshot2;
+  dynamic snapshot2;
   DisplayDataCategories({
     super.key,
     required this.snapshot2,

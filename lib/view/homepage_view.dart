@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/widgets/allBouton.dart';
-import 'package:learnverse/widgets/squareBackground.dart';
+import 'package:learnverse/widgets/all_bouton.dart';
+import 'package:learnverse/widgets/square_background.dart';
 
 class ScreenLog extends StatelessWidget {
   const ScreenLog({super.key});
@@ -11,7 +11,6 @@ class ScreenLog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // backgroundColor: const Color.fromRGBO(117, 123, 200, 1),
         body: Stack(children: [
       Container(
         width: double.infinity,
@@ -24,7 +23,7 @@ class ScreenLog extends StatelessWidget {
               Color.fromRGBO(224, 195, 252, 1),
               Color.fromRGBO(203, 178, 254, 1),
               Color.fromRGBO(159, 160, 255, 1),
-              Color.fromRGBO(117, 123, 200, 1),
+              AllConstants.backgroundContainer,
             ])),
       ),
       const SquareBackground(

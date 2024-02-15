@@ -9,7 +9,6 @@ class CreateAccountController {
         ispwd = true;
         return ispwd;
       } else {
-        print("l'email est invalide");
         return false;
       }
     } else {
