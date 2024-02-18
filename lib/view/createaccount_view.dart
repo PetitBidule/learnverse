@@ -131,7 +131,7 @@ class _AccountState extends State<Account> {
                   ),
                   const Text('Sign In',
                       style: TextStyle(
-                        color: AllConstants.textColors,
+                        color: Colors.white,
                         fontSize: 40,
                         fontWeight: FontWeight.w300,
                       )),
@@ -145,9 +145,9 @@ class _AccountState extends State<Account> {
               padding: EdgeInsets.only(bottom: 48.0),
               child: Text('Create your account',
                   style: TextStyle(
-                    color: AllConstants.textColors,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w200,
+                    color: Colors.white,
+                    fontSize: 40,
+                    fontWeight: FontWeight.w300,
                   )),
             ),
             SizedBox(
@@ -210,8 +210,8 @@ class _AccountState extends State<Account> {
                                   _formKey.currentState!.save();
                                   String encryptedPassword =
                                       encryptPassword(_controller[2].text);
-                                  // print(
-                                  //     'Encrypted password: $encryptedPassword');
+                                  print(
+                                      'Encrypted password: $encryptedPassword');
                                   insertData(_controller[1].text,
                                       _controller[0].text, encryptedPassword);
                                   Navigator.push(
@@ -221,11 +221,11 @@ class _AccountState extends State<Account> {
                                             createAccount: true,
                                             pseudoUser: _controller[1].text)),
                                   );
-                                  // print("les données sont envoyées");
+                                  print("les données sont envoyées");
                                 }
                               } else {
                                 isPassword = true;
-                                // print("les données n'ont pas été envoyés");
+                                print("les données n'ont pas été envoyés");
                               }
                             },
                             child: const Text(

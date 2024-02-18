@@ -66,7 +66,7 @@ class ScreenLog extends StatelessWidget {
             const Text(
               'LearnVerse',
               style: TextStyle(
-                  color: AllConstants.textColors,
+                  color: Colors.white,
                   fontSize: 40,
                   fontWeight: FontWeight.w700),
             ),

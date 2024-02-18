@@ -39,13 +39,13 @@ class ThemeChooseHome extends StatelessWidget {
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                  border: Border.all(color: AllConstants.textColors),
+                  border: Border.all(color: Colors.white),
                   color: const Color.fromARGB(140, 0, 0, 0),
                   borderRadius: BorderRadius.circular(10)),
               child: Center(
                 child: Text(
                   noteTheme,
-                  style: const TextStyle(color: AllConstants.textColors),
+                  style: AllConstants.textColors,
                 ),
               )),
         ),
@@ -99,8 +99,8 @@ class MostPopularCategories extends StatelessWidget {
   // final int firstCategories;
   final String nameCategories;
   final String nameNotion;
-  final background;
-  final backGroundColor;
+  final dynamic background;
+  final dynamic backGroundColor;
 
   const MostPopularCategories(
       {super.key,
@@ -108,14 +108,6 @@ class MostPopularCategories extends StatelessWidget {
       required this.nameCategories,
       required this.nameNotion,
       required this.backGroundColor});
-
-  // a faire la courronne
-  // crown() {
-  //   if (firstCategories == 0) {
-  //     return Positioned(
-  //         top: -6, left: -2, child: Image.asset("asset/image/crown. png"));
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {

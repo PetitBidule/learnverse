@@ -62,11 +62,9 @@ class _CategoriesState extends State<Categories> {
                               border: Border.all(color: Colors.white),
                               borderRadius: BorderRadius.circular(50)),
                           child: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  Navigator.pop(context);
-                                });
-                              },
+                              onPressed: () => setState(() {
+                                    Navigator.pop(context);
+                                  }),
                               icon: const FaIcon(
                                 FontAwesomeIcons.chevronLeft,
                                 size: 23,
@@ -127,15 +125,13 @@ class _CategoriesState extends State<Categories> {
                                         borderRadius:
                                             BorderRadius.circular(15)),
                                     child: IconButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            if (isLike == false) {
-                                              isLike = true;
-                                            } else {
-                                              isLike = false;
-                                            }
-                                          });
-                                        },
+                                        onPressed: () => setState(() {
+                                              if (isLike == false) {
+                                                isLike = true;
+                                              } else {
+                                                isLike = false;
+                                              }
+                                            }),
                                         icon: isLike == false
                                             ? const FaIcon(
                                                 FontAwesomeIcons.heart,

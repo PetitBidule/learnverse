@@ -82,11 +82,9 @@ class _SettingsState extends State<Settings> {
                         color: const Color.fromRGBO(159, 160, 255, 1),
                         borderRadius: BorderRadius.circular(100)),
                     child: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          Navigator.pop(context);
-                        });
-                      },
+                      onPressed: () => setState(() {
+                        Navigator.pop(context);
+                      }),
                       icon: const Icon(
                         Icons.arrow_back,
                         color: Colors.white,
@@ -115,61 +113,17 @@ class _SettingsState extends State<Settings> {
                     fontWeight: FontWeight.w400,
                   )),
             ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 8.0),
-              child: SizedBox(
-                width: 350,
-                height: 60,
-                child: MailButton(
-                  textConnexion: "Adresse Mail",
-                  icon: FontAwesomeIcons.envelope,
-                ),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 8.0),
-              child: SizedBox(
-                width: 350,
-                height: 60,
-                child: MailButton(
-                  textConnexion: "Mot de passe",
-                  icon: FontAwesomeIcons.key,
-                ),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 32.0),
-              child: SizedBox(
-                width: 350,
-                height: 60,
-                child: MailButton(
-                  textConnexion: "Notifications",
-                  icon: FontAwesomeIcons.bell,
-                ),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 8.0),
-              child: SizedBox(
-                width: 350,
-                height: 60,
-                child: MailButton(
-                  textConnexion: "Support",
-                  icon: FontAwesomeIcons.headset,
-                ),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 8.0),
-              child: SizedBox(
-                width: 350,
-                height: 60,
-                child: MailButton(
-                  textConnexion: "Se Déconnecter",
-                  icon: FontAwesomeIcons.arrowRightFromBracket,
-                ),
-              ),
-            ),
+            const MailButton(
+                textConnexion: "Adresse Mail", icon: FontAwesomeIcons.envelope),
+            const MailButton(
+                textConnexion: "Mot de passe", icon: FontAwesomeIcons.key),
+            const MailButton(
+                textConnexion: "Notifications", icon: FontAwesomeIcons.bell),
+            const MailButton(
+                textConnexion: "Support", icon: FontAwesomeIcons.headset),
+            const MailButton(
+                textConnexion: "Se Déconnecter",
+                icon: FontAwesomeIcons.arrowRightFromBracket),
           ],
         ),
       )),

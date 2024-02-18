@@ -72,9 +72,7 @@ class Login extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
+                    onPressed: () => Navigator.pop(context),
                     icon: const Icon(
                       Icons.arrow_back,
                       color: Colors.white,
@@ -83,7 +81,7 @@ class Login extends StatelessWidget {
                   ),
                   const Text('Log In  ',
                       style: TextStyle(
-                        color: AllConstants.textColors,
+                        color: Colors.white,
                         fontSize: 40,
                         fontWeight: FontWeight.w300,
                       )),
@@ -97,7 +95,7 @@ class Login extends StatelessWidget {
               padding: EdgeInsets.only(bottom: 64.0),
               child: Text('log in to your account',
                   style: TextStyle(
-                    color: AllConstants.textColors,
+                    color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.w200,
                   )),
@@ -137,7 +135,7 @@ class Login extends StatelessWidget {
               padding: EdgeInsets.only(top: 4.0),
               child: Text('forgot your password ?',
                   style: TextStyle(
-                    color: AllConstants.textColors,
+                    color: Colors.white,
                     fontSize: 10,
                     fontWeight: FontWeight.w200,
                   )),
@@ -150,8 +148,8 @@ class Login extends StatelessWidget {
                 child: LogInButton(),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 150.0),
+            const Padding(
+              padding: EdgeInsets.only(top: 150.0),
               child: SizedBox(
                   width: 250,
                   height: 60,
@@ -160,8 +158,8 @@ class Login extends StatelessWidget {
                     iconConnexion: "asset/image/google.png",
                   )),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
               child: SizedBox(
                 width: 250,
                 height: 60,

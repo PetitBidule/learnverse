@@ -66,7 +66,7 @@ class Theme1 extends StatelessWidget {
                 padding: EdgeInsets.all(4.0),
                 child: Text('What do you want to see on LearnVerse?',
                     style: TextStyle(
-                      color: AllConstants.textColors,
+                      color: Colors.white,
                       fontSize: 30,
                       fontWeight: FontWeight.w700,
                     )),
@@ -79,7 +79,7 @@ class Theme1 extends StatelessWidget {
                 child: Text(
                     'Select at least 3 interest to personalize your LearnVerse experience.',
                     style: TextStyle(
-                      color: AllConstants.textColors,
+                      color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.w300,
                     )),
@@ -88,16 +88,14 @@ class Theme1 extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(36.0),
               child: Container(
-                child: Container(
-                  width: 350,
-                  height: 1,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: const [],
-                    border: Border.all(
-                        color: const Color.fromARGB(255, 255, 255, 255)),
-                    borderRadius: BorderRadius.circular(40),
-                  ),
+                width: 350,
+                height: 1,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: const [],
+                  border: Border.all(
+                      color: const Color.fromARGB(255, 255, 255, 255)),
+                  borderRadius: BorderRadius.circular(40),
                 ),
               ),
             ),

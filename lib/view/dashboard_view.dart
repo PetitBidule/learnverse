@@ -86,18 +86,16 @@ class _DashboardState extends State<Dashboard> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Container(
-                          child: const Text('Dashboard',
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 255, 255, 255),
-                                fontSize: 40,
-                                fontWeight: FontWeight.w700,
-                              )),
-                        ),
-                        const SizedBox(
+                        Text('Dashboard',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              fontSize: 40,
+                              fontWeight: FontWeight.w700,
+                            )),
+                        SizedBox(
                           child: CircleAvatar(
                             backgroundImage:
                                 AssetImage("asset/image/Profil.png"),
@@ -109,65 +107,59 @@ class _DashboardState extends State<Dashboard> {
                     ),
                     Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Container(
-                            child: const Text('Watchlist',
-                                style: TextStyle(
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w700,
-                                )),
-                          ),
+                        const Padding(
+                          padding: EdgeInsets.all(20.0),
+                          child: Text('Watchlist',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                fontSize: 30,
+                                fontWeight: FontWeight.w700,
+                              )),
                         ),
                         Container(
-                          child: Container(
-                            width: 110,
-                            height: 30,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: const [],
-                              border: Border.all(
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255)),
-                              borderRadius: BorderRadius.circular(40),
-                            ),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton2<String>(
-                                isExpanded: true,
-                                hint: Text(
-                                  'filtres',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Theme.of(context).hintColor,
-                                  ),
+                          width: 110,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: const [],
+                            border: Border.all(
+                                color:
+                                    const Color.fromARGB(255, 255, 255, 255)),
+                            borderRadius: BorderRadius.circular(40),
+                          ),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton2<String>(
+                              isExpanded: true,
+                              hint: Text(
+                                'filtres',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context).hintColor,
                                 ),
-                                items: filtres
-                                    .map((String item) =>
-                                        DropdownMenuItem<String>(
-                                          value: item,
-                                          child: Text(
-                                            item,
-                                            style: const TextStyle(
-                                              fontSize: 14,
+                              ),
+                              items: filtres
+                                  .map(
+                                      (String item) => DropdownMenuItem<String>(
+                                            value: item,
+                                            child: Text(
+                                              item,
+                                              style: const TextStyle(
+                                                fontSize: 14,
+                                              ),
                                             ),
-                                          ),
-                                        ))
-                                    .toList(),
-                                value: selectedValue,
-                                onChanged: (String? value) {
-                                  setState(() {
-                                    selectedValue = value;
-                                  });
-                                },
-                                buttonStyleData: const ButtonStyleData(
-                                  padding: EdgeInsets.symmetric(horizontal: 16),
-                                  height: 40,
-                                  width: 140,
-                                ),
-                                menuItemStyleData: const MenuItemStyleData(
-                                  height: 40,
-                                ),
+                                          ))
+                                  .toList(),
+                              value: selectedValue,
+                              onChanged: (String? value) => setState(() {
+                                selectedValue = value;
+                              }),
+                              buttonStyleData: const ButtonStyleData(
+                                padding: EdgeInsets.symmetric(horizontal: 16),
+                                height: 40,
+                                width: 140,
+                              ),
+                              menuItemStyleData: const MenuItemStyleData(
+                                height: 40,
                               ),
                             ),
                           ),
@@ -208,11 +200,9 @@ class _DashboardState extends State<Dashboard> {
                                         ))
                                     .toList(),
                                 value: selectedValue,
-                                onChanged: (String? value) {
-                                  setState(() {
-                                    selectedValue = value;
-                                  });
-                                },
+                                onChanged: (String? value) => setState(() {
+                                  selectedValue = value;
+                                }),
                                 buttonStyleData: const ButtonStyleData(
                                   padding: EdgeInsets.symmetric(horizontal: 16),
                                   height: 40,
@@ -250,39 +240,7 @@ class _DashboardState extends State<Dashboard> {
                                     title: const Text('One Piece - 1089 ep'),
                                     trailing: const Icon(Icons.delete),
                                   ),
-                                )
-                                // Container(
-                                //   width: 400,
-                                //   height: 50,
-                                //   decoration: const BoxDecoration(
-                                //     color: Colors.white,
-                                //   ),
-                                //   child: const Row(
-                                //     mainAxisAlignment: MainAxisAlignment.start,
-                                //     children: [
-                                //       Text(
-                                //         "1",
-                                //         style: TextStyle(
-                                //           color: Colors.black,
-                                //           fontSize: 30,
-                                //           fontWeight: FontWeight.w800,
-                                //           letterSpacing: 0.8,
-                                //         ),
-                                //       ),
-                                //       SizedBox(width: 10),
-                                //       Text(
-                                //         "One Piece",
-                                //         style: TextStyle(
-                                //           color: Colors.black,
-                                //           fontSize: 30,
-                                //           fontWeight: FontWeight.w700,
-                                //           letterSpacing: 0.8,
-                                //         ),
-                                //       ),
-                                //     ],
-                                //   ),
-                                // ),
-                                );
+                                ));
                           },
                         ),
                       ),

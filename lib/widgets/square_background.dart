@@ -5,7 +5,7 @@ class SquareBackground extends StatelessWidget {
   final double? bottom;
   final double? left;
   final double? right;
-  final backgroundSquare;
+  final dynamic backgroundSquare;
   const SquareBackground(
       {super.key,
       this.top,

@@ -8,8 +8,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 //ignore: must_be_immutable
 class ThemeScreen extends StatefulWidget {
-  late var createAccount;
-  late var pseudoUser;
+  late dynamic createAccount;
+  late dynamic pseudoUser;
   ThemeScreen({super.key, this.createAccount, this.pseudoUser});
 
   @override
@@ -68,7 +68,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
                     width: 160,
                     height: 60,
                     decoration: BoxDecoration(
-                        border: Border.all(color: AllConstants.textColors),
+                        border: Border.all(color: Colors.white),
                         color: const Color.fromARGB(0, 155, 39, 176),
                         borderRadius: BorderRadius.circular(38)),
                     child: const Row(children: [
@@ -80,7 +80,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
                           backgroundColor: Color.fromRGBO(203, 178, 254, 1),
                           child: Icon(
                             Icons.search,
-                            color: AllConstants.textColors,
+                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -106,27 +106,23 @@ class _ThemeScreenState extends State<ThemeScreen> {
             const SizedBox(
               height: 20,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    child: const Text(
-                      "Categories Of The day",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
-                    ),
+                  Text(
+                    "Categories Of The day",
+                    style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
-                  Container(
-                    child: const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Next 18.40",
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                        ),
-                      ],
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Next 18.40",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                    ],
                   )
                 ],
               ),
@@ -181,8 +177,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
                 children: [
                   Text(
                     "Most Popular Categories",
-                    style:
-                        TextStyle(color: AllConstants.textColors, fontSize: 18),
+                    style: AllConstants.textColors,
                   ),
                 ],
               ),
