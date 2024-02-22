@@ -146,7 +146,7 @@ class _AccountState extends State<Account> {
               child: Text('Create your account',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 40,
+                    fontSize: 20,
                     fontWeight: FontWeight.w300,
                   )),
             ),

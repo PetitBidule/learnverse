@@ -1,14 +1,47 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:learnverse/controller/services.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-class Login extends StatelessWidget {
-  Login({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   final List<TextEditingController> _controller =
       List.generate(2, (int index) => TextEditingController());
+
+  final _formKey = GlobalKey<FormState>();
+
+  final List<String> _labelText = [
+    "Email",
+    "Password",
+  ];
+  List<String> scopes = <String>[
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ];
+
+  late final GoogleSignIn _googleSignIn = GoogleSignIn(
+    // Optional clientId
+    // clientId: 'your-client_id.apps.googleusercontent.com',
+    scopes: scopes,
+  );
+  Future<void> _handleSignIn() async {
+    try {
+      await _googleSignIn.signIn();
+    } catch (error) {
+      print(error);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,46 +133,56 @@ class Login extends StatelessWidget {
                     fontWeight: FontWeight.w200,
                   )),
             ),
-            Wrap(
-                children: List<Widget>.generate(
-              2,
-              (int index) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    labelText: "Email",
-                    labelStyle: const TextStyle(color: Colors.white),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25),
-                      borderSide: const BorderSide(
-                          color: Color.fromARGB(255, 255, 255, 255)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25),
-                      borderSide: const BorderSide(
-                          color: Color.fromARGB(255, 255, 255, 255)),
-                    ),
-                  ),
-                  obscureText: false,
-                  controller: _controller[index],
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
-                    }
-                    return null;
-                  },
+            SizedBox(
+              width: 350,
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    Wrap(
+                        children: List<Widget>.generate(
+                      2,
+                      (int index) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            labelText: _labelText[index],
+                            labelStyle: const TextStyle(color: Colors.white),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25),
+                              borderSide: const BorderSide(
+                                  color: Color.fromARGB(255, 255, 255, 255)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25),
+                              borderSide: const BorderSide(
+                                  color: Color.fromARGB(255, 255, 255, 255)),
+                            ),
+                          ),
+                          obscureText: false,
+                          controller: _controller[index],
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your password';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                    )),
+                  ],
                 ),
               ),
-            )),
-            const Padding(
-              padding: EdgeInsets.only(top: 4.0),
-              child: Text('forgot your password ?',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 10,
-                    fontWeight: FontWeight.w200,
-                  )),
             ),
+            // const Padding(
+            //   padding: EdgeInsets.only(top: 4.0),
+            //   child: Text('forgot your password ?',
+            //       style: TextStyle(
+            //         color: Colors.white,
+            //         fontSize: 10,
+            //         fontWeight: FontWeight.w200,
+            //       )),
+            // ),
             const Padding(
               padding: EdgeInsets.only(top: 32.0),
               child: SizedBox(
@@ -148,25 +191,31 @@ class Login extends StatelessWidget {
                 child: LogInButton(),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 150.0),
-              child: SizedBox(
-                  width: 250,
-                  height: 60,
-                  child: OtherBtnConnexion(
-                    textConnexion: "Google",
-                    iconConnexion: "asset/image/google.png",
-                  )),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(16.0),
+            Padding(
+              padding: const EdgeInsets.only(top: 150.0),
               child: SizedBox(
                 width: 250,
                 height: 60,
-                child: OtherBtnConnexion(
-                  textConnexion: "Facebook",
-                  iconConnexion: "asset/image/facebook (2).png",
-                ),
+                child: ElevatedButton(
+                    onPressed: () => AuthService().signInWithGoogle(),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Image.asset("asset/image/google.png"),
+                        const SizedBox(width: 50),
+                        const Text(
+                          "Google",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              letterSpacing: 0.8),
+                        ),
+                      ],
+                    )),
               ),
             ),
           ],
