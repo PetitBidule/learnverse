@@ -1,13 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/widgets/FbButton.dart';
-import 'package:learnverse/widgets/GoogleButton.dart';
-import 'package:learnverse/widgets/allBouton.dart';
-import 'package:learnverse/widgets/squareBackground.dart';
-
-import 'package:flutter/material.dart';
+import 'package:learnverse/widgets/square_background.dart';
 
 class Theme1 extends StatelessWidget {
   List<String> theme1 = [
@@ -22,14 +16,14 @@ class Theme1 extends StatelessWidget {
     "Anime", 
     "Book",
     "Animals",
-    "Manhwa",
+    "Series",
   ];
 final List<Color>back1 = [
     Color.fromRGBO(243, 255, 193, 1),
     Color.fromRGBO(240, 248, 255, 1),
     Color.fromRGBO(0, 223, 255, 1),
     Color.fromRGBO(245, 245, 245, 1),
-    Color.fromRGBO(245, 245, 245, 1),
+    Color.fromRGBO(252, 188, 188, 1),
 
   ];
   final List<Color>back2 = [
@@ -37,22 +31,22 @@ final List<Color>back1 = [
     Color.fromRGBO(140, 178, 114, 1),
     Color.fromRGBO(248, 231, 222, 1),
     Color.fromRGBO(255, 235, 202, 1),
-    Color.fromRGBO(255, 235, 202, 1),
+    Color.fromRGBO(237, 215, 19, 1),
 
   ];
   final List<Image>image1 = [
     Image.asset("asset/image/imageF.png"),
-    Image.asset("asset/image/image3.png"),
+    Image.asset("asset/image/imageMan.png"),
     Image.asset("asset/image/imageG.png"),
-    Image.asset("asset/image/imageM.png"),
-    Image.asset("asset/image/imageM.png"),
+    Image.asset("asset/image/imageM.png"),  
+    Image.asset("asset/image/imageMu.png"),
   ];
   final List<Image>image2 = [
     Image.asset("asset/image/imageT.png"),
     Image.asset("asset/image/imageA.png"),
     Image.asset("asset/image/imageB.png"),
     Image.asset("asset/image/imageL.png"),
-    Image.asset("asset/image/imageL.png"),
+    Image.asset("asset/image/imageS.png"),
   ];
 
   Theme1({super.key});
@@ -109,14 +103,14 @@ final List<Color>back1 = [
           child: Center(
         child: Column(
           children: [
-            Image.asset("asset/image/learne.png"),
+            Image.asset("asset/image/logoLearnVerse.png", width: 120, height: 120,),
             SizedBox(
               width: 400,
               child: const Padding(
                 padding: EdgeInsets.all(4.0),
                 child: Text('What do you want to see on LearnVerse?',
                     style: TextStyle(
-                      color: AllConstants.textColors,
+                      color: Colors.white,
                       fontSize: 30,
                       fontWeight: FontWeight.w700,
                     )),
@@ -124,11 +118,11 @@ final List<Color>back1 = [
             ),
              SizedBox(
               width: 400,
-              child: const Padding(
+              child:  Padding(
                 padding: EdgeInsets.all(4.0),
                 child: Text('Select at least 3 interest to personalize your LearnVerse experience.',
                     style: TextStyle(
-                      color: AllConstants.textColors,
+                      color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.w300,
                     )),
@@ -189,7 +183,7 @@ final List<Color>back1 = [
                           ),
                         ),
                         ),
-                        
+                         
                        Container(
                           width: 140,
                           height: 75,
@@ -214,7 +208,7 @@ final List<Color>back1 = [
                                 fontSize: 14,
                               ),
                             ),
-                          ),
+                          ),    
                         ),
                       ]);
                   },
@@ -222,7 +216,7 @@ final List<Color>back1 = [
             ),
             Container(
               width: 500,
-              height: 110,
+              height: 85,
               decoration: BoxDecoration(
                   boxShadow: [
             BoxShadow(
