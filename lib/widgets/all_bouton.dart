@@ -119,7 +119,7 @@ class _OtherButtonConnexionState extends State<OtherBtnConnexion> {
 
 class MailButton extends StatefulWidget {
   final String textConnexion;
-  final icon;
+  final dynamic icon;
   const MailButton(
       {super.key, required this.textConnexion, required this.icon});
 

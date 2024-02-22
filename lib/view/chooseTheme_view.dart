@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
+//ignore: must_be_immutable
 class Theme1 extends StatelessWidget {
   List<String> theme1 = [
     "Food",
@@ -135,16 +136,14 @@ class Theme1 extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(36.0),
                     child: Container(
-                      child: Container(
-                        width: 350,
-                        height: 1,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: const [],
-                          border: Border.all(
-                              color: const Color.fromARGB(255, 255, 255, 255)),
-                          borderRadius: BorderRadius.circular(40),
-                        ),
+                      width: 350,
+                      height: 1,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: const [],
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 255, 255, 255)),
+                        borderRadius: BorderRadius.circular(40),
                       ),
                     ),
                   ),

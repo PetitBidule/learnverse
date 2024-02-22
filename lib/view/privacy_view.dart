@@ -2,13 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
-class privacy extends StatelessWidget {
-  privacy({super.key});
-  final List<TextEditingController> _controller =
-      List.generate(2, (int index) => TextEditingController());
+class Privacy extends StatelessWidget {
+  const Privacy({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,11 +61,15 @@ class privacy extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 314.0),
-              child: Image.asset("asset/image/logoLearnVerse.png", width:60, height:60,),
+              child: Image.asset(
+                "asset/image/logoLearnVerse.png",
+                width: 60,
+                height: 60,
+              ),
             ),
-             const Padding(
-               padding: EdgeInsets.only(top:24.0),
-               child: SizedBox(
+            const Padding(
+              padding: EdgeInsets.only(top: 24.0),
+              child: SizedBox(
                 width: 400,
                 child: Padding(
                   padding: EdgeInsets.all(4.0),
@@ -79,13 +80,13 @@ class privacy extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                       )),
                 ),
-                ),
-                
-             ), 
-               SizedBox(
+              ),
+            ),
+            SizedBox(
               height: 450,
-              child:  ListView(
-                children: const [Text('''
+              child: ListView(
+                children: const [
+                  Text('''
                     Terms and Conditions
                     Welcome to Learnverse!
                     These terms and conditions outline the rules and regulations for the use of LearnVerse's Website, located at learnverse.fr.
@@ -121,71 +122,63 @@ class privacy extends StatelessWidget {
                     * exclude any of our or your liabilities that may not be excluded under applicable law.
                     The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort and for breach of statutory duty.
                     As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.")],''',
-                                style: TextStyle(
-                                color: Color.fromARGB(255, 255, 255, 255),
-                                fontWeight: FontWeight.w700,
-                                fontSize: 14,
-                              )),
-                    ],
-                    
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14,
+                      )),
+                ],
               ),
             ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: 300,
-                        height: 60,
-                        decoration: BoxDecoration(
-                           gradient: const LinearGradient(
-                            colors:[
-                              Color.fromARGB(255, 153, 118, 224),
-                              Color.fromARGB(255, 153, 107, 156),
-                              Color.fromARGB(255, 191, 95, 164),
-                              Color.fromARGB(255, 145, 35, 81),
-                              Color.fromARGB(255, 150, 35, 53),
-                              Color.fromARGB(255, 233, 80, 59),
-                              Color.fromARGB(255, 250, 157, 110),
-                              Color.fromARGB(255, 255, 166, 77),
-                            ]
-                          ),
-                          border: Border.all(color:
-                                        const Color.fromARGB(255, 255, 255, 255)),
-                                borderRadius: BorderRadius.circular(20),),
-                                child: const Center(
-                                  child: Text(
-                                    "Agree",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w700
-                                    ),
-                                  ),
-                                ),
-                        ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: 300,
-                        height: 60,
-                        decoration: BoxDecoration( 
-                          color: Colors.white,
-                          border: Border.all(color:
-                                        const Color.fromARGB(255, 255, 255, 255)),
-                                borderRadius: BorderRadius.circular(20),),
-                                child: const Center(
-                                  child: Text(
-                                    "Cancel",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w700
-                                    ),
-                                  ),
-                                ),
-                        ),
-                    ),
-          
-                    
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: 300,
+                height: 60,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(colors: [
+                    Color.fromARGB(255, 153, 118, 224),
+                    Color.fromARGB(255, 153, 107, 156),
+                    Color.fromARGB(255, 191, 95, 164),
+                    Color.fromARGB(255, 145, 35, 81),
+                    Color.fromARGB(255, 150, 35, 53),
+                    Color.fromARGB(255, 233, 80, 59),
+                    Color.fromARGB(255, 250, 157, 110),
+                    Color.fromARGB(255, 255, 166, 77),
+                  ]),
+                  border: Border.all(
+                      color: const Color.fromARGB(255, 255, 255, 255)),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: const Center(
+                  child: Text(
+                    "Agree",
+                    style: TextStyle(fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: 300,
+                height: 60,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(
+                      color: const Color.fromARGB(255, 255, 255, 255)),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: const Center(
+                  child: Text(
+                    "Cancel",
+                    style: TextStyle(fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
-        
       )),
     ]));
   }

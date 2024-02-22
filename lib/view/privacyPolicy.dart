@@ -1,17 +1,17 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/view/homeTheme_view.dart';
+import 'package:learnverse/view/hometheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
-class privacypolicy extends StatefulWidget {
-  const privacypolicy({super.key});
+class Privacypolicy extends StatefulWidget {
+  const Privacypolicy({super.key});
 
   @override
-  State<privacypolicy> createState() => _privacypolicyState();
+  State<Privacypolicy> createState() => _PrivacypolicyState();
 }
 
-class _privacypolicyState extends State<privacypolicy> {
+class _PrivacypolicyState extends State<Privacypolicy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
