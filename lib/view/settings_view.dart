@@ -69,38 +69,16 @@ class _SettingsState extends State<Settings> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(
-              height: 10,
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Container(
-                    width: 52.0,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        color: const Color.fromRGBO(159, 160, 255, 1),
-                        borderRadius: BorderRadius.circular(100)),
-                    child: IconButton(
-                      onPressed: () => setState(() {
-                        Navigator.pop(context);
-                      }),
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              height: 40,
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 26.0),
               child: Container(
                 width: 145,
                 height: 145,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(9999),
+                    image: const DecorationImage(
                         image: AssetImage('asset/image/Profil.png'))),
               ),
             ),
@@ -121,6 +99,8 @@ class _SettingsState extends State<Settings> {
                 textConnexion: "Notifications", icon: FontAwesomeIcons.bell),
             const MailButton(
                 textConnexion: "Support", icon: FontAwesomeIcons.headset),
+            const MailButton(
+                textConnexion: "Privacy", icon: FontAwesomeIcons.headset),
             const MailButton(
                 textConnexion: "Se Déconnecter",
                 icon: FontAwesomeIcons.arrowRightFromBracket),
