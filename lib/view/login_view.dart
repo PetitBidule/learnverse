@@ -5,7 +5,6 @@ import 'package:learnverse/controller/services.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -28,19 +27,6 @@ class _LoginState extends State<Login> {
     'email',
     'https://www.googleapis.com/auth/contacts.readonly',
   ];
-
-  late final GoogleSignIn _googleSignIn = GoogleSignIn(
-    // Optional clientId
-    // clientId: 'your-client_id.apps.googleusercontent.com',
-    scopes: scopes,
-  );
-  Future<void> _handleSignIn() async {
-    try {
-      await _googleSignIn.signIn();
-    } catch (error) {
-      print(error);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -174,15 +160,6 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            // const Padding(
-            //   padding: EdgeInsets.only(top: 4.0),
-            //   child: Text('forgot your password ?',
-            //       style: TextStyle(
-            //         color: Colors.white,
-            //         fontSize: 10,
-            //         fontWeight: FontWeight.w200,
-            //       )),
-            // ),
             const Padding(
               padding: EdgeInsets.only(top: 32.0),
               child: SizedBox(

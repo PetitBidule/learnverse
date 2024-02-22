@@ -6,7 +6,7 @@ import 'package:learnverse/utils/constants.dart';
 class Categories extends StatefulWidget {
   final String title;
   final String synopsis;
-  final backgroundBanner;
+  final dynamic backgroundBanner;
   const Categories({
     super.key,
     required this.title,
