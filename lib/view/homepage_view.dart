@@ -1,12 +1,16 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:learnverse/controller/account_controller.dart';
 import 'package:learnverse/utils/constants.dart';
+import 'package:learnverse/view/createaccount_view.dart';
+import 'package:learnverse/view/login_view.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
 class ScreenLog extends StatelessWidget {
-  const ScreenLog({super.key});
+  final CreateAccountController controller = CreateAccountController();
+  ScreenLog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +80,9 @@ class ScreenLog extends StatelessWidget {
             ButtonConnexion(
               textConnexion: "Sign Up",
               isConnexion: true,
+              pageRoutesConnexion: Account(
+                accountController: controller,
+              ),
             ),
             const SizedBox(
               height: 30,
@@ -83,6 +90,7 @@ class ScreenLog extends StatelessWidget {
             ButtonConnexion(
               textConnexion: "Log In  ",
               isConnexion: false,
+              pageRoutesConnexion: const Login(),
             ),
           ],
         ),

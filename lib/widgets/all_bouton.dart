@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:learnverse/view/hometheme_view.dart';
-import 'package:learnverse/view/login_view.dart';
-import 'package:learnverse/utils/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 //ignore: must_be_immutable
 class ButtonConnexion extends StatefulWidget {
   final String textConnexion;
+  dynamic pageRoutesConnexion;
   bool isConnexion = false;
   ButtonConnexion(
-      {super.key, required this.textConnexion, required this.isConnexion});
+      {super.key,
+      required this.textConnexion,
+      required this.isConnexion,
+      required this.pageRoutesConnexion});
 
   @override
   State<ButtonConnexion> createState() => _ButtonConnexionState();
@@ -21,12 +23,11 @@ class _ButtonConnexionState extends State<ButtonConnexion> {
     return TextButton(
         onPressed: () {
           setState(() {
-            if (widget.isConnexion == false) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Login()),
-              );
-            } else {}
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => widget.pageRoutesConnexion),
+            );
           }); // routes
         },
         style: ButtonStyle(
@@ -62,15 +63,10 @@ class _LogInButtonState extends State<LogInButton> {
           backgroundColor: Colors.white,
         ),
         onPressed: () {
-          // if () {
-
-          // } else {
-
-          // }
-          setState(() => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ThemeScreen()),
-              ));
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ThemeScreen()),
+          );
         },
         child: const Text(
           "Log in",
@@ -137,30 +133,36 @@ class _MailButtonConnexionState extends State<MailButton> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: SizedBox(
-        width: 350,
+        width: 400,
         height: 60,
         child: ElevatedButton(
             onPressed: () {
               setState(() {}); // routes
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromRGBO(159, 160, 255, 1),
+              backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(7.0),
+              ),
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 FaIcon(
                   widget.icon,
-                  color: Colors.white,
+                  color: const Color.fromARGB(255, 0, 0, 0),
                 ),
-                const SizedBox(width: 50),
                 Text(
                   widget.textConnexion,
                   style: const TextStyle(
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 0, 0, 0),
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                       letterSpacing: 0.8),
+                ),
+                const FaIcon(
+                  FontAwesomeIcons.chevronRight,
+                  color: Color.fromARGB(255, 0, 0, 0),
                 ),
               ],
             )),

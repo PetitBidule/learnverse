@@ -46,6 +46,9 @@ dependencies:
   mongo_dart: ^0.10.0
   webview_flutter: ^4.4.4
   crypto: ^3.0.3
+  google_sign_in: ^6.2.1
+  firebase_auth: ^4.17.4
+  google_nav_bar: ^5.0.6
 
 flutter_native_splash:
   android: true
@@ -65,7 +68,6 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.1
-  google_sign_in: ^6.2.1
 
 flutter_launcher_icons:
   android: "launcher_icon"

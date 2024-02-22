@@ -4,7 +4,7 @@ import 'package:learnverse/widgets/list_viewHome.dart';
 
 //ignore: must_be_immutable
 class CollectionMongoDB extends StatelessWidget {
-  dynamic snapshot2; // si erreur changer dynamic avec var
+  dynamic snapshot2;
   final String nameField;
   final String collectionChoose;
   CollectionMongoDB(
@@ -36,13 +36,15 @@ class CollectionMongoDB extends StatelessWidget {
                     nameCategories: "Manga",
                     backGroundTheme: snapshot.data[0]["tracks"][0]["album"]
                         ["images"][0]["url"]);
-              } else if (collectionChoose == "collectionUser") {
-                collection = const ThemeChooseHome(
-                    nametheme: "kiwi",
-                    noteTheme: "12",
-                    nameCategories: "Manga",
-                    backGroundTheme: "");
-              } else {
+              }
+              // else if (collectionChoose == "collectionUser") {
+              //   collection = const ThemeChooseHome(
+              //       nametheme: "kiwi",
+              //       noteTheme: "12",
+              //       nameCategories: "Manga",
+              //       backGroundTheme: "");
+              // }
+              else {
                 collection = ThemeChooseHome(
                     nametheme: snapshot.data[0][nameField],
                     noteTheme: "23334",
