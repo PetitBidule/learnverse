@@ -6,6 +6,7 @@ import 'package:learnverse/view/chooseTheme_view.dart';
 import 'package:learnverse/view/createaccount_view.dart';
 import 'package:learnverse/view/homepage_view.dart';
 import 'package:learnverse/view/login_view.dart';
+import 'package:learnverse/view/privacy_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
       //     elevatedButtonTheme:  ElevatedButtonThemeData(
       //         style: ButtonStyle(backgroundColor: MaterialStateProperty<Color> Colors.white))),
       debugShowCheckedModeBanner: false,
-      home: Theme1(),
+      home: privacy(),
     );
   }
 }
