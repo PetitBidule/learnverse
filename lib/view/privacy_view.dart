@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:learnverse/utils/constants.dart';
+import 'package:learnverse/view/hometheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
 class Privacy extends StatelessWidget {
@@ -150,10 +151,21 @@ class Privacy extends StatelessWidget {
                       color: const Color.fromARGB(255, 255, 255, 255)),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: const Center(
-                  child: Text(
-                    "Agree",
-                    style: TextStyle(fontWeight: FontWeight.w700),
+                child: Center(
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ThemeScreen(
+                                  firstConnexion: false,
+                                )),
+                      );
+                    },
+                    child: const Text(
+                      "Agree",
+                      style: TextStyle(fontWeight: FontWeight.w700),
+                    ),
                   ),
                 ),
               ),

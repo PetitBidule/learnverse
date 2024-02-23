@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:learnverse/Model/dbHelper/mongo_db.dart';
+import 'package:learnverse/view/chooseTheme_view.dart';
 import 'package:learnverse/view/homepage_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -23,12 +24,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       // theme: ThemeData(
       //     elevatedButtonTheme:  ElevatedButtonThemeData(
       //         style: ButtonStyle(backgroundColor: MaterialStateProperty<Color> Colors.white))),
       debugShowCheckedModeBanner: false,
-      home: ScreenLog(),
+      home: Theme1(),
     );
   }
 }
