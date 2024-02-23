@@ -1,10 +1,18 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:learnverse/view/privacy_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
 //ignore: must_be_immutable
-class Theme1 extends StatelessWidget {
+class Theme1 extends StatefulWidget {
+  const Theme1({super.key});
+
+  @override
+  State<Theme1> createState() => _Theme1State();
+}
+
+class _Theme1State extends State<Theme1> {
   List<String> theme1 = [
     "Food",
     "Manga",
@@ -12,6 +20,7 @@ class Theme1 extends StatelessWidget {
     "Movie",
     "Music",
   ];
+
   List<String> theme2 = [
     "Sport",
     "Anime",
@@ -19,6 +28,7 @@ class Theme1 extends StatelessWidget {
     "Animals",
     "Series",
   ];
+
   final List<Color> back1 = [
     const Color.fromRGBO(243, 255, 193, 1),
     const Color.fromRGBO(240, 248, 255, 1),
@@ -26,6 +36,14 @@ class Theme1 extends StatelessWidget {
     const Color.fromRGBO(245, 245, 245, 1),
     const Color.fromRGBO(252, 188, 188, 1),
   ];
+  final List<Color> back3 = [
+    const Color.fromRGBO(243, 255, 193, 0.40),
+    const Color.fromRGBO(240, 248, 255, 0.40),
+    const Color.fromRGBO(0, 223, 255, 0.40),
+    const Color.fromRGBO(245, 245, 245, 0.40),
+    const Color.fromRGBO(252, 188, 188, 0.40),
+  ];
+
   final List<Color> back2 = [
     const Color.fromRGBO(255, 255, 255, 1),
     const Color.fromRGBO(140, 178, 114, 1),
@@ -33,6 +51,7 @@ class Theme1 extends StatelessWidget {
     const Color.fromRGBO(255, 235, 202, 1),
     const Color.fromRGBO(237, 215, 19, 1),
   ];
+
   final List<Image> image1 = [
     Image.asset("asset/image/imageF.png"),
     Image.asset("asset/image/imageMan.png"),
@@ -40,6 +59,7 @@ class Theme1 extends StatelessWidget {
     Image.asset("asset/image/imageM.png"),
     Image.asset("asset/image/imageMu.png"),
   ];
+
   final List<Image> image2 = [
     Image.asset("asset/image/imageT.png"),
     Image.asset("asset/image/imageA.png"),
@@ -48,7 +68,10 @@ class Theme1 extends StatelessWidget {
     Image.asset("asset/image/imageS.png"),
   ];
 
-  Theme1({super.key});
+  final bool _isSelected = false;
+  int _valueSelected = 0;
+  final List _colors = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,7 +132,7 @@ class Theme1 extends StatelessWidget {
                     height: 120,
                   ),
                   const SizedBox(
-                    width: 400,
+                    width: 360,
                     child: Padding(
                       padding: EdgeInsets.all(4.0),
                       child: Text('What do you want to see on LearnVerse?',
@@ -121,7 +144,7 @@ class Theme1 extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    width: 400,
+                    width: 360,
                     child: Padding(
                       padding: EdgeInsets.all(4.0),
                       child: Text(
@@ -133,18 +156,12 @@ class Theme1 extends StatelessWidget {
                           )),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(36.0),
-                    child: Container(
-                      width: 350,
-                      height: 1,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: const [],
-                        border: Border.all(
-                            color: const Color.fromARGB(255, 255, 255, 255)),
-                        borderRadius: BorderRadius.circular(40),
-                      ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 14.0),
+                    child: Divider(
+                      color: Color.fromARGB(209, 255, 255, 255),
+                      endIndent: 40,
+                      indent: 40,
                     ),
                   ),
                   SizedBox(
@@ -158,32 +175,67 @@ class Theme1 extends StatelessWidget {
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 10.0),
-                                child: Container(
-                                  width: 140,
-                                  height: 75,
-                                  decoration: BoxDecoration(
-                                    color: back1[index],
-                                    image: DecorationImage(
-                                      image: image1[index].image,
-                                    ),
-                                    boxShadow: const [],
-                                    border: Border.all(
-                                      color: const Color.fromARGB(
-                                          255, 255, 255, 255),
-                                    ),
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      theme1[index],
-                                      style: const TextStyle(
-                                        color: Color.fromARGB(255, 0, 0, 0),
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 14,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      if (_valueSelected < 3) {
+                                        if (back1[index] == back3[index]) {
+                                          print("nn");
+                                        } else {
+                                          back1[index] = back3[index];
+                                          _valueSelected++;
+                                        }
+                                      }
+                                    });
+                                  },
+                                  child: Stack(children: [
+                                    Positioned(
+                                      child: Container(
+                                        width: 140,
+                                        height: 75,
+                                        decoration: BoxDecoration(
+                                          color: back1[index],
+                                          image: DecorationImage(
+                                            image: image1[index].image,
+                                          ),
+                                          border: Border.all(
+                                            color: const Color.fromARGB(
+                                                255, 255, 255, 255),
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            theme1[index],
+                                            style: const TextStyle(
+                                              color:
+                                                  Color.fromARGB(255, 0, 0, 0),
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                    // Container(
+                                    //   width: 140,
+                                    //   height: 75,
+                                    //   decoration: BoxDecoration(
+                                    //     border: Border.all(
+                                    //       color: Colors.white,
+                                    //     ),
+                                    //     color: _valueSelected == index
+                                    //         ? back1[index] =
+                                    //             const Color.fromARGB(
+                                    //                 132, 213, 205, 205)
+                                    //         : const Color.fromARGB(
+                                    //             1, 255, 255, 255),
+                                    //     borderRadius: BorderRadius.circular(20),
+                                    //   ),
+                                    // ),
+                                  ]),
                                 ),
                               ),
                               Container(
@@ -207,7 +259,7 @@ class Theme1 extends StatelessWidget {
                                     theme2[index],
                                     style: const TextStyle(
                                       color: Color.fromARGB(255, 0, 0, 0),
-                                      fontWeight: FontWeight.w900,
+                                      fontWeight: FontWeight.w600,
                                       fontSize: 14,
                                     ),
                                   ),
@@ -218,48 +270,63 @@ class Theme1 extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: 500,
+                    width: double.infinity,
                     height: 85,
                     decoration: const BoxDecoration(
+                      color: Color.fromRGBO(132, 132, 221, 1),
                       boxShadow: [
                         BoxShadow(
-                          color: Color.fromRGBO(1132, 132, 221, 0.5),
-                          spreadRadius: 2,
-                          blurRadius: 2,
-                          offset: Offset(4, 1),
+                          color: Color.fromRGBO(132, 132, 221, 1),
+                          spreadRadius: 10,
+                          blurRadius: 30,
+                          offset: Offset(0, -27),
                         ),
                       ],
                     ),
-                    child: Row(
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            "0 of 3 selected",
-                            style: TextStyle(color: Colors.white),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            " $_valueSelected of 3 selected",
+                            style: const TextStyle(color: Colors.white),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 162.0),
-                          child: Container(
-                            width: 90,
-                            height: 30,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255)),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                "Next",
-                                style: TextStyle(fontWeight: FontWeight.w700),
+                          TextButton(
+                            onPressed: () {
+                              _valueSelected == 3
+                                  ? Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const Privacy()),
+                                    )
+                                  : null;
+                            },
+                            child: Container(
+                              width: 90,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: _valueSelected == 3
+                                    ? Colors.white
+                                    : const Color.fromARGB(139, 255, 255, 255),
+                                border: Border.all(
+                                    color: const Color.fromARGB(
+                                        139, 255, 255, 255)),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  "Next",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   )
                 ],

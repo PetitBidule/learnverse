@@ -47,7 +47,7 @@ class CollectionMongoDB extends StatelessWidget {
               else {
                 collection = ThemeChooseHome(
                     nametheme: snapshot.data[0][nameField],
-                    noteTheme: "23334",
+                    noteTheme: "8",
                     nameCategories: "Manga",
                     backGroundTheme: snapshot.data[0]["main_picture"]
                         ["medium"]);

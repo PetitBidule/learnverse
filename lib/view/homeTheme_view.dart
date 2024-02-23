@@ -10,9 +10,14 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 //ignore: must_be_immutable
 class ThemeScreen extends StatefulWidget {
+  bool firstConnexion;
   late dynamic createAccount;
   late dynamic pseudoUser;
-  ThemeScreen({super.key, this.createAccount, this.pseudoUser});
+  ThemeScreen(
+      {super.key,
+      this.createAccount,
+      this.pseudoUser,
+      required this.firstConnexion});
 
   @override
   State<ThemeScreen> createState() => _ThemeScreenState();
@@ -20,7 +25,13 @@ class ThemeScreen extends StatefulWidget {
 
 class _ThemeScreenState extends State<ThemeScreen> {
   int _selectedIndex = 0;
-  final List routes = [const HomePage2(), const Dashboard(), const Settings()];
+  late final List routes = [
+    HomePage2(
+      firstConnexion: widget.firstConnexion,
+    ),
+    const Dashboard(),
+    const Settings()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +76,8 @@ class _ThemeScreenState extends State<ThemeScreen> {
 }
 
 class HomePage2 extends StatefulWidget {
-  const HomePage2({super.key});
+  bool firstConnexion;
+  HomePage2({super.key, required this.firstConnexion});
 
   @override
   State<HomePage2> createState() => _HomePage2State();

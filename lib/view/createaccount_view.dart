@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:learnverse/Model/dbHelper/insert_data.dart';
 import 'package:learnverse/Model/dbHelper/mongo_db.dart';
 import 'package:learnverse/controller/account_controller.dart';
+import 'package:learnverse/view/chooseTheme_view.dart';
 import 'package:learnverse/view/hometheme_view.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/widgets/square_background.dart';
@@ -214,12 +215,17 @@ class _AccountState extends State<Account> {
                                       'Encrypted password: $encryptedPassword');
                                   insertData(_controller[1].text,
                                       _controller[0].text, encryptedPassword);
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //       builder: (context) => ThemeScreen(
+                                  //           createAccount: true,
+                                  //           pseudoUser: _controller[1].text)),
+                                  // );
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ThemeScreen(
-                                            createAccount: true,
-                                            pseudoUser: _controller[1].text)),
+                                        builder: (context) => const Theme1()),
                                   );
                                   print("les données sont envoyées");
                                 }

@@ -77,7 +77,9 @@ class _PrivacypolicyState extends State<Privacypolicy> {
                       onPressed: () => setState(() => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ThemeScreen()),
+                                builder: (context) => ThemeScreen(
+                                      firstConnexion: false,
+                                    )),
                           )),
                       iconSize: 36.0,
                     ),
