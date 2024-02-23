@@ -4,6 +4,7 @@ import 'package:learnverse/Model/dbHelper/mongo_db.dart';
 import 'package:learnverse/view/chooseTheme_view.dart';
 import 'package:learnverse/view/homepage_view.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:learnverse/view/privacy_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       //         style: ButtonStyle(backgroundColor: MaterialStateProperty<Color> Colors.white))),
       debugShowCheckedModeBanner: false,
       home: Theme1(),
+
     );
   }
 }
