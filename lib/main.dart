@@ -11,7 +11,6 @@ void main() async {
   await Future.delayed(const Duration(seconds: 2));
   FlutterNativeSplash.remove();
   try {
-    await Firebase.initializeApp();
     await MongoDB.connect();
     print("object");
   } catch (e) {
@@ -25,13 +24,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       // theme: ThemeData(
       //     elevatedButtonTheme:  ElevatedButtonThemeData(
       //         style: ButtonStyle(backgroundColor: MaterialStateProperty<Color> Colors.white))),
       debugShowCheckedModeBanner: false,
-      home: Theme1(),
-
+      home: ScreenLog(),
     );
   }
 }
