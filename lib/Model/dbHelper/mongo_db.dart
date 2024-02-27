@@ -82,4 +82,20 @@ class MongoDB {
       return "$e";
     }
   }
+
+  static Future<String> insertPseudo(MongoDbModel data) async {
+    try {
+      var resultData = await userCollectionUserAccout.insertOne(data.toJson());
+      return resultData;
+      // if (resultData.isSuccess) {
+      //   print("c'est bon la création du compte est terminée");
+      //   return "c'est bon la création du compte est terminée";
+      // } else {
+      //   return "ca ne marche pas";
+      // }
+    } catch (e) {
+      print(e.toString());
+      return "$e";
+    }
+  }
 }

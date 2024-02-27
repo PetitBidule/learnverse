@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:learnverse/Model/dbHelper/display_data.dart';
@@ -12,7 +14,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class ThemeScreen extends StatefulWidget {
   bool firstConnexion;
   late dynamic createAccount;
-  late dynamic pseudoUser;
+  String? pseudoUser;
   ThemeScreen(
       {super.key,
       this.createAccount,
@@ -28,6 +30,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
   late final List routes = [
     HomePage2(
       firstConnexion: widget.firstConnexion,
+      pseudoUser: widget.pseudoUser,
     ),
     const Dashboard(),
     const Settings()
@@ -77,7 +80,9 @@ class _ThemeScreenState extends State<ThemeScreen> {
 
 class HomePage2 extends StatefulWidget {
   bool firstConnexion;
-  HomePage2({super.key, required this.firstConnexion});
+  String? pseudoUser;
+  HomePage2(
+      {super.key, required this.firstConnexion, required this.pseudoUser});
 
   @override
   State<HomePage2> createState() => _HomePage2State();
@@ -108,9 +113,25 @@ List<String> classement = [
 
 List allThemes = [
   [
-    "4.5",
+    "4.9",
     "Manga",
     "One Piece",
+    "asset/image/imageMan.png",
+    "asset/image/imageMan.png",
+    const Color.fromARGB(255, 255, 255, 255),
+  ],
+  [
+    "4.8",
+    "Anime",
+    "JJk",
+    "asset/image/onePieceZoro.png",
+    "asset/image/onePieceZoro.png",
+    const Color.fromRGBO(140, 178, 114, 1),
+  ],
+  [
+    "4.6",
+    "Music",
+    "Dimanche",
     "asset/image/onepiecemanga.jpeg",
     "asset/image/onePieceZoro.png",
     const Color.fromRGBO(140, 178, 114, 1),
@@ -171,16 +192,16 @@ class _HomePage2State extends State<HomePage2> {
           const SizedBox(
             height: 20,
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Categories Of The day",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                  widget.pseudoUser!,
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
                 ),
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(

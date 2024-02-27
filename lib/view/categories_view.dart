@@ -190,35 +190,6 @@ class _CategoriesState extends State<Categories> {
           ),
         ],
       ),
-      bottomNavigationBar: NavigationBar(
-        height: 60,
-        indicatorColor: const Color.fromRGBO(145, 144, 236, 0),
-        indicatorShape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        backgroundColor: const Color.fromRGBO(145, 144, 236, 1),
-        destinations: const [
-          NavigationDestination(
-              icon: FaIcon(
-                FontAwesomeIcons.house,
-                size: 30,
-                color: Colors.white,
-              ),
-              label: ""),
-          NavigationDestination(
-              icon: FaIcon(
-                FontAwesomeIcons.chartPie,
-                size: 30,
-              ),
-              label: ""),
-          NavigationDestination(
-              icon: FaIcon(
-                FontAwesomeIcons.gear,
-                size: 30,
-              ),
-              label: ""),
-        ],
-      ),
     );
   }
 }

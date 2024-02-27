@@ -6,11 +6,12 @@ import 'package:learnverse/Model/dbHelper/insert_data.dart';
 import 'package:learnverse/Model/dbHelper/mongo_db.dart';
 import 'package:learnverse/controller/account_controller.dart';
 import 'package:learnverse/view/chooseTheme_view.dart';
-import 'package:learnverse/view/hometheme_view.dart';
 import 'package:learnverse/utils/constants.dart';
+import 'package:learnverse/view/login_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
 import 'package:crypto/crypto.dart';
+import 'package:realm/realm.dart';
 
 class Account extends StatefulWidget {
   final CreateAccountController accountController;
@@ -29,6 +30,7 @@ class _AccountState extends State<Account> {
     "Password",
     "Confirm Password",
   ];
+  final List<bool> obscureText = [false, false, true, true];
   String helperText = "";
   final _formKey = GlobalKey<FormState>();
   bool isPassword = true;
@@ -46,6 +48,8 @@ class _AccountState extends State<Account> {
         MongoDbModel(id: id, pseudo: pseudo, email: email, password: password);
     await MongoDB.insert(data);
   }
+
+  final app = App(AppConfiguration('learneverse-ydjls'));
 
   // String verificationTextFields() {
   // String helperText = "";
@@ -179,7 +183,7 @@ class _AccountState extends State<Account> {
                                   color: Color.fromARGB(255, 255, 255, 255)),
                             ),
                           ),
-                          obscureText: false,
+                          obscureText: obscureText[index],
                           controller: _controller[index],
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -200,35 +204,37 @@ class _AccountState extends State<Account> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
                             ),
-                            onPressed: () {
+                            onPressed: () async {
                               if (widget.accountController
                                   .verificationPasswordsEmail(
                                       _controller[1].text,
                                       _controller[2].text,
                                       _controller[3].text,
                                       isPassword)) {
-                                if (_formKey.currentState!.validate()) {
-                                  _formKey.currentState!.save();
-                                  String encryptedPassword =
-                                      encryptPassword(_controller[2].text);
-                                  print(
-                                      'Encrypted password: $encryptedPassword');
-                                  insertData(_controller[1].text,
-                                      _controller[0].text, encryptedPassword);
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //       builder: (context) => ThemeScreen(
-                                  //           createAccount: true,
-                                  //           pseudoUser: _controller[1].text)),
-                                  // );
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Theme1()),
-                                  );
-                                  print("les données sont envoyées");
-                                }
+                                EmailPasswordAuthProvider authProvider =
+                                    EmailPasswordAuthProvider(app);
+                                await authProvider.registerUser(
+                                  _controller[1].text,
+                                  _controller[2].text,
+                                );
+                                print("les données ont été envoyés ");
+                                // if (_formKey.currentState!.validate()) {
+                                //   _formKey.currentState!.save();
+                                //   String encryptedPassword =
+                                //       encryptPassword(_controller[2].text);
+
+                                //   insertData(_controller[1].text,
+                                //       _controller[0].text, encryptedPassword);
+                                //   EmailPasswordAuthProvider authProvider =
+                                //       EmailPasswordAuthProvider(app);
+                                //   await authProvider.registerUser(
+                                //       "lisa@orange.com", "myStr0ngPassw0dr");
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Login()),
+                                );
+                                // }
                               } else {
                                 isPassword = true;
                                 print("les données n'ont pas été envoyés");

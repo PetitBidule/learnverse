@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:learnverse/controller/app_configuration.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
@@ -99,10 +100,42 @@ class _SettingsState extends State<Settings> {
                 textConnexion: "Notifications", icon: FontAwesomeIcons.bell),
             const MailButton(
                 textConnexion: "Support", icon: FontAwesomeIcons.headset),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: SizedBox(
+                width: 400,
+                height: 60,
+                child: ElevatedButton(
+                    onPressed: () {
+                      UserFunctions.logoutUser();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7.0),
+                      ),
+                    ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Log Out",
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              letterSpacing: 0.8),
+                        ),
+                        FaIcon(
+                          FontAwesomeIcons.chevronRight,
+                          color: Color.fromARGB(255, 0, 0, 0),
+                        ),
+                      ],
+                    )),
+              ),
+            ),
             const MailButton(
-                textConnexion: "Privacy", icon: FontAwesomeIcons.headset),
-            const MailButton(
-                textConnexion: "Se Déconnecter",
+                textConnexion: "Delete Account",
                 icon: FontAwesomeIcons.arrowRightFromBracket),
           ],
         ),

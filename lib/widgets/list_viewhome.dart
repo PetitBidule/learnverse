@@ -125,7 +125,7 @@ class MostPopularCategories extends StatelessWidget {
                 color: backGroundColor,
                 borderRadius: BorderRadius.circular(21.5)),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 13.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

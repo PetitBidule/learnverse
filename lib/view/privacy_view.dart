@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/view/hometheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
@@ -46,11 +47,18 @@ class Privacy extends StatelessWidget {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(right: 314.0),
-                      child: Image.asset(
-                        "asset/image/logoLearnVerse.png",
-                        width: 60,
-                        height: 60,
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Image.asset(
+                            "asset/image/logoLearnVerse.png",
+                            width: 40,
+                            height: 40,
+                          ),
+                          const FaIcon(FontAwesomeIcons.close,
+                              color: Colors.white)
+                        ],
                       ),
                     ),
                     const Padding(
@@ -71,6 +79,7 @@ class Privacy extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
+                      width: 400,
                       height: 450,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -143,15 +152,24 @@ class Privacy extends StatelessWidget {
                             Color.fromARGB(255, 153, 107, 156),
                             // ... (Other gradient colors)
                           ]),
-                          border: Border.all(
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                          ),
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(15),
                         ),
-                        child: const Center(
-                          child: Text(
-                            "Agree",
-                            style: TextStyle(fontWeight: FontWeight.w700),
+                        child: Center(
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ThemeScreen(
+                                          firstConnexion: false,
+                                        )),
+                              );
+                            },
+                            child: const Text(
+                              'Agree',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            // style: ButtonStyle(fontWeight: FontWeight.w700),
                           ),
                         ),
                       ),
@@ -162,16 +180,18 @@ class Privacy extends StatelessWidget {
                         width: 300,
                         height: 60,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: const Color.fromARGB(0, 255, 255, 255),
                           border: Border.all(
                             color: const Color.fromARGB(255, 255, 255, 255),
                           ),
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(15),
                         ),
                         child: const Center(
                           child: Text(
                             "Cancel",
-                            style: TextStyle(fontWeight: FontWeight.w700),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white),
                           ),
                         ),
                       ),
