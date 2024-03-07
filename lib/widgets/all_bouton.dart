@@ -49,7 +49,8 @@ class _ButtonConnexionState extends State<ButtonConnexion> {
 }
 
 class LogInButton extends StatefulWidget {
-  const LogInButton({super.key});
+  final Future signIn;
+  const LogInButton({super.key, required this.signIn});
 
   @override
   State<LogInButton> createState() => _LogInButtonState();
@@ -63,6 +64,7 @@ class _LogInButtonState extends State<LogInButton> {
           backgroundColor: Colors.white,
         ),
         onPressed: () {
+          widget.signIn;
           Navigator.push(
             context,
             MaterialPageRoute(

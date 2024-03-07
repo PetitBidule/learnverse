@@ -20,5 +20,6 @@
         "activityBarBadge.background": "#945bc4",
         "activityBarBadge.foreground": "#e7e7e7"
     },
-    "peacock.color": "#42b883"
+    "peacock.color": "#42b883",
+    "doki.background.enabled": true
 }

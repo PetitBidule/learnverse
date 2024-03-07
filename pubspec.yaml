@@ -50,6 +50,8 @@ dependencies:
   firebase_auth: ^4.17.4
   google_nav_bar: ^5.0.6
   realm: ^1.9.0
+  cloud_firestore: ^4.15.7
+  provider: ^6.1.2
 
 flutter_native_splash:
   android: true

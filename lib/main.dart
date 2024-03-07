@@ -4,13 +4,13 @@ import 'package:learnverse/Model/dbHelper/mongo_db.dart';
 import 'package:learnverse/view/chooseTheme_view.dart';
 import 'package:learnverse/view/homepage_view.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:learnverse/view/privacy_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Future.delayed(const Duration(seconds: 2));
   FlutterNativeSplash.remove();
   try {
+    await Firebase.initializeApp();
     await MongoDB.connect();
     print("object");
   } catch (e) {

@@ -1,13 +1,14 @@
 import 'dart:convert';
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:learnverse/Model/dbHelper/insert_data.dart';
 import 'package:learnverse/Model/dbHelper/mongo_db.dart';
 import 'package:learnverse/controller/account_controller.dart';
-import 'package:learnverse/view/chooseTheme_view.dart';
 import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/view/login_view.dart';
+import 'package:learnverse/view/homeTheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
 import 'package:crypto/crypto.dart';
@@ -47,6 +48,41 @@ class _AccountState extends State<Account> {
     final data =
         MongoDbModel(id: id, pseudo: pseudo, email: email, password: password);
     await MongoDB.insert(data);
+  }
+
+  @override
+  void dispose() {
+    _controller[0].dispose();
+    _controller[1].dispose();
+    _controller[2].dispose();
+    _controller[3].dispose();
+    super.dispose();
+  }
+
+  Future signUp() async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _controller[1].text, password: _controller[2].text);
+      print("les données ont été envoyés ");
+      print(FirebaseAuth.instance.currentUser?.uid);
+      print(FirebaseAuth.instance.currentUser?.email);
+      print(FirebaseAuth.instance.currentUser?.metadata);
+      addUserDetails();
+    } on FirebaseAuthException catch (e) {
+      print("error ${e.message}");
+      return e.message;
+    }
+  }
+
+  Future addUserDetails() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser?.email)
+        .set({
+      "pseudo": _controller[0].text,
+      "userId": FirebaseAuth.instance.currentUser?.uid,
+      "watchlist": [],
+    });
   }
 
   final app = App(AppConfiguration('learneverse-ydjls'));
@@ -211,30 +247,13 @@ class _AccountState extends State<Account> {
                                       _controller[2].text,
                                       _controller[3].text,
                                       isPassword)) {
-                                EmailPasswordAuthProvider authProvider =
-                                    EmailPasswordAuthProvider(app);
-                                await authProvider.registerUser(
-                                  _controller[1].text,
-                                  _controller[2].text,
-                                );
-                                print("les données ont été envoyés ");
-                                // if (_formKey.currentState!.validate()) {
-                                //   _formKey.currentState!.save();
-                                //   String encryptedPassword =
-                                //       encryptPassword(_controller[2].text);
-
-                                //   insertData(_controller[1].text,
-                                //       _controller[0].text, encryptedPassword);
-                                //   EmailPasswordAuthProvider authProvider =
-                                //       EmailPasswordAuthProvider(app);
-                                //   await authProvider.registerUser(
-                                //       "lisa@orange.com", "myStr0ngPassw0dr");
+                                signUp();
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const Login()),
+                                      builder: (context) =>
+                                          ThemeScreen(firstConnexion: false)),
                                 );
-                                // }
                               } else {
                                 isPassword = true;
                                 print("les données n'ont pas été envoyés");

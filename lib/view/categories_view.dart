@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,6 +9,7 @@ class Categories extends StatefulWidget {
   final String title;
   final String synopsis;
   final dynamic backgroundBanner;
+
   const Categories({
     super.key,
     required this.title,
@@ -20,6 +23,8 @@ class Categories extends StatefulWidget {
 
 class _CategoriesState extends State<Categories> {
   bool isLike = false;
+  final List<String> titleFav = [];
+
   @override
   Widget build(BuildContext context) {
     const String svgEffectBorder =
@@ -101,8 +106,8 @@ class _CategoriesState extends State<Categories> {
                             BorderRadius.only(topRight: Radius.circular(50))),
                     child: Column(children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 20),
+                        padding: const EdgeInsets.only(
+                            left: 10.0, right: 10.0, top: 10),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
@@ -153,7 +158,24 @@ class _CategoriesState extends State<Categories> {
                                         borderRadius:
                                             BorderRadius.circular(15)),
                                     child: IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          setState(() {
+                                            print(titleFav.length);
+
+                                            titleFav.add(widget.title);
+                                            FirebaseFirestore.instance
+                                                .collection('users')
+                                                .doc(FirebaseAuth.instance
+                                                    .currentUser?.email)
+                                                .set({
+                                              "watchlist": "kiwijaune"
+                                              // FirebaseFirestore.instance.FieldValue
+                                              //     .arrayUnion('newItem')
+                                            });
+                                            print(titleFav.length);
+                                            // Dashboard(informationFav: titleFav);
+                                          });
+                                        },
                                         icon: const FaIcon(
                                           FontAwesomeIcons.bookmark,
                                           color: Colors.white,

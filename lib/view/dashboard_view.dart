@@ -6,7 +6,10 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({super.key});
+  // List informationFav;
+  const Dashboard({
+    super.key,
+  });
 
   @override
   State<Dashboard> createState() => _DashboardState();
@@ -24,6 +27,7 @@ class _DashboardState extends State<Dashboard> {
     'Manwhua',
     'Film',
   ];
+
   int currentPageIndex = 0;
 
   String? selectedValue;
@@ -86,7 +90,7 @@ class _DashboardState extends State<Dashboard> {
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text('Dashboard',
+                      Text("}",
                           style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
                             fontSize: 40,
@@ -215,7 +219,7 @@ class _DashboardState extends State<Dashboard> {
                     child: SizedBox(
                       height: 250,
                       child: ListView.builder(
-                        itemCount: 2,
+                        itemCount: 0,
                         itemBuilder: (BuildContext context, index) {
                           return Padding(
                               padding: const EdgeInsets.all(8.0),

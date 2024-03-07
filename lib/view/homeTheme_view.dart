@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:learnverse/Model/dbHelper/display_data.dart';
@@ -11,6 +10,28 @@ import 'package:learnverse/widgets/list_viewHome.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 //ignore: must_be_immutable
+class ConnexionHomePage extends StatelessWidget {
+  const ConnexionHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasData) {
+            return ThemeScreen(firstConnexion: false);
+          } else {
+            return const Settings();
+          }
+        },
+      ),
+    );
+  }
+}
+
 class ThemeScreen extends StatefulWidget {
   bool firstConnexion;
   late dynamic createAccount;
@@ -198,7 +219,7 @@ class _HomePage2State extends State<HomePage2> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  widget.pseudoUser!,
+                  "${FirebaseAuth.instance.currentUser?.displayName}",
                   style: const TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 const Column(

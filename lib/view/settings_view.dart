@@ -1,8 +1,8 @@
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:learnverse/controller/app_configuration.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
@@ -12,6 +12,11 @@ class Settings extends StatefulWidget {
 
   @override
   State<Settings> createState() => _SettingsState();
+}
+
+Future signOut() async {
+  await FirebaseAuth.instance.signOut();
+  print('signout');
 }
 
 class _SettingsState extends State<Settings> {
@@ -107,7 +112,9 @@ class _SettingsState extends State<Settings> {
                 height: 60,
                 child: ElevatedButton(
                     onPressed: () {
-                      UserFunctions.logoutUser();
+                      // UserFunctions.logoutUser();
+                      signOut();
+                      print("objectk");
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 255, 255, 255),

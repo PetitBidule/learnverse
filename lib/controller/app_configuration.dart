@@ -18,6 +18,7 @@
 //     throw RealmException('Supplied appId must be a non-empty value');
 //   }
 // }
+import 'package:learnverse/Model/dbHelper/mongo_db.dart';
 import 'package:realm/realm.dart';
 
 class UserFunctions {
@@ -26,6 +27,9 @@ class UserFunctions {
 
   static Future<void> loginUser(String email, String password) async {
     final user = await app.logIn(Credentials.emailPassword(email, password));
+    print(user.id);
+    userId = user.id;
+    // MongoDB.insertData(userId);
     // userId = user.id;
     // await updatePreferences({"theme": "dark", "language": "en"});
   }
@@ -41,17 +45,22 @@ class UserFunctions {
     print("l'utilisateur a supprimer son compte ce sale chien");
   }
 
-  static Future<void> insertData() async {
-    final user = app.currentUser!;
-    final updatedCustomUserData = {
-      "userId": user.id,
-      "favoriteFood": "pizza",
-    };
+  // static Future<void> insertData() async {
+  //   try {
+  //     // insertData(user.id);
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  //   // final user = app.currentUser!;
+  //   // final updatedCustomUserData = {
+  //   //   "userId": user.id,
+  //   //   "favoriteFood": "pizza",
+  //   // };
 
-    final functionResponse = await user.functions
-        .call("writeCustomUserData", [updatedCustomUserData]);
-    final customUserData = await user.refreshCustomData();
-  }
+  //   // final functionResponse = await user.functions
+  //   //     .call("writeCustomUserData", [updatedCustomUserData]);
+  //   // final customUserData = await user.refreshCustomData();
+  // }
   // static Future<void> updatePreferences(
   //     Map<String, dynamic> preferences) async {
   // }

@@ -1,3 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:learnverse/view/homeTheme_view.dart';
+import 'package:learnverse/view/login_view.dart';
+
 class CreateAccountController {
   bool verificationPasswordsEmail(
       String email, String password, String cpassword, bool ispwd) {
@@ -15,5 +20,28 @@ class CreateAccountController {
       ispwd = false;
       return ispwd;
     }
+  }
+}
+
+class LogInController extends StatelessWidget {
+  const LogInController({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: StreamBuilder<User?>(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              print("vous pouver vous connecter");
+              return ThemeScreen(
+                firstConnexion: false,
+              );
+            } else {
+              print("vous ne pouver pas vous connecter");
+              return const Login();
+            }
+          }),
+    );
   }
 }
