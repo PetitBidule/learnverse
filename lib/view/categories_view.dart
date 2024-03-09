@@ -22,8 +22,46 @@ class Categories extends StatefulWidget {
 }
 
 class _CategoriesState extends State<Categories> {
-  bool isLike = false;
+  bool _isLike = false;
+  bool _isFavorite = false;
   final List<String> titleFav = [];
+  List<Map> videos = [
+    {
+      'url': 'url',
+      'name': 'Harry',
+    },
+    {
+      'url': 'url',
+      'name': 'John',
+    }
+  ];
+  void _showToast(BuildContext context) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(SnackBar(
+      content: const Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          FaIcon(
+            FontAwesomeIcons.check,
+            size: 15,
+            color: Colors.white,
+          ),
+          Text('Added to wishlist.'),
+          Text(
+            "View wishlist",
+            style: TextStyle(color: Color.fromARGB(255, 255, 175, 71)),
+          ),
+        ],
+      ),
+      behavior: SnackBarBehavior.floating,
+      margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).size.height - 150,
+          left: 10,
+          right: 10),
+      backgroundColor: const Color.fromARGB(255, 117, 123, 200),
+      duration: Durations.short1,
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +139,7 @@ class _CategoriesState extends State<Categories> {
                     height: 400,
                     width: MediaQuery.of(context).size.width,
                     decoration: const BoxDecoration(
-                        color: AllConstants.backgroundContainer,
+                        color: Color.fromARGB(255, 117, 123, 200),
                         borderRadius:
                             BorderRadius.only(topRight: Radius.circular(50))),
                     child: Column(children: [
@@ -131,21 +169,20 @@ class _CategoriesState extends State<Categories> {
                                             BorderRadius.circular(15)),
                                     child: IconButton(
                                         onPressed: () => setState(() {
-                                              if (isLike == false) {
-                                                isLike = true;
+                                              if (_isLike == false) {
+                                                _isLike = true;
                                               } else {
-                                                isLike = false;
+                                                _isLike = false;
                                               }
                                             }),
-                                        icon: isLike == false
+                                        icon: _isLike == false
                                             ? const FaIcon(
                                                 FontAwesomeIcons.heart,
                                                 color: Colors.white,
                                                 size: 30,
                                               )
                                             : const FaIcon(
-                                                FontAwesomeIcons
-                                                    .heartCircleCheck,
+                                                FontAwesomeIcons.solidHeart,
                                                 color: Colors.white,
                                                 size: 30,
                                               )),
@@ -160,27 +197,42 @@ class _CategoriesState extends State<Categories> {
                                     child: IconButton(
                                         onPressed: () {
                                           setState(() {
-                                            print(titleFav.length);
-
+                                            if (_isFavorite == false) {
+                                              _isFavorite = true;
+                                              _showToast(context);
+                                            } else {
+                                              _isFavorite = false;
+                                            }
                                             titleFav.add(widget.title);
                                             FirebaseFirestore.instance
                                                 .collection('users')
                                                 .doc(FirebaseAuth.instance
                                                     .currentUser?.email)
-                                                .set({
-                                              "watchlist": "kiwijaune"
-                                              // FirebaseFirestore.instance.FieldValue
-                                              //     .arrayUnion('newItem')
-                                            });
-                                            print(titleFav.length);
-                                            // Dashboard(informationFav: titleFav);
+                                                .update(
+                                              {
+                                                "watchlist":
+                                                    FieldValue.arrayUnion([
+                                                  {
+                                                    'url':
+                                                        widget.backgroundBanner,
+                                                    'name': widget.title,
+                                                  },
+                                                ])
+                                              },
+                                            );
                                           });
                                         },
-                                        icon: const FaIcon(
-                                          FontAwesomeIcons.bookmark,
-                                          color: Colors.white,
-                                          size: 30,
-                                        )),
+                                        icon: _isFavorite == false
+                                            ? const FaIcon(
+                                                FontAwesomeIcons.bookmark,
+                                                color: Colors.white,
+                                                size: 30,
+                                              )
+                                            : const FaIcon(
+                                                FontAwesomeIcons.solidBookmark,
+                                                color: Colors.white,
+                                                size: 30,
+                                              )),
                                   ),
                                 ],
                               ),

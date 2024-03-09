@@ -16,7 +16,6 @@ class Settings extends StatefulWidget {
 
 Future signOut() async {
   await FirebaseAuth.instance.signOut();
-  print('signout');
 }
 
 class _SettingsState extends State<Settings> {
@@ -88,10 +87,10 @@ class _SettingsState extends State<Settings> {
                         image: AssetImage('asset/image/Profil.png'))),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 32.0),
-              child: Text('Filippe',
-                  style: TextStyle(
+            Padding(
+              padding: const EdgeInsets.only(bottom: 32.0),
+              child: Text("${FirebaseAuth.instance.currentUser?.email}",
+                  style: const TextStyle(
                     color: Color.fromARGB(255, 255, 255, 255),
                     fontSize: 20,
                     fontWeight: FontWeight.w400,
@@ -112,9 +111,7 @@ class _SettingsState extends State<Settings> {
                 height: 60,
                 child: ElevatedButton(
                     onPressed: () {
-                      // UserFunctions.logoutUser();
                       signOut();
-                      print("objectk");
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 255, 255, 255),

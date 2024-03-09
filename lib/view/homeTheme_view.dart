@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:learnverse/Model/dbHelper/display_data.dart';
@@ -8,29 +7,6 @@ import 'package:learnverse/view/dashboard_view.dart';
 import 'package:learnverse/view/settings_view.dart';
 import 'package:learnverse/widgets/list_viewHome.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-//ignore: must_be_immutable
-class ConnexionHomePage extends StatelessWidget {
-  const ConnexionHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasData) {
-            return ThemeScreen(firstConnexion: false);
-          } else {
-            return const Settings();
-          }
-        },
-      ),
-    );
-  }
-}
 
 class ThemeScreen extends StatefulWidget {
   bool firstConnexion;
@@ -213,16 +189,16 @@ class _HomePage2State extends State<HomePage2> {
           const SizedBox(
             height: 20,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "${FirebaseAuth.instance.currentUser?.displayName}",
-                  style: const TextStyle(color: Colors.white, fontSize: 18),
+                  "Category of the Day",
+                  style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -289,25 +265,22 @@ class _HomePage2State extends State<HomePage2> {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 25.0),
-            child: SizedBox(
-              height: 110,
-              child: Stack(
-                children: [
-                  ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: allThemes.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return MostPopularCategories(
-                          nameCategories: allThemes[index][1],
-                          nameNotion: allThemes[index][2],
-                          background: allThemes[index][4],
-                          backGroundColor: allThemes[index][5],
-                        );
-                      }),
-                ],
-              ),
+          SizedBox(
+            height: 110,
+            child: Stack(
+              children: [
+                ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: allThemes.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return MostPopularCategories(
+                        nameCategories: allThemes[index][1],
+                        nameNotion: allThemes[index][2],
+                        background: allThemes[index][4],
+                        backGroundColor: allThemes[index][5],
+                      );
+                    }),
+              ],
             ),
           )
         ],

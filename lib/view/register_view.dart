@@ -4,15 +4,11 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:learnverse/Model/dbHelper/insert_data.dart';
-import 'package:learnverse/Model/dbHelper/mongo_db.dart';
 import 'package:learnverse/controller/account_controller.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/view/homeTheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
-import 'package:mongo_dart/mongo_dart.dart' as M;
 import 'package:crypto/crypto.dart';
-import 'package:realm/realm.dart';
 
 class Account extends StatefulWidget {
   final CreateAccountController accountController;
@@ -32,7 +28,6 @@ class _AccountState extends State<Account> {
     "Confirm Password",
   ];
   final List<bool> obscureText = [false, false, true, true];
-  String helperText = "";
   final _formKey = GlobalKey<FormState>();
   bool isPassword = true;
 
@@ -41,13 +36,6 @@ class _AccountState extends State<Account> {
     final bytes = utf8.encode(password);
     final hash = sha256.convert(bytes);
     return hash.toString();
-  }
-
-  Future<void> insertData(String email, String pseudo, String password) async {
-    var id = M.ObjectId();
-    final data =
-        MongoDbModel(id: id, pseudo: pseudo, email: email, password: password);
-    await MongoDB.insert(data);
   }
 
   @override
@@ -64,9 +52,6 @@ class _AccountState extends State<Account> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _controller[1].text, password: _controller[2].text);
       print("les données ont été envoyés ");
-      print(FirebaseAuth.instance.currentUser?.uid);
-      print(FirebaseAuth.instance.currentUser?.email);
-      print(FirebaseAuth.instance.currentUser?.metadata);
       addUserDetails();
     } on FirebaseAuthException catch (e) {
       print("error ${e.message}");
@@ -84,18 +69,6 @@ class _AccountState extends State<Account> {
       "watchlist": [],
     });
   }
-
-  final app = App(AppConfiguration('learneverse-ydjls'));
-
-  // String verificationTextFields() {
-  // String helperText = "";
-  //   if (_controller[0].text != "" && _controller[1].text != "") {
-  //     helperText = "Veuillez rensigner ces champs";
-  //     return helperText;
-  //   } else {
-  //     return "c'est bon les champs ont été renseigner";
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -240,7 +213,7 @@ class _AccountState extends State<Account> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
                             ),
-                            onPressed: () async {
+                            onPressed: () {
                               if (widget.accountController
                                   .verificationPasswordsEmail(
                                       _controller[1].text,
