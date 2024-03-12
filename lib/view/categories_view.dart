@@ -1,12 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:learnverse/utils/constants.dart';
+import 'package:learnverse/view/dashboard_view.dart';
+import 'package:lottie/lottie.dart';
 
 class Categories extends StatefulWidget {
   final String title;
   final String synopsis;
   final dynamic backgroundBanner;
+
   const Categories({
     super.key,
     required this.title,
@@ -18,8 +22,60 @@ class Categories extends StatefulWidget {
   State<Categories> createState() => _CategoriesState();
 }
 
-class _CategoriesState extends State<Categories> {
-  bool isLike = false;
+class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
+  bool _isLike = false;
+  bool _isFavorite = false;
+  final List<String> titleFav = [];
+  late final AnimationController _controller;
+  void _showToast(BuildContext context) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(SnackBar(
+      content: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const FaIcon(
+            FontAwesomeIcons.check,
+            size: 15,
+            color: Colors.white,
+          ),
+          const Text('Added to wishlist.'),
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Dashboard()),
+              );
+            },
+            child: const Text(
+              "View wishlist",
+              style: TextStyle(color: Color.fromARGB(255, 255, 175, 71)),
+            ),
+          ),
+        ],
+      ),
+      behavior: SnackBarBehavior.floating,
+      margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).size.height - 180,
+          left: 10,
+          right: 10),
+      backgroundColor: const Color.fromARGB(255, 117, 123, 200),
+      // duration: Durations.short1,
+    ));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     const String svgEffectBorder =
@@ -36,7 +92,10 @@ class _CategoriesState extends State<Categories> {
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                    image: NetworkImage(widget.backgroundBanner),
+                    image: widget.title == "Napoleon"
+                        ? NetworkImage(
+                            "https://image.tmdb.org/t/p/w500/${widget.backgroundBanner}")
+                        : NetworkImage(widget.backgroundBanner),
                     fit: BoxFit.cover,
                   )),
                 ),
@@ -74,10 +133,11 @@ class _CategoriesState extends State<Categories> {
                         const SizedBox(
                           width: 40,
                         ),
-                        const CircleAvatar(
+                        CircleAvatar(
                           minRadius: 30,
                           maxRadius: 30,
-                          backgroundImage: AssetImage("asset/image/Profil.png"),
+                          backgroundImage: NetworkImage(
+                              "${FirebaseAuth.instance.currentUser?.photoURL}"),
                         )
                       ]),
                 ),
@@ -96,20 +156,20 @@ class _CategoriesState extends State<Categories> {
                     height: 400,
                     width: MediaQuery.of(context).size.width,
                     decoration: const BoxDecoration(
-                        color: AllConstants.backgroundContainer,
+                        color: Color.fromARGB(255, 117, 123, 200),
                         borderRadius:
                             BorderRadius.only(topRight: Radius.circular(50))),
                     child: Column(children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 20),
+                        padding: const EdgeInsets.only(
+                            left: 10.0, right: 10.0, top: 10),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                width: 250,
+                                width: 225,
                                 child: Text(
                                   widget.title,
                                   style: const TextStyle(
@@ -126,24 +186,18 @@ class _CategoriesState extends State<Categories> {
                                             BorderRadius.circular(15)),
                                     child: IconButton(
                                         onPressed: () => setState(() {
-                                              if (isLike == false) {
-                                                isLike = true;
+                                              if (_isLike == false) {
+                                                _isLike = true;
+                                                _controller.forward();
                                               } else {
-                                                isLike = false;
+                                                _isLike = false;
+                                                _controller.reverse();
                                               }
                                             }),
-                                        icon: isLike == false
-                                            ? const FaIcon(
-                                                FontAwesomeIcons.heart,
-                                                color: Colors.white,
-                                                size: 30,
-                                              )
-                                            : const FaIcon(
-                                                FontAwesomeIcons
-                                                    .heartCircleCheck,
-                                                color: Colors.white,
-                                                size: 30,
-                                              )),
+                                        icon: Lottie.network(
+                                          "https://lottie.host/d69a82ec-02b6-4ef1-bd02-c0411f6d8613/IhsBGlTAAY.json",
+                                          controller: _controller,
+                                        )),
                                   ),
                                   const SizedBox(width: 10),
                                   Container(
@@ -153,12 +207,44 @@ class _CategoriesState extends State<Categories> {
                                         borderRadius:
                                             BorderRadius.circular(15)),
                                     child: IconButton(
-                                        onPressed: () {},
-                                        icon: const FaIcon(
-                                          FontAwesomeIcons.bookmark,
-                                          color: Colors.white,
-                                          size: 30,
-                                        )),
+                                        onPressed: () {
+                                          setState(() {
+                                            if (_isFavorite == false) {
+                                              _isFavorite = true;
+                                              _showToast(context);
+                                            } else {
+                                              _isFavorite = false;
+                                            }
+                                            titleFav.add(widget.title);
+                                            FirebaseFirestore.instance
+                                                .collection('users')
+                                                .doc(FirebaseAuth.instance
+                                                    .currentUser?.email)
+                                                .update(
+                                              {
+                                                "watchlist":
+                                                    FieldValue.arrayUnion([
+                                                  {
+                                                    'url':
+                                                        widget.backgroundBanner,
+                                                    'name': widget.title,
+                                                  },
+                                                ])
+                                              },
+                                            );
+                                          });
+                                        },
+                                        icon: _isFavorite == false
+                                            ? const FaIcon(
+                                                FontAwesomeIcons.bookmark,
+                                                color: Colors.white,
+                                                size: 30,
+                                              )
+                                            : const FaIcon(
+                                                FontAwesomeIcons.solidBookmark,
+                                                color: Colors.white,
+                                                size: 30,
+                                              )),
                                   ),
                                 ],
                               ),
@@ -181,7 +267,8 @@ class _CategoriesState extends State<Categories> {
                             ],
                           ),
                         ),
-                      )
+                      ),
+                      // const VideoPlayer(),
                     ]),
                   ),
                 ),

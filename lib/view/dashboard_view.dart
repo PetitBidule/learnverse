@@ -1,4 +1,6 @@
 import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/widgets/square_background.dart';
@@ -6,7 +8,9 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({super.key});
+  const Dashboard({
+    super.key,
+  });
 
   @override
   State<Dashboard> createState() => _DashboardState();
@@ -21,12 +25,44 @@ class _DashboardState extends State<Dashboard> {
   final List<String> style = [
     'Manga',
     'Séries',
-    'Manwhua',
     'Film',
   ];
-  int currentPageIndex = 0;
+  void showDialogBox(String name, String url) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: const Text('Ce dernier sera supprimer définitivement '),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    setState(() {
+                      FirebaseFirestore.instance
+                          .collection("users")
+                          .doc(FirebaseAuth.instance.currentUser?.email)
+                          .update({
+                        "watchlist": FieldValue.arrayRemove([
+                          {
+                            'url': url,
+                            'name': name,
+                          },
+                        ]),
+                      });
+                      Navigator.pop(context);
+                    });
+                  },
+                  child: const Text('Delete')),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Cancel'))
+            ],
+          );
+        });
+  }
 
-  String? selectedValue;
+  String? _selectedValue;
 
   @override
   Widget build(BuildContext context) {
@@ -83,10 +119,10 @@ class _DashboardState extends State<Dashboard> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text('Dashboard',
+                      const Text("Dashboard",
                           style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
                             fontSize: 40,
@@ -94,7 +130,8 @@ class _DashboardState extends State<Dashboard> {
                           )),
                       SizedBox(
                         child: CircleAvatar(
-                          backgroundImage: AssetImage("asset/image/Profil.png"),
+                          backgroundImage: NetworkImage(
+                              "${FirebaseAuth.instance.currentUser?.photoURL}"),
                           minRadius: 30,
                           maxRadius: 30,
                         ),
@@ -103,15 +140,15 @@ class _DashboardState extends State<Dashboard> {
                   ),
                   Row(
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: Text('Watchlist',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 255, 255, 255),
-                              fontSize: 30,
-                              fontWeight: FontWeight.w700,
-                            )),
-                      ),
+                      // const Padding(
+                      //   padding: EdgeInsets.all(20.0),
+                      //   child: Text('Watchlist',
+                      //       style: TextStyle(
+                      //         color: Color.fromARGB(255, 255, 255, 255),
+                      //         fontSize: 30,
+                      //         fontWeight: FontWeight.w700,
+                      //       )),
+                      // ),
                       Container(
                         width: 110,
                         height: 30,
@@ -142,9 +179,9 @@ class _DashboardState extends State<Dashboard> {
                                       ),
                                     ))
                                 .toList(),
-                            value: selectedValue,
+                            value: _selectedValue,
                             onChanged: (String? value) => setState(() {
-                              selectedValue = value;
+                              _selectedValue = value;
                             }),
                             buttonStyleData: const ButtonStyleData(
                               padding: EdgeInsets.symmetric(horizontal: 16),
@@ -192,9 +229,9 @@ class _DashboardState extends State<Dashboard> {
                                             ),
                                           ))
                                   .toList(),
-                              value: selectedValue,
+                              value: _selectedValue,
                               onChanged: (String? value) => setState(() {
-                                selectedValue = value;
+                                _selectedValue = value;
                               }),
                               buttonStyleData: const ButtonStyleData(
                                 padding: EdgeInsets.symmetric(horizontal: 16),
@@ -213,30 +250,61 @@ class _DashboardState extends State<Dashboard> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 14.0),
                     child: SizedBox(
-                      height: 250,
-                      child: ListView.builder(
-                        itemCount: 2,
-                        itemBuilder: (BuildContext context, index) {
-                          return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    color: const Color.fromARGB(
-                                        255, 255, 255, 255),
-                                    borderRadius: BorderRadius.circular(9)),
-                                child: ListTile(
-                                  leading: Image.asset(
-                                    "asset/image/onePiece.jpeg",
-                                    width: 38,
-                                    height: 48,
-                                  ),
-                                  title: const Text('One Piece - 1089 ep'),
-                                  trailing: const Icon(Icons.delete),
-                                ),
-                              ));
-                        },
-                      ),
-                    ),
+                        height: 250,
+                        child: FutureBuilder(
+                            future: FirebaseFirestore.instance
+                                .collection("users")
+                                .doc(FirebaseAuth.instance.currentUser?.email)
+                                .get(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                var data = snapshot.data!.data();
+                                var firstName = data!['watchlist'];
+                                if (firstName.isEmpty) {
+                                  return const Text(
+                                      "vous n'avez encore rien enregistrée");
+                                } else {
+                                  var data = snapshot.data!.data();
+                                  var firstName = data!['watchlist'];
+                                  return ListView.builder(
+                                      itemCount: firstName.length,
+                                      itemBuilder: (context, int index) {
+                                        return Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  color: const Color.fromARGB(
+                                                      255, 255, 255, 255),
+                                                  borderRadius:
+                                                      BorderRadius.circular(9)),
+                                              child: ListTile(
+                                                leading: Image.network(
+                                                  firstName[index]["url"],
+                                                  width: 38,
+                                                  height: 48,
+                                                ),
+                                                title: Text(
+                                                    firstName[index]["name"]),
+                                                trailing: GestureDetector(
+                                                    onTap: () {
+                                                      showDialogBox(
+                                                          firstName[index]
+                                                              ["name"],
+                                                          firstName[index]
+                                                              ["url"]);
+                                                    },
+                                                    child: const Icon(
+                                                        Icons.delete)),
+                                              ),
+                                            ));
+                                      });
+                                }
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            })),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(

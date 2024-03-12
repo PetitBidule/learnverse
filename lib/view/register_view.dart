@@ -1,17 +1,13 @@
-import 'dart:convert';
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:learnverse/Model/dbHelper/insert_data.dart';
-import 'package:learnverse/Model/dbHelper/mongo_db.dart';
 import 'package:learnverse/controller/account_controller.dart';
-import 'package:learnverse/view/chooseTheme_view.dart';
 import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/view/login_view.dart';
+import 'package:learnverse/view/homeTheme_view.dart';
+import 'package:learnverse/view/verify_email.dart';
 import 'package:learnverse/widgets/square_background.dart';
-import 'package:mongo_dart/mongo_dart.dart' as M;
-import 'package:crypto/crypto.dart';
-import 'package:realm/realm.dart';
 
 class Account extends StatefulWidget {
   final CreateAccountController accountController;
@@ -30,36 +26,45 @@ class _AccountState extends State<Account> {
     "Password",
     "Confirm Password",
   ];
-  final List<bool> obscureText = [false, false, true, true];
-  String helperText = "";
+  final List<bool> _obscureText = [false, false, true, true];
   final _formKey = GlobalKey<FormState>();
   bool isPassword = true;
 
-  // update
-  String encryptPassword(String password) {
-    final bytes = utf8.encode(password);
-    final hash = sha256.convert(bytes);
-    return hash.toString();
+  @override
+  void dispose() {
+    _controller[0].dispose();
+    _controller[1].dispose();
+    _controller[2].dispose();
+    _controller[3].dispose();
+    super.dispose();
   }
 
-  Future<void> insertData(String email, String pseudo, String password) async {
-    var id = M.ObjectId();
-    final data =
-        MongoDbModel(id: id, pseudo: pseudo, email: email, password: password);
-    await MongoDB.insert(data);
+  Future signUp() async {
+    try {
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: _controller[1].text, password: _controller[2].text)
+          .then((_) => Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => const VerifyEmailPassword())));
+      print("les données ont été envoyés ");
+      addUserDetails();
+    } on FirebaseAuthException catch (e) {
+      print("error ${e.message}");
+      return e.message;
+    }
   }
 
-  final app = App(AppConfiguration('learneverse-ydjls'));
-
-  // String verificationTextFields() {
-  // String helperText = "";
-  //   if (_controller[0].text != "" && _controller[1].text != "") {
-  //     helperText = "Veuillez rensigner ces champs";
-  //     return helperText;
-  //   } else {
-  //     return "c'est bon les champs ont été renseigner";
-  //   }
-  // }
+  Future addUserDetails() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser?.email)
+        .set({
+      "pseudo": _controller[0].text,
+      "userId": FirebaseAuth.instance.currentUser?.uid,
+      "watchlist": [],
+    }).then((_) => Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => ThemeScreen())));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +123,6 @@ class _AccountState extends State<Account> {
             const SizedBox(
               height: 10,
             ),
-            // update text field
             Padding(
               padding: const EdgeInsets.only(bottom: 26.0),
               child: Row(
@@ -170,6 +174,16 @@ class _AccountState extends State<Account> {
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
                         child: TextFormField(
                           decoration: InputDecoration(
+                            suffixIcon: _labelText[index] == "Password"
+                                ? const Tooltip(
+                                    message:
+                                        "Le mot de passe doit contenit minimum 8 caracteres",
+                                    child: Icon(
+                                      Icons.info,
+                                      color: Colors.white,
+                                    ),
+                                  )
+                                : null,
                             labelText: _labelText[index],
                             labelStyle: const TextStyle(color: Colors.white),
                             enabledBorder: OutlineInputBorder(
@@ -177,19 +191,19 @@ class _AccountState extends State<Account> {
                               borderSide: const BorderSide(
                                   color: Color.fromARGB(255, 255, 255, 255)),
                             ),
+                            // hintText: "kiwi",
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25),
                               borderSide: const BorderSide(
                                   color: Color.fromARGB(255, 255, 255, 255)),
                             ),
                           ),
-                          obscureText: obscureText[index],
+                          obscureText: _obscureText[index],
                           controller: _controller[index],
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your password';
                             }
-
                             return null;
                           },
                         ),
@@ -204,41 +218,26 @@ class _AccountState extends State<Account> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
                             ),
-                            onPressed: () async {
-                              if (widget.accountController
-                                  .verificationPasswordsEmail(
-                                      _controller[1].text,
-                                      _controller[2].text,
-                                      _controller[3].text,
-                                      isPassword)) {
-                                EmailPasswordAuthProvider authProvider =
-                                    EmailPasswordAuthProvider(app);
-                                await authProvider.registerUser(
-                                  _controller[1].text,
-                                  _controller[2].text,
-                                );
-                                print("les données ont été envoyés ");
-                                // if (_formKey.currentState!.validate()) {
-                                //   _formKey.currentState!.save();
-                                //   String encryptedPassword =
-                                //       encryptPassword(_controller[2].text);
-
-                                //   insertData(_controller[1].text,
-                                //       _controller[0].text, encryptedPassword);
-                                //   EmailPasswordAuthProvider authProvider =
-                                //       EmailPasswordAuthProvider(app);
-                                //   await authProvider.registerUser(
-                                //       "lisa@orange.com", "myStr0ngPassw0dr");
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const Login()),
-                                );
-                                // }
-                              } else {
-                                isPassword = true;
-                                print("les données n'ont pas été envoyés");
-                              }
+                            onPressed: () {
+                              setState(() {
+                                if (widget.accountController
+                                    .verificationPasswordsEmail(
+                                        _controller[1].text,
+                                        _controller[2].text,
+                                        _controller[3].text,
+                                        isPassword)) {
+                                  signUp();
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //       builder: (context) =>
+                                  //           const VerifyEmailPassword()),
+                                  // );
+                                } else {
+                                  isPassword = true;
+                                  print("les données n'ont pas été envoyés");
+                                }
+                              });
                             },
                             child: const Text(
                               "Sign In",

@@ -1,14 +1,14 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:learnverse/controller/app_configuration.dart';
-import 'package:learnverse/controller/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:learnverse/controller/auth_services.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/view/homeTheme_view.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
-import 'package:realm/realm.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -27,29 +27,46 @@ class _LoginState extends State<Login> {
     "Email",
     "Password",
   ];
-  List<String> scopes = <String>[
-    'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
+  final List<bool> _obscureText = [
+    false,
+    true,
   ];
-//   Future<User> logIn(Credentials credentials) async {
-//   var userHandle = await realmCore.logIn(this, credentials);
-//   return UserInternal.create(userHandle, this);
-// }
-  final app = App(AppConfiguration('learneverse-ydjls'));
+  IconData _iconData = FontAwesomeIcons.eyeSlash;
+  Future signIn() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _controller[0].text, password: _controller[1].text);
+      print("l'authentication c'est bien passé");
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => ThemeScreen(
+                  pseudoUser: "rien",
+                )),
+      );
+    } on FirebaseAuthException catch (e) {
+      print("error: ${e.message}");
+      return e.message;
+    }
+  }
 
-  // final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+  Future addUserDetailsGoogle() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser?.email)
+        .set({
+      "pseudo": FirebaseAuth.instance.currentUser?.displayName,
+      "imageProfile": FirebaseAuth.instance.currentUser?.photoURL,
+      "watchlist": [],
+    });
+  }
 
-  // Future<GoogleSignInAuthentication> _handleSignIn() async {
-  //   await _googleSignIn.signIn();
-  //   // Une fois connecté avec succès, vous pouvez obtenir le code d'accès.
-  //   String authCode = await _googleSignIn.currentUser!.authentication.idToken;
-
-  //   // Utilisez maintenant authCode pour vous connecter à MongoDB Realm.
-  //   final googleAuthCodeCredentials = Credentials.googleAuthCode(authCode);
-  //   final currentUser = await app.logIn(googleAuthCodeCredentials);
-
-  //   // ... Faites quelque chose avec l'utilisateur connecté.
-  // }
+  @override
+  void dispose() {
+    _controller[0].dispose();
+    _controller[1].dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -155,6 +172,33 @@ class _LoginState extends State<Login> {
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
                         child: TextFormField(
                           decoration: InputDecoration(
+                            suffixIcon: _labelText[index] == "Password"
+                                ? Padding(
+                                    padding: const EdgeInsets.only(top: 12.0),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          if (_obscureText[1] == true) {
+                                            _obscureText[1] = false;
+                                            _iconData = FontAwesomeIcons.eye;
+                                          } else {
+                                            _obscureText[1] = true;
+                                            _iconData =
+                                                FontAwesomeIcons.eyeSlash;
+                                          }
+                                        });
+                                      },
+                                      child: Tooltip(
+                                        message:
+                                            "Le mot de passe doit contenit minimum 8 caracteres",
+                                        child: FaIcon(
+                                          _iconData,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                : null,
                             labelText: _labelText[index],
                             labelStyle: const TextStyle(color: Colors.white),
                             enabledBorder: OutlineInputBorder(
@@ -168,7 +212,7 @@ class _LoginState extends State<Login> {
                                   color: Color.fromARGB(255, 255, 255, 255)),
                             ),
                           ),
-                          obscureText: false,
+                          obscureText: _obscureText[index],
                           controller: _controller[index],
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -183,12 +227,14 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 32.0),
+            Padding(
+              padding: const EdgeInsets.only(top: 32.0),
               child: SizedBox(
                 width: 250,
                 height: 60,
-                child: LogInButton(),
+                child: LogInButton(
+                  signIn: signIn(),
+                ),
               ),
             ),
             Padding(
@@ -197,68 +243,18 @@ class _LoginState extends State<Login> {
                 width: 250,
                 height: 60,
                 child: ElevatedButton(
-                    onPressed: () {
-                      // final googleAuthCodeCredentials =
-                      //     Credentials.googleAuthCode(authCode);
-                      // final currentUser =
-                      //     await app.logIn(googleAuthCodeCredentials);
-                      // Connexion à MongoDB Realm
-                      // Une fois connecté avec succès, vous pouvez obtenir le code d'accès.
-
-                      // final googleAuthCodeCredentials =
-                      //     Credentials.googleAuthCode();
-                      // final currentUser =
-                      //     await app.logIn(googleAuthCodeCredentials);
-                      // final emailPwCredentials = Credentials.emailPassword(
-                      //     _controller[0].text, _controller[1].text);
-                      // await app.logIn(emailPwCredentials);
-
-                      // final emailPwCredentials = Credentials.emailPassword(
-                      //     _controller[0].text, _controller[1].text);
-                      // await app.logIn(emailPwCredentials);
-                      // final user1 = app.currentUser!;
-                      // final updatedTimestamp =
-                      //     DateTime.now().millisecondsSinceEpoch;
-                      // final updatedCustomUserData = {
-                      //   "userId": user1.id,
-                      //   "favoriteFood": "pizza",
-                      //   "lastUpdated": updatedTimestamp
-                      // };
-
-                      // final functionResponse = await user1.functions
-                      //     .call("writeCustomUserData", [updatedCustomUserData]);
-                      // final customUserData = await user1.refreshCustomData();
-                      // final user = app.currentUser!;
-                      // final updatedCustomUserData = {
-                      //   "userId": user.id,
-                      //   "favoriteFood": "pizza",
-                      // };
-
-                      // final functionResponse = await user.functions
-                      //     .call("writeCustomUserData", [updatedCustomUserData]);
-
-                      // final customUserData = await user.refreshCustomData();
-
-                      // final user = await app.logIn(Credentials.emailPassword(
-                      //     _controller[0].text, _controller[1].text));
-                      UserFunctions.loginUser(
-                          _controller[0].text, _controller[1].text);
-                      UserFunctions.insertData();
-
-                      // final customUserData = user.customData;
-                      // final updatedCustomData = await user.refreshCustomData();
-                      print("object");
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ThemeScreen(
-                                  firstConnexion: false,
-                                  pseudoUser: "rien",
-                                )),
-                      );
+                    onPressed: () async {
+                      User? user;
+                      user = await AuthService().signInWithGoogle();
+                      addUserDetailsGoogle();
+                      Navigator.pushReplacement<void, void>(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) => ThemeScreen(),
+                          ));
                     },
 
-                    // AuthService().signInWithGoogle(),
+                    // AuthService().signInWithGoogle(),@@
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                     ),

@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:learnverse/controller/account_controller.dart';
 import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/view/createaccount_view.dart';
+import 'package:learnverse/view/register_view.dart';
 import 'package:learnverse/view/login_view.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
