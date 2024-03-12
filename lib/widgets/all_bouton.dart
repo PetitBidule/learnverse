@@ -69,7 +69,6 @@ class _LogInButtonState extends State<LogInButton> {
             context,
             MaterialPageRoute(
                 builder: (context) => ThemeScreen(
-                      firstConnexion: false,
                       pseudoUser: "rien",
                     )),
           );

@@ -1,7 +1,9 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/controller/auth_services.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/view/homeTheme_view.dart';
@@ -25,6 +27,11 @@ class _LoginState extends State<Login> {
     "Email",
     "Password",
   ];
+  final List<bool> _obscureText = [
+    false,
+    true,
+  ];
+  IconData _iconData = FontAwesomeIcons.eyeSlash;
   Future signIn() async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -34,7 +41,6 @@ class _LoginState extends State<Login> {
         context,
         MaterialPageRoute(
             builder: (context) => ThemeScreen(
-                  firstConnexion: false,
                   pseudoUser: "rien",
                 )),
       );
@@ -44,11 +50,22 @@ class _LoginState extends State<Login> {
     }
   }
 
+  Future addUserDetailsGoogle() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser?.email)
+        .set({
+      "pseudo": FirebaseAuth.instance.currentUser?.displayName,
+      "imageProfile": FirebaseAuth.instance.currentUser?.photoURL,
+      "watchlist": [],
+    });
+  }
+
   @override
   void dispose() {
     _controller[0].dispose();
     _controller[1].dispose();
-    super.dispose(); // a revoir
+    super.dispose();
   }
 
   @override
@@ -155,6 +172,33 @@ class _LoginState extends State<Login> {
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
                         child: TextFormField(
                           decoration: InputDecoration(
+                            suffixIcon: _labelText[index] == "Password"
+                                ? Padding(
+                                    padding: const EdgeInsets.only(top: 12.0),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          if (_obscureText[1] == true) {
+                                            _obscureText[1] = false;
+                                            _iconData = FontAwesomeIcons.eye;
+                                          } else {
+                                            _obscureText[1] = true;
+                                            _iconData =
+                                                FontAwesomeIcons.eyeSlash;
+                                          }
+                                        });
+                                      },
+                                      child: Tooltip(
+                                        message:
+                                            "Le mot de passe doit contenit minimum 8 caracteres",
+                                        child: FaIcon(
+                                          _iconData,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                : null,
                             labelText: _labelText[index],
                             labelStyle: const TextStyle(color: Colors.white),
                             enabledBorder: OutlineInputBorder(
@@ -168,7 +212,7 @@ class _LoginState extends State<Login> {
                                   color: Color.fromARGB(255, 255, 255, 255)),
                             ),
                           ),
-                          obscureText: false,
+                          obscureText: _obscureText[index],
                           controller: _controller[index],
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -202,12 +246,11 @@ class _LoginState extends State<Login> {
                     onPressed: () async {
                       User? user;
                       user = await AuthService().signInWithGoogle();
+                      addUserDetailsGoogle();
                       Navigator.pushReplacement<void, void>(
                           context,
                           MaterialPageRoute<void>(
-                            builder: (BuildContext context) => ThemeScreen(
-                              firstConnexion: false,
-                            ),
+                            builder: (BuildContext context) => ThemeScreen(),
                           ));
                     },
 

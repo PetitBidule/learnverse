@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:learnverse/Model/dbHelper/display_data.dart';
@@ -9,14 +10,13 @@ import 'package:learnverse/widgets/list_viewHome.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ThemeScreen extends StatefulWidget {
-  bool firstConnexion;
   late dynamic createAccount;
   String? pseudoUser;
-  ThemeScreen(
-      {super.key,
-      this.createAccount,
-      this.pseudoUser,
-      required this.firstConnexion});
+  ThemeScreen({
+    super.key,
+    this.createAccount,
+    this.pseudoUser,
+  });
 
   @override
   State<ThemeScreen> createState() => _ThemeScreenState();
@@ -26,7 +26,6 @@ class _ThemeScreenState extends State<ThemeScreen> {
   int _selectedIndex = 0;
   late final List routes = [
     HomePage2(
-      firstConnexion: widget.firstConnexion,
       pseudoUser: widget.pseudoUser,
     ),
     const Dashboard(),
@@ -76,10 +75,8 @@ class _ThemeScreenState extends State<ThemeScreen> {
 }
 
 class HomePage2 extends StatefulWidget {
-  bool firstConnexion;
   String? pseudoUser;
-  HomePage2(
-      {super.key, required this.firstConnexion, required this.pseudoUser});
+  HomePage2({super.key, required this.pseudoUser});
 
   @override
   State<HomePage2> createState() => _HomePage2State();
@@ -95,16 +92,18 @@ List allCollection = [
   MongoDB.getDataCollectionManga(),
   MongoDB.getDataCollectionFilm(),
   MongoDB.getDataCollectionMusic(),
+  MongoDB.getDataCollectionGaming(),
   // MongoDB.getDataCollectionUser(widget.pseudoUser),
 ];
 
-List allNameFields = ["title", "title", "_name", "name"];
+List allNameFields = ["title", "title", "_name", "name", "name"];
 
 List<String> classement = [
   "collectionAnime",
   "collectionManga",
   "collectionFilm",
   "collectionMusic",
+  "collectionGaming",
   // "collectionUser"
 ];
 
@@ -176,9 +175,10 @@ class _HomePage2State extends State<HomePage2> {
                     )
                   ]),
                 ),
-                const SizedBox(
+                SizedBox(
                   child: CircleAvatar(
-                    backgroundImage: AssetImage("asset/image/Profil.png"),
+                    backgroundImage: NetworkImage(
+                        "${FirebaseAuth.instance.currentUser?.photoURL}"),
                     minRadius: 30,
                     maxRadius: 30,
                   ),
@@ -226,6 +226,7 @@ class _HomePage2State extends State<HomePage2> {
                             MaterialPageRoute(
                               builder: (context) => DisplayDataCategories(
                                 snapshot2: allCollection[index],
+                                collectionChoose: classement[index],
                               ),
                             ),
                           ),

@@ -25,7 +25,6 @@ class _DashboardState extends State<Dashboard> {
   final List<String> style = [
     'Manga',
     'Séries',
-    'Manwhua',
     'Film',
   ];
   void showDialogBox(String name, String url) {
@@ -120,10 +119,10 @@ class _DashboardState extends State<Dashboard> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("Dashboard",
+                      const Text("Dashboard",
                           style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
                             fontSize: 40,
@@ -131,7 +130,8 @@ class _DashboardState extends State<Dashboard> {
                           )),
                       SizedBox(
                         child: CircleAvatar(
-                          backgroundImage: AssetImage("asset/image/Profil.png"),
+                          backgroundImage: NetworkImage(
+                              "${FirebaseAuth.instance.currentUser?.photoURL}"),
                           minRadius: 30,
                           maxRadius: 30,
                         ),
@@ -140,15 +140,15 @@ class _DashboardState extends State<Dashboard> {
                   ),
                   Row(
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: Text('Watchlist',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 255, 255, 255),
-                              fontSize: 30,
-                              fontWeight: FontWeight.w700,
-                            )),
-                      ),
+                      // const Padding(
+                      //   padding: EdgeInsets.all(20.0),
+                      //   child: Text('Watchlist',
+                      //       style: TextStyle(
+                      //         color: Color.fromARGB(255, 255, 255, 255),
+                      //         fontSize: 30,
+                      //         fontWeight: FontWeight.w700,
+                      //       )),
+                      // ),
                       Container(
                         width: 110,
                         height: 30,
@@ -247,7 +247,6 @@ class _DashboardState extends State<Dashboard> {
                       ),
                     ],
                   ),
-                  // future builder with list view
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 14.0),
                     child: SizedBox(

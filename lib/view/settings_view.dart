@@ -83,8 +83,9 @@ class _SettingsState extends State<Settings> {
                 height: 145,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(9999),
-                    image: const DecorationImage(
-                        image: AssetImage('asset/image/Profil.png'))),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            "${FirebaseAuth.instance.currentUser?.photoURL}"))),
               ),
             ),
             Padding(

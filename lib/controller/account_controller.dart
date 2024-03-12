@@ -34,9 +34,7 @@ class LogInController extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               print("vous pouver vous connecter");
-              return ThemeScreen(
-                firstConnexion: false,
-              );
+              return ThemeScreen();
             } else {
               print("vous ne pouver pas vous connecter");
               return const Login();

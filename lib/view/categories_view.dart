@@ -3,7 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:learnverse/utils/constants.dart';
+import 'package:learnverse/view/dashboard_view.dart';
+import 'package:lottie/lottie.dart';
 
 class Categories extends StatefulWidget {
   final String title;
@@ -21,46 +22,58 @@ class Categories extends StatefulWidget {
   State<Categories> createState() => _CategoriesState();
 }
 
-class _CategoriesState extends State<Categories> {
+class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
   bool _isLike = false;
   bool _isFavorite = false;
   final List<String> titleFav = [];
-  List<Map> videos = [
-    {
-      'url': 'url',
-      'name': 'Harry',
-    },
-    {
-      'url': 'url',
-      'name': 'John',
-    }
-  ];
+  late final AnimationController _controller;
   void _showToast(BuildContext context) {
     final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(SnackBar(
-      content: const Row(
+      content: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          FaIcon(
+          const FaIcon(
             FontAwesomeIcons.check,
             size: 15,
             color: Colors.white,
           ),
-          Text('Added to wishlist.'),
-          Text(
-            "View wishlist",
-            style: TextStyle(color: Color.fromARGB(255, 255, 175, 71)),
+          const Text('Added to wishlist.'),
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Dashboard()),
+              );
+            },
+            child: const Text(
+              "View wishlist",
+              style: TextStyle(color: Color.fromARGB(255, 255, 175, 71)),
+            ),
           ),
         ],
       ),
       behavior: SnackBarBehavior.floating,
       margin: EdgeInsets.only(
-          bottom: MediaQuery.of(context).size.height - 150,
+          bottom: MediaQuery.of(context).size.height - 180,
           left: 10,
           right: 10),
       backgroundColor: const Color.fromARGB(255, 117, 123, 200),
-      duration: Durations.short1,
+      // duration: Durations.short1,
     ));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -79,7 +92,10 @@ class _CategoriesState extends State<Categories> {
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                    image: NetworkImage(widget.backgroundBanner),
+                    image: widget.title == "Napoleon"
+                        ? NetworkImage(
+                            "https://image.tmdb.org/t/p/w500/${widget.backgroundBanner}")
+                        : NetworkImage(widget.backgroundBanner),
                     fit: BoxFit.cover,
                   )),
                 ),
@@ -117,10 +133,11 @@ class _CategoriesState extends State<Categories> {
                         const SizedBox(
                           width: 40,
                         ),
-                        const CircleAvatar(
+                        CircleAvatar(
                           minRadius: 30,
                           maxRadius: 30,
-                          backgroundImage: AssetImage("asset/image/Profil.png"),
+                          backgroundImage: NetworkImage(
+                              "${FirebaseAuth.instance.currentUser?.photoURL}"),
                         )
                       ]),
                 ),
@@ -152,7 +169,7 @@ class _CategoriesState extends State<Categories> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                width: 250,
+                                width: 225,
                                 child: Text(
                                   widget.title,
                                   style: const TextStyle(
@@ -171,21 +188,16 @@ class _CategoriesState extends State<Categories> {
                                         onPressed: () => setState(() {
                                               if (_isLike == false) {
                                                 _isLike = true;
+                                                _controller.forward();
                                               } else {
                                                 _isLike = false;
+                                                _controller.reverse();
                                               }
                                             }),
-                                        icon: _isLike == false
-                                            ? const FaIcon(
-                                                FontAwesomeIcons.heart,
-                                                color: Colors.white,
-                                                size: 30,
-                                              )
-                                            : const FaIcon(
-                                                FontAwesomeIcons.solidHeart,
-                                                color: Colors.white,
-                                                size: 30,
-                                              )),
+                                        icon: Lottie.network(
+                                          "https://lottie.host/d69a82ec-02b6-4ef1-bd02-c0411f6d8613/IhsBGlTAAY.json",
+                                          controller: _controller,
+                                        )),
                                   ),
                                   const SizedBox(width: 10),
                                   Container(
@@ -255,7 +267,8 @@ class _CategoriesState extends State<Categories> {
                             ],
                           ),
                         ),
-                      )
+                      ),
+                      // const VideoPlayer(),
                     ]),
                   ),
                 ),
