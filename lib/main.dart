@@ -5,6 +5,7 @@ import 'package:learnverse/view/chooseTheme_view.dart';
 import 'package:learnverse/view/dashboard_view.dart';
 import 'package:learnverse/view/homepage_view.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:learnverse/view/language.dart';
 import 'package:learnverse/view/privacyPolicy.dart';
 import 'package:learnverse/view/privacy_view.dart';
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       //     elevatedButtonTheme:  ElevatedButtonThemeData(
       //         style: ButtonStyle(backgroundColor: MaterialStateProperty<Color> Colors.white))),
       debugShowCheckedModeBanner: false,
-      home: Privacypolicy(),
+      home: language(),
 
     );
   }
