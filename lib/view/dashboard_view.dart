@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/widgets/square_background.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 class Dashboard extends StatefulWidget {
@@ -306,126 +305,127 @@ class _DashboardState extends State<Dashboard> {
                               }
                             })),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      right: 150.0,
-                      top: 50.0,
-                    ),
-                    child: Container(
-                      width: 200,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.7),
-                            spreadRadius: -4,
-                            blurRadius: 6,
-                            offset: const Offset(
-                                4, 4), // changes position of shadow
-                          ),
-                          const BoxShadow(
-                            color: Color.fromARGB(255, 114, 114, 114),
-                            spreadRadius: -4,
-                            blurRadius: 6,
-                            offset:
-                                Offset(-4, -4), // changes position of shadow
-                          ),
-                        ],
-                        border: Border.all(
-                            color: const Color.fromARGB(255, 255, 255, 255)),
-                        borderRadius: BorderRadius.circular(40),
-                      ),
-                      child: SizedBox(
-                        width: 10.0,
-                        child: PieChart(
-                          PieChartData(
-                            centerSpaceRadius: 50,
-                            sections: [
-                              PieChartSectionData(
-                                color: Colors.blue,
-                                value: 40,
-                                title: 'manga',
-                                radius: 30,
-                              ),
-                              PieChartSectionData(
-                                color: Colors.red,
-                                value: 30,
-                                title: 'livre ',
-                                radius: 30,
-                              ),
-                              PieChartSectionData(
-                                color: Colors.green,
-                                value: 50,
-                                title: 'séries',
-                                radius: 30,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 150.0,
-                      top: 70.0,
-                    ),
-                    child: Container(
-                      width: 200,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.7),
-                            spreadRadius: -4,
-                            blurRadius: 6,
-                            offset: const Offset(
-                                4, 4), // changes position of shadow
-                          ),
-                          const BoxShadow(
-                            color: Color.fromARGB(255, 114, 114, 114),
-                            spreadRadius: -4,
-                            blurRadius: 6,
-                            offset:
-                                Offset(-4, -4), // changes position of shadow
-                          ),
-                        ],
-                        border: Border.all(
-                            color: const Color.fromARGB(255, 255, 255, 255)),
-                        borderRadius: BorderRadius.circular(40),
-                      ),
-                      child: SizedBox(
-                        width: 10.0,
-                        child: PieChart(
-                          PieChartData(
-                            centerSpaceRadius: 50,
-                            sections: [
-                              PieChartSectionData(
-                                color: Colors.blue,
-                                value: 40,
-                                title: 'manga',
-                                radius: 30,
-                              ),
-                              PieChartSectionData(
-                                color: Colors.red,
-                                value: 30,
-                                title: 'livre ',
-                                radius: 30,
-                              ),
-                              PieChartSectionData(
-                                color: Colors.green,
-                                value: 50,
-                                title: 'séries',
-                                radius: 30,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(
+                  //     right: 150.0,
+                  //     top: 50.0,
+                  //   ),
+                  //   child:
+                  //   Container(
+                  //     width: 200,
+                  //     height: 200,
+                  //     decoration: BoxDecoration(
+                  //       color: Colors.white,
+                  //       boxShadow: [
+                  //         BoxShadow(
+                  //           color: Colors.grey.withOpacity(0.7),
+                  //           spreadRadius: -4,
+                  //           blurRadius: 6,
+                  //           offset: const Offset(
+                  //               4, 4), // changes position of shadow
+                  //         ),
+                  //         const BoxShadow(
+                  //           color: Color.fromARGB(255, 114, 114, 114),
+                  //           spreadRadius: -4,
+                  //           blurRadius: 6,
+                  //           offset:
+                  //               Offset(-4, -4), // changes position of shadow
+                  //         ),
+                  //       ],
+                  //       border: Border.all(
+                  //           color: const Color.fromARGB(255, 255, 255, 255)),
+                  //       borderRadius: BorderRadius.circular(40),
+                  //     ),
+                  //     child: SizedBox(
+                  //       width: 10.0,
+                  //       child: PieChart(
+                  //         PieChartData(
+                  //           centerSpaceRadius: 50,
+                  //           sections: [
+                  //             PieChartSectionData(
+                  //               color: Colors.blue,
+                  //               value: 40,
+                  //               title: 'manga',
+                  //               radius: 30,
+                  //             ),
+                  //             PieChartSectionData(
+                  //               color: Colors.red,
+                  //               value: 30,
+                  //               title: 'livre ',
+                  //               radius: 30,
+                  //             ),
+                  //             PieChartSectionData(
+                  //               color: Colors.green,
+                  //               value: 50,
+                  //               title: 'séries',
+                  //               radius: 30,
+                  //             ),
+                  //           ],
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(
+                  //     left: 150.0,
+                  //     top: 70.0,
+                  //   ),
+                  //   child: Container(
+                  //     width: 200,
+                  //     height: 200,
+                  //     decoration: BoxDecoration(
+                  //       color: Colors.white,
+                  //       boxShadow: [
+                  //         BoxShadow(
+                  //           color: Colors.grey.withOpacity(0.7),
+                  //           spreadRadius: -4,
+                  //           blurRadius: 6,
+                  //           offset: const Offset(
+                  //               4, 4), // changes position of shadow
+                  //         ),
+                  //         const BoxShadow(
+                  //           color: Color.fromARGB(255, 114, 114, 114),
+                  //           spreadRadius: -4,
+                  //           blurRadius: 6,
+                  //           offset:
+                  //               Offset(-4, -4), // changes position of shadow
+                  //         ),
+                  //       ],
+                  //       border: Border.all(
+                  //           color: const Color.fromARGB(255, 255, 255, 255)),
+                  //       borderRadius: BorderRadius.circular(40),
+                  //     ),
+                  //     child: SizedBox(
+                  //       width: 10.0,
+                  //       child: PieChart(
+                  //         PieChartData(
+                  //           centerSpaceRadius: 50,
+                  //           sections: [
+                  //             PieChartSectionData(
+                  //               color: Colors.blue,
+                  //               value: 40,
+                  //               title: 'manga',
+                  //               radius: 30,
+                  //             ),
+                  //             PieChartSectionData(
+                  //               color: Colors.red,
+                  //               value: 30,
+                  //               title: 'livre ',
+                  //               radius: 30,
+                  //             ),
+                  //             PieChartSectionData(
+                  //               color: Colors.green,
+                  //               value: 50,
+                  //               title: 'séries',
+                  //               radius: 30,
+                  //             ),
+                  //           ],
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ]),

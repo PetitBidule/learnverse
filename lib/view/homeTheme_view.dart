@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:learnverse/Model/dbHelper/display_data.dart';
@@ -109,6 +108,14 @@ List<String> classement = [
 
 List allThemes = [
   [
+    "4.8",
+    "Anime",
+    "One Piece",
+    "asset/image/zoro.png",
+    "asset/image/zoro.png",
+    const Color.fromRGBO(140, 178, 114, 1),
+  ],
+  [
     "4.9",
     "Manga",
     "One Piece",
@@ -117,19 +124,11 @@ List allThemes = [
     const Color.fromARGB(255, 255, 255, 255),
   ],
   [
-    "4.8",
-    "Anime",
-    "JJk",
-    "asset/image/onePieceZoro.png",
-    "asset/image/onePieceZoro.png",
-    const Color.fromRGBO(140, 178, 114, 1),
-  ],
-  [
     "4.6",
     "Music",
     "Dimanche",
     "asset/image/onepiecemanga.jpeg",
-    "asset/image/onePieceZoro.png",
+    "asset/image/sportbg.png",
     const Color.fromRGBO(140, 178, 114, 1),
   ],
 ];
@@ -175,10 +174,10 @@ class _HomePage2State extends State<HomePage2> {
                     )
                   ]),
                 ),
-                SizedBox(
+                const SizedBox(
                   child: CircleAvatar(
                     backgroundImage: NetworkImage(
-                        "${FirebaseAuth.instance.currentUser?.photoURL}"),
+                        "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHFpaHJyMHQ5bjlmYWNiNXB5eDF5ZXBpdG9scGRseWxoZmxkaGJ2cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YRThiAEEYVNtC5acLO/giphy.gif"),
                     minRadius: 30,
                     maxRadius: 30,
                   ),
@@ -279,6 +278,7 @@ class _HomePage2State extends State<HomePage2> {
                         nameNotion: allThemes[index][2],
                         background: allThemes[index][4],
                         backGroundColor: allThemes[index][5],
+                        isFirst: index,
                       );
                     }),
               ],
