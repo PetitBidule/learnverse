@@ -31,12 +31,6 @@ class _VerifyEmailPasswordState extends State<VerifyEmailPassword> {
       });
     }
   }
-
-  // Future sendEmailVerificatio() async {
-  //   final user = FirebaseAuth.instance.currentUser!;
-  //   await user.sendEmailVerification();
-  // }
-
   Future checkEmailVerification() async {
     await FirebaseAuth.instance.currentUser!.reload();
 
@@ -45,6 +39,7 @@ class _VerifyEmailPasswordState extends State<VerifyEmailPassword> {
           .pushReplacement(MaterialPageRoute(builder: (context) {
         return const Theme1();
       }));
+      print("kiwi");
       _timer.cancel();
     }
   }

@@ -46,11 +46,11 @@ class CollectionMongoDB extends StatelessWidget {
                         ["background_image"]);
               } else {
                 collection = ThemeChooseHome(
-                    nametheme: snapshot.data[0][nameField],
-                    noteTheme: "8",
-                    nameCategories: "Manga",
-                    backGroundTheme: snapshot.data[0]["main_picture"]
-                        ["medium"]);
+                  nametheme: snapshot.data[0][nameField],
+                  noteTheme: "8",
+                  nameCategories: "Manga",
+                  backGroundTheme: snapshot.data[0]["main_picture"]["medium"],
+                );
               }
               return collection;
             } else {
@@ -82,23 +82,28 @@ class DisplayDataCategories extends StatelessWidget {
               Categories collections;
               if (collectionChoose == "collectionFilm") {
                 collections = Categories(
-                  title: snapshot.data[0]["results"][0]["title"],
-                  backgroundBanner: snapshot.data[0]["results"][0]
-                      ["backdrop_path"],
-                  synopsis: snapshot.data[0]["results"][0]["overview"],
-                );
+                    title: snapshot.data[0]["results"][0]["title"],
+                    backgroundBanner: snapshot.data[0]["results"][0]
+                        ["backdrop_path"],
+                    synopsis: snapshot.data[0]["results"][0]["overview"],
+                    description: "",
+                    categories: "movie");
               } else if (collectionChoose == "collectionGaming") {
                 collections = Categories(
                   title: snapshot.data[0]["results"][0]["name"],
                   backgroundBanner: snapshot.data[0]["results"][0]
                       ["background_image"],
                   synopsis: "bonjour les enfants",
+                  description: "",
+                  categories: "gaming",
                 );
               } else {
                 collections = Categories(
                   title: snapshot.data[0]["title"],
                   backgroundBanner: snapshot.data[0]["main_picture"]["large"],
                   synopsis: snapshot.data[0]["synopsis"],
+                  description: "",
+                  categories: "manga",
                 );
               }
               return collections;
