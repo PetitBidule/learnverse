@@ -238,9 +238,9 @@ class _LoginState extends State<Login> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 150.0),
+              padding: const EdgeInsets.only(top: 100.0),
               child: SizedBox(
-                width: 250,
+                width: MediaQuery.of(context).size.width * 0.55,
                 height: 60,
                 child: ElevatedButton(
                     onPressed: () async {
