@@ -7,6 +7,7 @@ import 'package:learnverse/view/homeTheme_view.dart';
 import 'package:learnverse/view/homepage_view.dart';
 import 'package:device_preview/device_preview.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Future.delayed(const Duration(seconds: 2));
@@ -28,12 +29,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return  const MaterialApp(
       // theme: ThemeData(
       //     elevatedButtonTheme:  ElevatedButtonThemeData(
       //         style: ButtonStyle(backgroundColor: MaterialStateProperty<Color> Colors.white))),
       debugShowCheckedModeBanner: false,
-      home: ScreenLog(),
+      home: language(),
     );
   }
 }

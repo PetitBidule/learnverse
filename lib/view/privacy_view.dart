@@ -6,6 +6,7 @@ import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/view/hometheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
+
 class Privacy extends StatelessWidget {
   const Privacy({super.key});
   @override
@@ -68,7 +69,7 @@ class Privacy extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.all(4.0),
                           child: Text(
-                            'Terms & Conditions',
+                            'Terms &',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 50,
@@ -78,6 +79,20 @@ class Privacy extends StatelessWidget {
                         ),
                       ),
                     ),
+                    //  Padding(
+                    //   padding: const EdgeInsets.only(right:112.0),
+                    //   child:GradientText(
+                    //         'Conditions',
+                    //         style: const TextStyle(
+                    //           fontSize: 50,
+                    //           fontWeight: FontWeight.w700,
+                    //         ),
+                    //         colors: const [
+                    //         Color.fromARGB(255, 153, 118, 224),
+                    //         Color.fromARGB(255, 153, 107, 156),
+                    //         ],
+                    //     ),
+                    // ),
                     SizedBox(
                       width: 400,
                       height: 450,
