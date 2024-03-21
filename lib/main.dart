@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:learnverse/Model/dbHelper/mongo_db.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:learnverse/view/homeTheme_view.dart';
 import 'package:learnverse/view/homepage_view.dart';
-import 'package:learnverse/view/language.dart';
+import 'package:device_preview/device_preview.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +19,8 @@ void main() async {
   } catch (e) {
     print("Erreur:$e");
   }
+  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+  //     .then((_) =>
   runApp(const MyApp());
 }
 
