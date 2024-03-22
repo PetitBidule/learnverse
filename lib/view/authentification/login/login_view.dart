@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/controller/auth_services.dart';
 import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/view/homeTheme_view.dart';
+import 'package:learnverse/view/home/homeTheme_view.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
@@ -34,18 +34,17 @@ class _LoginState extends State<Login> {
   IconData _iconData = FontAwesomeIcons.eyeSlash;
   Future signIn() async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _controller[0].text, password: _controller[1].text);
-      print("l'authentication c'est bien passé");
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => ThemeScreen(
-                  pseudoUser: "rien",
-                )),
-      );
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: _controller[0].text, password: _controller[1].text)
+          .then((_) => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ThemeScreen(
+                          pseudoUser: "rien",
+                        )),
+              ));
     } on FirebaseAuthException catch (e) {
-      print("error: ${e.message}");
       return e.message;
     }
   }
@@ -58,7 +57,11 @@ class _LoginState extends State<Login> {
       "pseudo": FirebaseAuth.instance.currentUser?.displayName,
       "imageProfile": FirebaseAuth.instance.currentUser?.photoURL,
       "watchlist": [],
-    });
+    }).then((_) => Navigator.pushReplacement<void, void>(
+            context,
+            MaterialPageRoute<void>(
+              builder: (BuildContext context) => ThemeScreen(),
+            )));
   }
 
   @override
@@ -70,6 +73,8 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
         body: Stack(children: [
       Container(
@@ -247,14 +252,7 @@ class _LoginState extends State<Login> {
                       User? user;
                       user = await AuthService().signInWithGoogle();
                       addUserDetailsGoogle();
-                      Navigator.pushReplacement<void, void>(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) => ThemeScreen(),
-                          ));
                     },
-
-                    // AuthService().signInWithGoogle(),@@
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                     ),

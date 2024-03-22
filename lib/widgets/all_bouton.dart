@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learnverse/view/hometheme_view.dart';
+import 'package:learnverse/view/home/hometheme_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 //ignore: must_be_immutable

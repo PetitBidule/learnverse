@@ -1,7 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:learnverse/view/privacy_view.dart';
+import 'package:learnverse/Model/themechoose_model.dart';
+import 'package:learnverse/view/settings/privacy_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
 //ignore: must_be_immutable
@@ -13,28 +14,58 @@ class Theme1 extends StatefulWidget {
 }
 
 class _Theme1State extends State<Theme1> {
-  List<String> theme1 = [
-    "Food",
-    "Manga",
-    "Gaming",
-    "Movie",
-    "Music",
+  List<ThemeChoose> chooseTheme = [
+    ThemeChoose(
+        theme: "Food",
+        backgroundColor: const Color.fromRGBO(243, 255, 193, 1),
+        backgroundImage: const AssetImage("asset/image/imageF.png")),
+    ThemeChoose(
+      theme: "Manga",
+      backgroundColor: const Color.fromRGBO(240, 248, 255, 1),
+      backgroundImage: const AssetImage("asset/image/imageMan.png"),
+    ),
+    ThemeChoose(
+      theme: "Gaming",
+      backgroundColor: const Color.fromRGBO(0, 223, 255, 1),
+      backgroundImage: const AssetImage("asset/image/imageG.png"),
+    ),
+    ThemeChoose(
+      theme: "Movie",
+      backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
+      backgroundImage: const AssetImage("asset/image/imageM.png"),
+    ),
+    ThemeChoose(
+      theme: "Music",
+      backgroundColor: const Color.fromRGBO(252, 188, 188, 1),
+      backgroundImage: const AssetImage("asset/image/imageMu.png"),
+    )
   ];
-
-  List<String> theme2 = [
-    "Sport",
-    "Anime",
-    "Book",
-    "Animals",
-    "Series",
-  ];
-
-  final List<Color> back1 = [
-    const Color.fromRGBO(243, 255, 193, 1),
-    const Color.fromRGBO(240, 248, 255, 1),
-    const Color.fromRGBO(0, 223, 255, 1),
-    const Color.fromRGBO(245, 245, 245, 1),
-    const Color.fromRGBO(252, 188, 188, 1),
+  List<ThemeChoose> chooseTheme2 = [
+    ThemeChoose(
+      theme: "Sport",
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+      backgroundImage: const AssetImage("asset/image/imageT.png"),
+    ),
+    ThemeChoose(
+      theme: "Anime",
+      backgroundColor: const Color.fromRGBO(140, 178, 114, 1),
+      backgroundImage: const AssetImage("asset/image/imageA.png"),
+    ),
+    ThemeChoose(
+      theme: "Book",
+      backgroundColor: const Color.fromRGBO(248, 231, 222, 1),
+      backgroundImage: const AssetImage("asset/image/imageB.png"),
+    ),
+    ThemeChoose(
+      theme: "Animals",
+      backgroundColor: const Color.fromRGBO(255, 235, 202, 1),
+      backgroundImage: const AssetImage("asset/image/imageL.png"),
+    ),
+    ThemeChoose(
+      theme: "Series",
+      backgroundColor: const Color.fromRGBO(237, 215, 19, 1),
+      backgroundImage: const AssetImage("asset/image/imageS.png"),
+    )
   ];
   final List<Color> back3 = [
     const Color.fromRGBO(243, 255, 193, 0.40),
@@ -43,34 +74,7 @@ class _Theme1State extends State<Theme1> {
     const Color.fromRGBO(245, 245, 245, 0.40),
     const Color.fromRGBO(252, 188, 188, 0.40),
   ];
-
-  final List<Color> back2 = [
-    const Color.fromRGBO(255, 255, 255, 1),
-    const Color.fromRGBO(140, 178, 114, 1),
-    const Color.fromRGBO(248, 231, 222, 1),
-    const Color.fromRGBO(255, 235, 202, 1),
-    const Color.fromRGBO(237, 215, 19, 1),
-  ];
-
-  final List<Image> image1 = [
-    Image.asset("asset/image/imageF.png"),
-    Image.asset("asset/image/imageMan.png"),
-    Image.asset("asset/image/imageG.png"),
-    Image.asset("asset/image/imageM.png"),
-    Image.asset("asset/image/imageMu.png"),
-  ];
-
-  final List<Image> image2 = [
-    Image.asset("asset/image/imageT.png"),
-    Image.asset("asset/image/imageA.png"),
-    Image.asset("asset/image/imageB.png"),
-    Image.asset("asset/image/imageL.png"),
-    Image.asset("asset/image/imageS.png"),
-  ];
-
-  // final bool _isSelected = false;
   int _valueSelected = 0;
-  // final List _colors = [];
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +129,7 @@ class _Theme1State extends State<Theme1> {
           SafeArea(
             child: Center(
               child: Column(
-                children: [
+                children: <Widget>[
                   Image.asset(
                     "asset/image/logoLearnVerse.png",
                     width: 120,
@@ -179,24 +183,29 @@ class _Theme1State extends State<Theme1> {
                                   onTap: () {
                                     setState(() {
                                       if (_valueSelected < 3) {
-                                        if (back1[index] == back3[index]) {
+                                        if (chooseTheme[index]
+                                                .backgroundColor ==
+                                            back3[index]) {
                                           print("nn");
                                         } else {
-                                          back1[index] = back3[index];
+                                          chooseTheme[index].backgroundColor =
+                                              back3[index];
                                           _valueSelected++;
                                         }
                                       }
                                     });
                                   },
-                                  child: Stack(children: [
+                                  child: Stack(children: <Widget>[
                                     Positioned(
                                       child: Container(
                                         width: 140,
                                         height: 75,
                                         decoration: BoxDecoration(
-                                          color: back1[index],
+                                          color: chooseTheme[index]
+                                              .backgroundColor,
                                           image: DecorationImage(
-                                            image: image1[index].image,
+                                            image: chooseTheme[index]
+                                                .backgroundImage,
                                           ),
                                           border: Border.all(
                                             color: const Color.fromARGB(
@@ -208,7 +217,7 @@ class _Theme1State extends State<Theme1> {
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Text(
-                                            theme1[index],
+                                            chooseTheme[index].theme,
                                             style: const TextStyle(
                                               color:
                                                   Color.fromARGB(255, 0, 0, 0),
@@ -226,9 +235,9 @@ class _Theme1State extends State<Theme1> {
                                 width: 140,
                                 height: 75,
                                 decoration: BoxDecoration(
-                                  color: back2[index],
+                                  color: chooseTheme2[index].backgroundColor,
                                   image: DecorationImage(
-                                    image: image2[index].image,
+                                    image: chooseTheme2[index].backgroundImage,
                                   ),
                                   border: Border.all(
                                     color: const Color.fromARGB(
@@ -239,7 +248,7 @@ class _Theme1State extends State<Theme1> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    theme2[index],
+                                    chooseTheme[index].theme,
                                     style: const TextStyle(
                                       color: Color.fromARGB(255, 0, 0, 0),
                                       fontWeight: FontWeight.w600,

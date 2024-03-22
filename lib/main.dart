@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:learnverse/Model/dbHelper/mongo_db.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:learnverse/view/homeTheme_view.dart';
+import 'package:learnverse/view/authentification/register/chooseTheme_view.dart';
+import 'package:learnverse/view/home/homeTheme_view.dart';
 import 'package:learnverse/view/homepage_view.dart';
 import 'package:device_preview/device_preview.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,9 +19,8 @@ void main() async {
   } catch (e) {
     print("Erreur:$e");
   }
-  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-  //     .then((_) =>
-  runApp(const MyApp());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -29,12 +28,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const MaterialApp(
+    return MaterialApp(
+      useInheritedMediaQuery: true,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
       // theme: ThemeData(
       //     elevatedButtonTheme:  ElevatedButtonThemeData(
       //         style: ButtonStyle(backgroundColor: MaterialStateProperty<Color> Colors.white))),
       debugShowCheckedModeBanner: false,
-      home: language(),
+      home: const Theme1(),
     );
   }
 }

@@ -3,10 +3,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/view/hometheme_view.dart';
+import 'package:learnverse/view/home/hometheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-
 
 class language extends StatelessWidget {
   const language({super.key});
@@ -59,26 +58,27 @@ class language extends StatelessWidget {
                             height: 40,
                           ),
                           Padding(
-                             padding: const EdgeInsets.only(right:100.0),
-                             child: GradientText('language',
-                             style: const TextStyle(
-                                       fontSize: 36,
-                                       fontWeight: FontWeight.w700,
-                                     ),colors: const [
-                                     Color.fromARGB(255, 153, 118, 224),
-                                     Color.fromARGB(255, 153, 107, 156),
-                                     ],
-                             ),
-                           )
+                            padding: const EdgeInsets.only(right: 100.0),
+                            child: GradientText(
+                              'language',
+                              style: const TextStyle(
+                                fontSize: 36,
+                                fontWeight: FontWeight.w700,
+                              ),
+                              colors: const [
+                                Color.fromARGB(255, 153, 118, 224),
+                                Color.fromARGB(255, 153, 107, 156),
+                              ],
+                            ),
+                          )
                         ],
-                     ),
-        
                       ),
+                    ),
                     const Divider(
                       indent: 10,
                       endIndent: 30,
                     ),
-                     const Padding(
+                    const Padding(
                       padding: EdgeInsets.only(top: 24.0),
                       child: SizedBox(
                         width: 400,
@@ -87,7 +87,7 @@ class language extends StatelessWidget {
                           child: Text(
                             'Select language',
                             style: TextStyle(
-                              color: Color.fromARGB(255, 88, 41,145),
+                              color: Color.fromARGB(255, 88, 41, 145),
                               fontSize: 50,
                               fontWeight: FontWeight.w700,
                             ),
@@ -95,11 +95,9 @@ class language extends StatelessWidget {
                         ),
                       ),
                     ),
-                     const SizedBox(
-                    height: 400,
-                   
-                     ),
-                    
+                    const SizedBox(
+                      height: 400,
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
@@ -119,8 +117,7 @@ class language extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ThemeScreen(
-                                        )),
+                                    builder: (context) => ThemeScreen()),
                               );
                             },
                             child: const Text(
@@ -132,13 +129,11 @@ class language extends StatelessWidget {
                         ),
                       ),
                     ),
-                   
                   ],
                 ),
-            ),
+              ),
             ),
           )
-
         ],
       ),
     );

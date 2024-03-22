@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:learnverse/Model/category_model.dart';
 import 'package:learnverse/Model/dbHelper/display_data.dart';
 import 'package:learnverse/Model/dbHelper/mongo_db.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/view/dashboard_view.dart';
-import 'package:learnverse/view/settings_view.dart';
+import 'package:learnverse/view/settings/settings_view.dart';
 import 'package:learnverse/widgets/list_viewHome.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -92,7 +93,6 @@ List allCollection = [
   MongoDB.getDataCollectionFilm(),
   MongoDB.getDataCollectionMusic(),
   MongoDB.getDataCollectionGaming(),
-  // MongoDB.getDataCollectionUser(widget.pseudoUser),
 ];
 
 List allNameFields = ["title", "title", "_name", "name", "name"];
@@ -106,31 +106,28 @@ List<String> classement = [
   // "collectionUser"
 ];
 
-List allThemes = [
-  [
-    "4.8",
-    "Anime",
-    "One Piece",
-    "asset/image/zoro.png",
-    "asset/image/zoro.png",
-    const Color.fromRGBO(140, 178, 114, 1),
-  ],
-  [
-    "4.9",
-    "Manga",
-    "One Piece",
-    "asset/image/imageMan.png",
-    "asset/image/imageMan.png",
-    const Color.fromARGB(255, 255, 255, 255),
-  ],
-  [
-    "4.6",
-    "Music",
-    "Dimanche",
-    "asset/image/onepiecemanga.jpeg",
-    "asset/image/sportbg.png",
-    const Color.fromRGBO(140, 178, 114, 1),
-  ],
+List<MostPopularCategory> categoriesComponents = [
+  MostPopularCategory(
+    name: "One Piece",
+    note: 4,
+    categories: "Manga",
+    backgroundImage: "asset/image/zoro.png",
+    backGroundColor: const Color.fromRGBO(140, 178, 114, 1),
+  ),
+  MostPopularCategory(
+    name: "Naruto",
+    note: 4,
+    categories: "Anime",
+    backgroundImage: "asset/image/imageMan.png",
+    backGroundColor: const Color.fromRGBO(140, 178, 114, 1),
+  ),
+  MostPopularCategory(
+    name: "Handball",
+    note: 4,
+    categories: "Sport",
+    backgroundImage: "asset/image/sportbg.png",
+    backGroundColor: const Color.fromRGBO(140, 178, 114, 1),
+  )
 ];
 
 class _HomePage2State extends State<HomePage2> {
@@ -271,13 +268,14 @@ class _HomePage2State extends State<HomePage2> {
               children: [
                 ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: allThemes.length,
+                    itemCount: categoriesComponents.length,
                     itemBuilder: (BuildContext context, int index) {
                       return MostPopularCategories(
-                        nameCategories: allThemes[index][1],
-                        nameNotion: allThemes[index][2],
-                        background: allThemes[index][4],
-                        backGroundColor: allThemes[index][5],
+                        nameCategories: categoriesComponents[index].categories,
+                        nameNotion: categoriesComponents[index].name,
+                        background: categoriesComponents[index].backgroundImage,
+                        backGroundColor:
+                            categoriesComponents[index].backGroundColor,
                         isFirst: index,
                       );
                     }),

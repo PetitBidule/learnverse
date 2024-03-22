@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:learnverse/controller/account_controller.dart';
 import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/view/register_view.dart';
-import 'package:learnverse/view/login_view.dart';
+import 'package:learnverse/view/authentification/register/register_view.dart';
+import 'package:learnverse/view/authentification/login/login_view.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
@@ -14,6 +14,7 @@ class ScreenLog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size.width * 0.10;
     return Scaffold(
         body: Stack(children: [
       Container(
@@ -74,8 +75,8 @@ class ScreenLog extends StatelessWidget {
                   fontSize: 40,
                   fontWeight: FontWeight.w700),
             ),
-            const SizedBox(
-              height: 30,
+            SizedBox(
+              height: size,
             ),
             ButtonConnexion(
               textConnexion: "Sign Up",

@@ -1,3 +1,4 @@
+// ! a mettre dans un fichier env svp
 const mongoConnUrl =
     "mongodb+srv://theo:tiQbCs1TS9RlapLn@learnverse.olmkkxo.mongodb.net/Learnverse?retryWrites=true&w=majority";
 // const userCollection1 = "Animaux";

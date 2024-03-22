@@ -3,9 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/view/hometheme_view.dart';
+import 'package:learnverse/view/home/hometheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
-
 
 class Privacy extends StatelessWidget {
   const Privacy({super.key});

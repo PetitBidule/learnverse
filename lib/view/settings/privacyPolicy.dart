@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/view/hometheme_view.dart';
+import 'package:learnverse/view/home/hometheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
 class Privacypolicy extends StatefulWidget {

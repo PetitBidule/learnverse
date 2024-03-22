@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:learnverse/view/chooseTheme_view.dart';
+import 'package:learnverse/view/authentification/register/chooseTheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -31,6 +31,7 @@ class _VerifyEmailPasswordState extends State<VerifyEmailPassword> {
       });
     }
   }
+
   Future checkEmailVerification() async {
     await FirebaseAuth.instance.currentUser!.reload();
 
@@ -39,7 +40,6 @@ class _VerifyEmailPasswordState extends State<VerifyEmailPassword> {
           .pushReplacement(MaterialPageRoute(builder: (context) {
         return const Theme1();
       }));
-      print("kiwi");
       _timer.cancel();
     }
   }

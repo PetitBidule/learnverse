@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:learnverse/view/homeTheme_view.dart';
-import 'package:learnverse/view/login_view.dart';
+import 'package:learnverse/view/home/homeTheme_view.dart';
+import 'package:learnverse/view/authentification/login/login_view.dart';
 
 class CreateAccountController {
   bool verificationPasswordsEmail(

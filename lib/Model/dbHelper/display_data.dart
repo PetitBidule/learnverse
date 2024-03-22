@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learnverse/view/categories_view.dart';
+import 'package:learnverse/view/home/categories_view.dart';
 import 'package:learnverse/widgets/list_viewHome.dart';
 
 //ignore: must_be_immutable

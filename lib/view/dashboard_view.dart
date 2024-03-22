@@ -46,8 +46,7 @@ class _DashboardState extends State<Dashboard> {
                             'name': name,
                           },
                         ]),
-                      });
-                      Navigator.pop(context);
+                      }).then((_) => Navigator.pop(context));
                     });
                   },
                   child: const Text('Delete')),
@@ -66,7 +65,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(children: [
+      body: Stack(children: <Widget>[
         Container(
           width: double.infinity,
           height: double.infinity,
@@ -114,7 +113,7 @@ class _DashboardState extends State<Dashboard> {
         ),
         SafeArea(
           child: Center(
-            child: ListView(children: [
+            child: ListView(children: <Widget>[
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -138,16 +137,7 @@ class _DashboardState extends State<Dashboard> {
                     ],
                   ),
                   Row(
-                    children: [
-                      // const Padding(
-                      //   padding: EdgeInsets.all(20.0),
-                      //   child: Text('Watchlist',
-                      //       style: TextStyle(
-                      //         color: Color.fromARGB(255, 255, 255, 255),
-                      //         fontSize: 30,
-                      //         fontWeight: FontWeight.w700,
-                      //       )),
-                      // ),
+                    children: <Widget>[
                       Container(
                         width: 110,
                         height: 30,
