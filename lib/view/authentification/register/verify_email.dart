@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/view/authentification/register/chooseTheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:lottie/lottie.dart';
@@ -113,10 +114,10 @@ class _VerifyEmailPasswordState extends State<VerifyEmailPassword> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
+                Text(
                   'Check your inbox',
                   style: TextStyle(
-                      color: Colors.white,
+                      color: ConstantsColors.iconColors,
                       fontSize: 24,
                       fontWeight: FontWeight.w700),
                 ),
@@ -126,8 +127,8 @@ class _VerifyEmailPasswordState extends State<VerifyEmailPassword> {
                   child: Text(
                       "To confirm your email, tap on the link we sent to ${user.email}",
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: ConstantsColors.iconColors,
                         fontSize: 18,
                       )),
                 ),

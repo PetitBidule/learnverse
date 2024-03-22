@@ -34,9 +34,9 @@ class MyApp extends StatelessWidget {
       builder: DevicePreview.appBuilder,
       // theme: ThemeData(
       //     elevatedButtonTheme:  ElevatedButtonThemeData(
-      //         style: ButtonStyle(backgroundColor: MaterialStateProperty<Color> Colors.white))),
+      //         style: ButtonStyle(backgroundColor: MaterialStateProperty<Color> ConstantsColors.iconColors))),
       debugShowCheckedModeBanner: false,
-      home: const Theme1(),
+      home: ScreenLog(),
     );
   }
 }

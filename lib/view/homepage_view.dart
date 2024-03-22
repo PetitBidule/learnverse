@@ -2,7 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:learnverse/controller/account_controller.dart';
-import 'package:learnverse/utils/constants.dart';
+import 'package:learnverse/utils/constantsColors.dart';
+import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/authentification/register/register_view.dart';
 import 'package:learnverse/view/authentification/login/login_view.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
@@ -68,10 +69,10 @@ class ScreenLog extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset("asset/image/logoLearnVerse.png"),
-            const Text(
+            Text(
               'LearnVerse',
               style: TextStyle(
-                  color: Colors.white,
+                  color: ConstantsColors.iconColors,
                   fontSize: 40,
                   fontWeight: FontWeight.w700),
             ),

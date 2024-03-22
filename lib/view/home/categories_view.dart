@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:learnverse/utils/constantsColors.dart';
+import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/dashboard_view.dart';
 import 'package:lottie/lottie.dart';
 
@@ -45,10 +47,10 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
       content: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const FaIcon(
+          FaIcon(
             FontAwesomeIcons.check,
             size: 15,
-            color: Colors.white,
+            color: ConstantsColors.iconColors,
           ),
           const Text('Added to wishlist.'),
           TextButton(
@@ -152,24 +154,25 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                              border: Border.all(color: Colors.white),
+                              border:
+                                  Border.all(color: ConstantsColors.iconColors),
                               borderRadius: BorderRadius.circular(50)),
                           child: IconButton(
                               onPressed: () => setState(() {
                                     Navigator.pop(context);
                                   }),
-                              icon: const FaIcon(
+                              icon: FaIcon(
                                 FontAwesomeIcons.chevronLeft,
-                                size: 23,
-                                color: Colors.white,
+                                size: 18,
+                                color: ConstantsColors.iconColors,
                               )),
                         ),
                         const SizedBox(
                           width: 40,
                         ),
                         CircleAvatar(
-                          minRadius: 30,
-                          maxRadius: 30,
+                          minRadius: 28,
+                          maxRadius: 28,
                           backgroundImage: NetworkImage(
                               "${FirebaseAuth.instance.currentUser?.photoURL}"),
                         )
@@ -210,9 +213,9 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                     child: Column(children: [
                       Padding(
                         padding: const EdgeInsets.only(
-                            left: 10.0, right: 10.0, top: 10),
+                            left: 12.0, right: 12.0, top: 12),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(12.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -220,8 +223,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                 width: 225,
                                 child: Text(
                                   widget.title,
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 24),
+                                  style: AllConstants.title,
                                 ),
                               ),
                               Row(
@@ -231,7 +233,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                         color: const Color.fromARGB(
                                             255, 255, 255, 255),
                                         borderRadius:
-                                            BorderRadius.circular(15)),
+                                            BorderRadius.circular(16)),
                                     child: IconButton(
                                         onPressed: () => setState(() {
                                               allComments.clear();
@@ -256,7 +258,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                         color: const Color.fromARGB(
                                             255, 255, 255, 255),
                                         borderRadius:
-                                            BorderRadius.circular(15)),
+                                            BorderRadius.circular(16)),
                                     child: IconButton(
                                         onPressed: () {
                                           setState(() {
@@ -302,27 +304,19 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                         ),
                       ),
                       const Padding(
-                        padding: EdgeInsets.all(10.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             // update text
-                            Text(
-                              'Synopsis',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 19),
-                            ),
+                            Text('Synopsis', style: AllConstants.subtitle),
                             Text(
                               'Theme',
-                              style: TextStyle(
-                                  color: Color.fromARGB(181, 255, 255, 255),
-                                  fontSize: 19),
+                              style: AllConstants.subtitle,
                             ),
                             Text(
                               'More Information',
-                              style: TextStyle(
-                                  color: Color.fromARGB(181, 255, 255, 255),
-                                  fontSize: 19),
+                              style: AllConstants.subtitle,
                             ),
                           ],
                         ),
@@ -332,28 +326,25 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                         endIndent: 60,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 28.0),
                         child: SizedBox(
                           height: 276,
                           child: ListView(
                             children: [
-                              const Text("Synopsis",
-                                  style: TextStyle(
-                                      fontSize: 24, color: Colors.white)),
+                              const Text("Synopsis", style: AllConstants.title),
                               const SizedBox(
-                                height: 30,
+                                height: 18,
                               ),
                               Text(
                                 widget.synopsis,
-                                style: const TextStyle(
-                                    fontSize: 18, color: Colors.white),
+                                style: AllConstants.text,
                               ),
                               TextField(
                                 controller: _controller,
                                 maxLines: 5,
-                                decoration: const InputDecoration(
+                                decoration: InputDecoration(
                                     hintText: "Comment",
-                                    fillColor: Colors.white),
+                                    fillColor: ConstantsColors.iconColors),
                               ),
                               TextButton(
                                   onPressed: () {

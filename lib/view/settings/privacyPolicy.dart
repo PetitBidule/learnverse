@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:learnverse/utils/constants.dart';
+import 'package:learnverse/utils/constantsColors.dart';
+import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/home/hometheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
@@ -73,7 +74,7 @@ class _PrivacypolicyState extends State<Privacypolicy> {
                   children: [
                     IconButton(
                       icon: const Icon(Icons.arrow_back),
-                      color: Colors.white,
+                      color: ConstantsColors.iconColors,
                       onPressed: () => setState(() => Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -101,7 +102,7 @@ If you choose to use our Service, then you agree to the collection and use of in
 
 The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which are accessible at LearnVerse unless otherwise defined in this Privacy Policy.''',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20.0, color: Colors.white),
+                      style: AllConstants.text,
                     ),
                     const SizedBox(height: 16.0),
                     const Text(
@@ -114,7 +115,7 @@ Link to the privacy policy of third-party service providers used by the app:
 * [Google Play Services](https://www.google.com/policies/privacy/)
 * [AdMob](https://support.google.com/admob/answer/6128543?hl=en)''',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20.0, color: Colors.white),
+                      style: AllConstants.text,
                     ),
                   ],
                 ),

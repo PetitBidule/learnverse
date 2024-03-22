@@ -3,7 +3,8 @@ import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:learnverse/utils/constants.dart';
+import 'package:learnverse/utils/constantsColors.dart';
+import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
@@ -92,7 +93,7 @@ class _SettingsState extends State<Settings> {
               padding: const EdgeInsets.only(bottom: 32.0),
               child: Text("${FirebaseAuth.instance.currentUser?.email}",
                   style: const TextStyle(
-                    color: Color.fromARGB(255, 255, 255, 255),
+                    color: ConstantsColors.iconColors,
                     fontSize: 20,
                     fontWeight: FontWeight.w400,
                   )),
@@ -106,7 +107,8 @@ class _SettingsState extends State<Settings> {
             const MailButton(
                 textConnexion: "Support", icon: FontAwesomeIcons.headset),
             Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
               child: SizedBox(
                 width: 400,
                 height: 60,
@@ -126,14 +128,15 @@ class _SettingsState extends State<Settings> {
                         Text(
                           "Log Out",
                           style: TextStyle(
-                              color: Color.fromARGB(255, 0, 0, 0),
+                              color: ConstantsColors.blackColors,
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
                               letterSpacing: 0.8),
                         ),
                         FaIcon(
+                          size: 16,
                           FontAwesomeIcons.chevronRight,
-                          color: Color.fromARGB(255, 0, 0, 0),
+                          color: ConstantsColors.blackColors,
                         ),
                       ],
                     )),

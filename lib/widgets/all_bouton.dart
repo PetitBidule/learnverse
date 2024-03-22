@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/view/home/hometheme_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -36,11 +37,12 @@ class _ButtonConnexionState extends State<ButtonConnexion> {
             shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(22.0),
-                    side: const BorderSide(color: Colors.white)))),
+                    side:
+                        const BorderSide(color: ConstantsColors.iconColors)))),
         child: Text(
           widget.textConnexion,
           style: const TextStyle(
-              color: Colors.white,
+              color: ConstantsColors.iconColors,
               fontSize: 16,
               fontWeight: FontWeight.w400,
               letterSpacing: 0.8),
@@ -61,7 +63,7 @@ class _LogInButtonState extends State<LogInButton> {
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
+          backgroundColor: ConstantsColors.iconColors,
         ),
         onPressed: () {
           widget.signIn;
@@ -76,7 +78,7 @@ class _LogInButtonState extends State<LogInButton> {
         child: const Text(
           "Log in",
           style: TextStyle(
-              color: Colors.black,
+              color: ConstantsColors.blackColors,
               fontSize: 16,
               fontWeight: FontWeight.w400,
               letterSpacing: 0.8),
@@ -102,7 +104,7 @@ class _OtherButtonConnexionState extends State<OtherBtnConnexion> {
         onPressed: () => setState(() {}) // routes
         ,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
+          backgroundColor: ConstantsColors.iconColors,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -112,7 +114,7 @@ class _OtherButtonConnexionState extends State<OtherBtnConnexion> {
             Text(
               widget.textConnexion,
               style: const TextStyle(
-                  color: Colors.black,
+                  color: ConstantsColors.blackColors,
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.8),
@@ -136,7 +138,7 @@ class _MailButtonConnexionState extends State<MailButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 3.0),
+      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
       child: SizedBox(
         width: 400,
         height: 60,
@@ -145,9 +147,9 @@ class _MailButtonConnexionState extends State<MailButton> {
               setState(() {}); // routes
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+              backgroundColor: ConstantsColors.iconColors,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(7.0),
+                borderRadius: BorderRadius.circular(8.0),
               ),
             ),
             child: Row(
@@ -155,19 +157,20 @@ class _MailButtonConnexionState extends State<MailButton> {
               children: [
                 FaIcon(
                   widget.icon,
-                  color: const Color.fromARGB(255, 0, 0, 0),
+                  color: ConstantsColors.blackColors,
                 ),
                 Text(
                   widget.textConnexion,
                   style: const TextStyle(
-                      color: Color.fromARGB(255, 0, 0, 0),
+                      color: ConstantsColors.blackColors,
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                       letterSpacing: 0.8),
                 ),
                 const FaIcon(
+                  size: 16,
                   FontAwesomeIcons.chevronRight,
-                  color: Color.fromARGB(255, 0, 0, 0),
+                  color: ConstantsColors.blackColors,
                 ),
               ],
             )),

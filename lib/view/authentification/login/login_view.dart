@@ -5,7 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/controller/auth_services.dart';
-import 'package:learnverse/utils/constants.dart';
+import 'package:learnverse/utils/constantsColors.dart';
+import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/home/homeTheme_view.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
@@ -137,18 +138,13 @@ class _LoginState extends State<Login> {
                 children: [
                   IconButton(
                     onPressed: () => Navigator.pop(context),
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.arrow_back,
-                      color: Colors.white,
+                      color: ConstantsColors.iconColors,
                       size: 35,
                     ),
                   ),
-                  const Text('Log In  ',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 40,
-                        fontWeight: FontWeight.w300,
-                      )),
+                  const Text('Log In  ', style: AllConstants.title),
                   const SizedBox(
                     width: 20,
                   )
@@ -157,12 +153,8 @@ class _LoginState extends State<Login> {
             ),
             const Padding(
               padding: EdgeInsets.only(bottom: 64.0),
-              child: Text('log in to your account',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w200,
-                  )),
+              child:
+                  Text('log in to your account', style: AllConstants.subtitle),
             ),
             SizedBox(
               width: 350,
@@ -198,14 +190,14 @@ class _LoginState extends State<Login> {
                                             "Le mot de passe doit contenit minimum 8 caracteres",
                                         child: FaIcon(
                                           _iconData,
-                                          color: Colors.white,
+                                          color: ConstantsColors.iconColors,
                                         ),
                                       ),
                                     ),
                                   )
                                 : null,
                             labelText: _labelText[index],
-                            labelStyle: const TextStyle(color: Colors.white),
+                            labelStyle: AllConstants.placeholder,
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25),
                               borderSide: const BorderSide(
@@ -254,7 +246,7 @@ class _LoginState extends State<Login> {
                       addUserDetailsGoogle();
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: ConstantsColors.iconColors,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -263,11 +255,7 @@ class _LoginState extends State<Login> {
                         const SizedBox(width: 50),
                         const Text(
                           "Google",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              letterSpacing: 0.8),
+                          style: AllConstants.textBtn,
                         ),
                       ],
                     )),

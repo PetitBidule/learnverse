@@ -2,7 +2,8 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:learnverse/utils/constants.dart';
+import 'package:learnverse/utils/constantsColors.dart';
+import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
@@ -120,18 +121,13 @@ class _DashboardState extends State<Dashboard> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const Text("Dashboard",
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 255, 255, 255),
-                            fontSize: 40,
-                            fontWeight: FontWeight.w700,
-                          )),
+                      const Text("Dashboard", style: AllConstants.title),
                       SizedBox(
                         child: CircleAvatar(
                           backgroundImage: NetworkImage(
                               "${FirebaseAuth.instance.currentUser?.photoURL}"),
-                          minRadius: 30,
-                          maxRadius: 30,
+                          minRadius: 28,
+                          maxRadius: 28,
                         ),
                       )
                     ],
@@ -142,7 +138,7 @@ class _DashboardState extends State<Dashboard> {
                         width: 110,
                         height: 30,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: ConstantsColors.iconColors,
                           border: Border.all(
                               color: const Color.fromARGB(255, 255, 255, 255)),
                           borderRadius: BorderRadius.circular(40),
@@ -189,7 +185,7 @@ class _DashboardState extends State<Dashboard> {
                           width: 110,
                           height: 30,
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: ConstantsColors.iconColors,
                             boxShadow: const [],
                             border: Border.all(
                                 color:
@@ -305,7 +301,7 @@ class _DashboardState extends State<Dashboard> {
                   //     width: 200,
                   //     height: 200,
                   //     decoration: BoxDecoration(
-                  //       color: Colors.white,
+                  //       color: ConstantsColors.iconColors,
                   //       boxShadow: [
                   //         BoxShadow(
                   //           color: Colors.grey.withOpacity(0.7),
@@ -365,7 +361,7 @@ class _DashboardState extends State<Dashboard> {
                   //     width: 200,
                   //     height: 200,
                   //     decoration: BoxDecoration(
-                  //       color: Colors.white,
+                  //       color: ConstantsColors.iconColors,
                   //       boxShadow: [
                   //         BoxShadow(
                   //           color: Colors.grey.withOpacity(0.7),

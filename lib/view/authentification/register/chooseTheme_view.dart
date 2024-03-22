@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:learnverse/Model/themechoose_model.dart';
+import 'package:learnverse/utils/constantsColors.dart';
+import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/settings/privacy_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
@@ -140,11 +142,7 @@ class _Theme1State extends State<Theme1> {
                     child: Padding(
                       padding: EdgeInsets.all(4.0),
                       child: Text('What do you want to see on LearnVerse?',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w700,
-                          )),
+                          style: AllConstants.title),
                     ),
                   ),
                   const SizedBox(
@@ -153,11 +151,7 @@ class _Theme1State extends State<Theme1> {
                       padding: EdgeInsets.all(4.0),
                       child: Text(
                           'Select at least 3 interest to personalize your LearnVerse experience.',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w300,
-                          )),
+                          style: AllConstants.subtitle),
                     ),
                   ),
                   const Padding(
@@ -216,15 +210,8 @@ class _Theme1State extends State<Theme1> {
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            chooseTheme[index].theme,
-                                            style: const TextStyle(
-                                              color:
-                                                  Color.fromARGB(255, 0, 0, 0),
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 14,
-                                            ),
-                                          ),
+                                          child: Text(chooseTheme[index].theme,
+                                              style: AllConstants.textBtn),
                                         ),
                                       ),
                                     ),
@@ -282,7 +269,7 @@ class _Theme1State extends State<Theme1> {
                         children: [
                           Text(
                             " $_valueSelected of 3 selected",
-                            style: const TextStyle(color: Colors.white),
+                            style: TextStyle(color: ConstantsColors.iconColors),
                           ),
                           TextButton(
                             onPressed: () {
@@ -300,7 +287,7 @@ class _Theme1State extends State<Theme1> {
                               height: 30,
                               decoration: BoxDecoration(
                                 color: _valueSelected == 3
-                                    ? Colors.white
+                                    ? ConstantsColors.iconColors
                                     : const Color.fromARGB(139, 255, 255, 255),
                                 border: Border.all(
                                     color: const Color.fromARGB(

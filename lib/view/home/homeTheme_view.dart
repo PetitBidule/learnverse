@@ -3,7 +3,8 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:learnverse/Model/category_model.dart';
 import 'package:learnverse/Model/dbHelper/display_data.dart';
 import 'package:learnverse/Model/dbHelper/mongo_db.dart';
-import 'package:learnverse/utils/constants.dart';
+import 'package:learnverse/utils/constantsColors.dart';
+import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/dashboard_view.dart';
 import 'package:learnverse/view/settings/settings_view.dart';
 import 'package:learnverse/widgets/list_viewHome.dart';
@@ -40,14 +41,14 @@ class _ThemeScreenState extends State<ThemeScreen> {
       bottomNavigationBar: Container(
         color: const Color.fromRGBO(203, 178, 254, 1),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15),
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 14),
           child: GNav(
             selectedIndex: _selectedIndex,
             backgroundColor: const Color.fromRGBO(203, 178, 254, 1),
-            activeColor: const Color.fromARGB(255, 228, 228, 228),
-            tabBackgroundColor: const Color.fromARGB(38, 99, 85, 85),
+            activeColor: ConstantsColors.iconColors,
+            tabBackgroundColor: ConstantsColors.blackColors,
             gap: 7,
-            padding: const EdgeInsets.all(19),
+            padding: const EdgeInsets.all(16),
             onTabChange: (index) => setState(() => _selectedIndex = index),
             tabs: const [
               GButton(
@@ -119,14 +120,28 @@ List<MostPopularCategory> categoriesComponents = [
     note: 4,
     categories: "Anime",
     backgroundImage: "asset/image/imageMan.png",
-    backGroundColor: const Color.fromRGBO(140, 178, 114, 1),
+    backGroundColor: const Color.fromRGBO(240, 248, 255, 1),
   ),
   MostPopularCategory(
     name: "Handball",
     note: 4,
     categories: "Sport",
     backgroundImage: "asset/image/sportbg.png",
-    backGroundColor: const Color.fromRGBO(140, 178, 114, 1),
+    backGroundColor: const Color.fromRGBO(255, 255, 255, 1),
+  ),
+  MostPopularCategory(
+    name: "GTA",
+    note: 4,
+    categories: "Gaming",
+    backgroundImage: "asset/image/imageG.png",
+    backGroundColor: const Color.fromRGBO(0, 223, 255, 1),
+  ),
+  MostPopularCategory(
+    name: "KOC",
+    note: 4,
+    categories: "Music",
+    backgroundImage: "asset/image/imageMu.png",
+    backGroundColor: const Color.fromRGBO(252, 188, 188, 1),
   )
 ];
 
@@ -138,7 +153,7 @@ class _HomePage2State extends State<HomePage2> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 32),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -146,26 +161,26 @@ class _HomePage2State extends State<HomePage2> {
                   width: 160,
                   height: 60,
                   decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white),
+                      border: Border.all(color: ConstantsColors.iconColors),
                       color: const Color.fromARGB(0, 155, 39, 176),
                       borderRadius: BorderRadius.circular(38)),
                   child: const Row(children: [
                     Padding(
                       padding: EdgeInsets.all(8.0),
                       child: CircleAvatar(
-                        minRadius: 25,
-                        maxRadius: 25,
+                        minRadius: 28,
+                        maxRadius: 28,
                         backgroundColor: Color.fromRGBO(203, 178, 254, 1),
                         child: Icon(
                           Icons.search,
-                          color: Colors.white,
+                          color: ConstantsColors.iconColors,
                         ),
                       ),
                     ),
                     Text(
                       'Search',
                       style: TextStyle(
-                          color: Colors.white,
+                          color: ConstantsColors.iconColors,
                           fontSize: 20,
                           fontWeight: FontWeight.w400),
                     )
@@ -175,8 +190,8 @@ class _HomePage2State extends State<HomePage2> {
                   child: CircleAvatar(
                     backgroundImage: NetworkImage(
                         "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHFpaHJyMHQ5bjlmYWNiNXB5eDF5ZXBpdG9scGRseWxoZmxkaGJ2cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YRThiAEEYVNtC5acLO/giphy.gif"),
-                    minRadius: 30,
-                    maxRadius: 30,
+                    minRadius: 28,
+                    maxRadius: 28,
                   ),
                 )
               ],
@@ -186,20 +201,20 @@ class _HomePage2State extends State<HomePage2> {
             height: 20,
           ),
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.0),
+            padding: EdgeInsets.symmetric(horizontal: 32),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   "Category of the Day",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                  style: AllConstants.text,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       "Next 18.40",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: AllConstants.text,
                     ),
                   ],
                 )
@@ -207,7 +222,7 @@ class _HomePage2State extends State<HomePage2> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 10.0),
+            padding: const EdgeInsets.only(bottom: 12.0),
             child: Column(
               children: [
                 SizedBox(
@@ -237,27 +252,27 @@ class _HomePage2State extends State<HomePage2> {
                       }),
                 ),
                 SmoothPageIndicator(
-                  controller: controller, // PageController
+                  controller: controller,
                   count: allCollection.length,
                   textDirection: TextDirection.ltr,
                   effect: const ExpandingDotsEffect(
-                    dotWidth: 13,
-                    dotHeight: 13,
-                    dotColor: Colors.white,
+                    dotWidth: 12,
+                    dotHeight: 12,
+                    dotColor: ConstantsColors.iconColors,
                     activeDotColor: Color.fromRGBO(218, 182, 252, 1),
-                    spacing: 10,
+                    spacing: 8,
                   ),
                 ),
               ],
             ),
           ),
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.0),
+            padding: EdgeInsets.symmetric(horizontal: 32, vertical: 8),
             child: Row(
               children: [
                 Text(
                   "Most Popular Categories",
-                  style: AllConstants.textColors,
+                  style: AllConstants.text,
                 ),
               ],
             ),

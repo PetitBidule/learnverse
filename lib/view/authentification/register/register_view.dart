@@ -4,7 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:learnverse/controller/account_controller.dart';
-import 'package:learnverse/utils/constants.dart';
+import 'package:learnverse/utils/constantsColors.dart';
+import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/home/homeTheme_view.dart';
 import 'package:learnverse/view/authentification/register/verify_email.dart';
 import 'package:learnverse/widgets/square_background.dart';
@@ -46,6 +47,7 @@ class _AccountState extends State<Account> {
               email: _controller[1].text, password: _controller[2].text)
           .then((_) => Navigator.of(context).pushReplacement(MaterialPageRoute(
               builder: (context) => const VerifyEmailPassword())));
+      print("les données ont été envoyés ");
       addUserDetails();
     } on FirebaseAuthException catch (e) {
       print("error ${e.message}");
@@ -133,18 +135,13 @@ class _AccountState extends State<Account> {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.arrow_back,
-                      color: Colors.white,
+                      color: ConstantsColors.iconColors,
                       size: 35,
                     ),
                   ),
-                  const Text('Sign In',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 40,
-                        fontWeight: FontWeight.w300,
-                      )),
+                  const Text('Sign In', style: AllConstants.title),
                   const SizedBox(
                     width: 20,
                   ),
@@ -153,12 +150,7 @@ class _AccountState extends State<Account> {
             ),
             const Padding(
               padding: EdgeInsets.only(bottom: 48.0),
-              child: Text('Create your account',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w300,
-                  )),
+              child: Text('Create your account', style: AllConstants.subtitle),
             ),
             SizedBox(
               width: 350,
@@ -174,17 +166,17 @@ class _AccountState extends State<Account> {
                         child: TextFormField(
                           decoration: InputDecoration(
                             suffixIcon: _labelText[index] == "Password"
-                                ? const Tooltip(
+                                ? Tooltip(
                                     message:
                                         "Le mot de passe doit contenit minimum 8 caracteres",
                                     child: Icon(
                                       Icons.info,
-                                      color: Colors.white,
+                                      color: ConstantsColors.iconColors,
                                     ),
                                   )
                                 : null,
                             labelText: _labelText[index],
-                            labelStyle: const TextStyle(color: Colors.white),
+                            labelStyle: AllConstants.placeholder,
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25),
                               borderSide: const BorderSide(
@@ -215,7 +207,7 @@ class _AccountState extends State<Account> {
                         height: 60,
                         child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
+                              backgroundColor: ConstantsColors.iconColors,
                             ),
                             onPressed: () {
                               setState(() {
@@ -231,14 +223,8 @@ class _AccountState extends State<Account> {
                                 }
                               });
                             },
-                            child: const Text(
-                              "Sign In",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: 0.8),
-                            )),
+                            child: const Text("Sign In",
+                                style: AllConstants.textBtn)),
                       ),
                     ),
                   ],

@@ -2,7 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:learnverse/utils/constants.dart';
+import 'package:learnverse/utils/constantsColors.dart';
+import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/home/hometheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
@@ -120,9 +121,10 @@ class language extends StatelessWidget {
                                     builder: (context) => ThemeScreen()),
                               );
                             },
-                            child: const Text(
+                            child: Text(
                               'Agree',
-                              style: TextStyle(color: Colors.white),
+                              style:
+                                  TextStyle(color: ConstantsColors.iconColors),
                             ),
                             // style: ButtonStyle(fontWeight: FontWeight.w700),
                           ),
