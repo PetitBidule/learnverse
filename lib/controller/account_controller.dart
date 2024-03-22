@@ -1,27 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/view/home/homeTheme_view.dart';
 import 'package:learnverse/view/authentification/login/login_view.dart';
 
-class CreateAccountController {
-  bool verificationPasswordsEmail(
-      String email, String password, String cpassword, bool ispwd) {
-    bool emailIsValid = RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(email);
-    if (password == cpassword) {
-      if (emailIsValid == true) {
-        ispwd = true;
-        return ispwd;
-      } else {
-        return false;
-      }
-    } else {
-      ispwd = false;
-      return ispwd;
-    }
-  }
-}
+class CreateAccountController {}
 
 class LogInController extends StatelessWidget {
   const LogInController({super.key});

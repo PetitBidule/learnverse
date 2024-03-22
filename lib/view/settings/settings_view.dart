@@ -8,20 +8,21 @@ import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
-class Settings extends StatefulWidget {
-  const Settings({super.key});
+class Setting extends StatefulWidget {
+  const Setting({super.key});
 
   @override
-  State<Settings> createState() => _SettingsState();
+  State<Setting> createState() => _SettingState();
 }
 
 Future signOut() async {
   await FirebaseAuth.instance.signOut();
 }
 
-class _SettingsState extends State<Settings> {
+class _SettingState extends State<Setting> {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
         body: Stack(children: [
       Container(
@@ -78,19 +79,19 @@ class _SettingsState extends State<Settings> {
               height: 40,
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 26.0),
+              padding: const EdgeInsets.only(bottom: 8.0),
               child: Container(
-                width: 145,
-                height: 145,
+                width: 130,
+                height: 130,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(9999),
+                    borderRadius: BorderRadius.circular(999),
                     image: DecorationImage(
                         image: NetworkImage(
                             "${FirebaseAuth.instance.currentUser?.photoURL}"))),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 32.0),
+              padding: const EdgeInsets.only(bottom: 8.0),
               child: Text("${FirebaseAuth.instance.currentUser?.email}",
                   style: const TextStyle(
                     color: ConstantsColors.iconColors,
@@ -98,53 +99,64 @@ class _SettingsState extends State<Settings> {
                     fontWeight: FontWeight.w400,
                   )),
             ),
-            const MailButton(
-                textConnexion: "Adresse Mail", icon: FontAwesomeIcons.envelope),
-            const MailButton(
-                textConnexion: "Mot de passe", icon: FontAwesomeIcons.key),
-            const MailButton(
-                textConnexion: "Notifications", icon: FontAwesomeIcons.bell),
-            const MailButton(
-                textConnexion: "Support", icon: FontAwesomeIcons.headset),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
-              child: SizedBox(
-                width: 400,
-                height: 60,
-                child: ElevatedButton(
-                    onPressed: () {
-                      signOut();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7.0),
-                      ),
+            SizedBox(
+              height: size.height * 0.52,
+              child: ListView(
+                children: <Widget>[
+                  const MailButton(
+                      textConnexion: "Adresse Mail",
+                      icon: FontAwesomeIcons.envelope),
+                  const MailButton(
+                      textConnexion: "Mot de passe",
+                      icon: FontAwesomeIcons.key),
+                  const MailButton(
+                      textConnexion: "Notifications",
+                      icon: FontAwesomeIcons.bell),
+                  const MailButton(
+                      textConnexion: "Support", icon: FontAwesomeIcons.headset),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12.0, vertical: 4.0),
+                    child: SizedBox(
+                      width: 400,
+                      height: 60,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            signOut();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                const Color.fromARGB(255, 255, 255, 255),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(7.0),
+                            ),
+                          ),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Log Out",
+                                style: TextStyle(
+                                    color: ConstantsColors.blackColors,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    letterSpacing: 0.8),
+                              ),
+                              FaIcon(
+                                size: 16,
+                                FontAwesomeIcons.chevronRight,
+                                color: ConstantsColors.blackColors,
+                              ),
+                            ],
+                          )),
                     ),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Log Out",
-                          style: TextStyle(
-                              color: ConstantsColors.blackColors,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              letterSpacing: 0.8),
-                        ),
-                        FaIcon(
-                          size: 16,
-                          FontAwesomeIcons.chevronRight,
-                          color: ConstantsColors.blackColors,
-                        ),
-                      ],
-                    )),
+                  ),
+                  const MailButton(
+                      textConnexion: "Delete Account",
+                      icon: FontAwesomeIcons.arrowRightFromBracket),
+                ],
               ),
             ),
-            const MailButton(
-                textConnexion: "Delete Account",
-                icon: FontAwesomeIcons.arrowRightFromBracket),
           ],
         ),
       )),

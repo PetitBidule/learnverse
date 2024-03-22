@@ -20,7 +20,7 @@ void main() async {
     print("Erreur:$e");
   }
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((_) => runApp(const MyApp()));
+      .then((_) => runApp(DevicePreview(builder: (contect) => const MyApp())));
 }
 
 class MyApp extends StatelessWidget {

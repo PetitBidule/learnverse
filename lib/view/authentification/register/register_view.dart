@@ -47,7 +47,6 @@ class _AccountState extends State<Account> {
               email: _controller[1].text, password: _controller[2].text)
           .then((_) => Navigator.of(context).pushReplacement(MaterialPageRoute(
               builder: (context) => const VerifyEmailPassword())));
-      print("les données ont été envoyés ");
       addUserDetails();
     } on FirebaseAuthException catch (e) {
       print("error ${e.message}");
@@ -67,6 +66,34 @@ class _AccountState extends State<Account> {
       "watchlist": [],
     }).then((_) => Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => ThemeScreen())));
+  }
+
+  String? verificationEmail(String? email) {
+    bool emailIsValid = RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch("$email");
+    if (emailIsValid == true) {
+      return null;
+    } else {
+      print("object");
+      return "Votre Email n'est pas valide";
+    }
+  }
+
+  String? verificationPasswords(String? password) {
+    if (password != null && password.length >= 8) {
+      return null;
+    } else {
+      return "Votre mot de passe n'est pas bien conform";
+    }
+  }
+
+  String? verificationCPasswords(String? password, String cpassword) {
+    if (password == cpassword) {
+      return null;
+    } else {
+      return "Votre mot de passe n'est pas bien confirméq";
+    }
   }
 
   @override
@@ -135,7 +162,7 @@ class _AccountState extends State<Account> {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_back,
                       color: ConstantsColors.iconColors,
                       size: 35,
@@ -164,9 +191,18 @@ class _AccountState extends State<Account> {
                       (int index) => Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
                         child: TextFormField(
+                          validator: index == 1
+                              ? (value) => verificationEmail(value)
+                              : index == 2
+                                  ? (value) => verificationPasswords(value)
+                                  : index == 3
+                                      ? (value) => verificationCPasswords(
+                                          value, _controller[2].text)
+                                      : null,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           decoration: InputDecoration(
                             suffixIcon: _labelText[index] == "Password"
-                                ? Tooltip(
+                                ? const Tooltip(
                                     message:
                                         "Le mot de passe doit contenit minimum 8 caracteres",
                                     child: Icon(
@@ -191,12 +227,6 @@ class _AccountState extends State<Account> {
                           ),
                           obscureText: _obscureText[index],
                           controller: _controller[index],
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your password';
-                            }
-                            return null;
-                          },
                         ),
                       ),
                     )),
@@ -211,16 +241,7 @@ class _AccountState extends State<Account> {
                             ),
                             onPressed: () {
                               setState(() {
-                                if (widget.accountController
-                                    .verificationPasswordsEmail(
-                                        _controller[1].text,
-                                        _controller[2].text,
-                                        _controller[3].text,
-                                        isPassword)) {
-                                  signUp();
-                                } else {
-                                  isPassword = true;
-                                }
+                                signUp();
                               });
                             },
                             child: const Text("Sign In",

@@ -269,7 +269,8 @@ class _Theme1State extends State<Theme1> {
                         children: [
                           Text(
                             " $_valueSelected of 3 selected",
-                            style: TextStyle(color: ConstantsColors.iconColors),
+                            style: const TextStyle(
+                                color: ConstantsColors.iconColors),
                           ),
                           TextButton(
                             onPressed: () {

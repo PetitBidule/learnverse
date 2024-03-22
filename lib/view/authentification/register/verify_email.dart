@@ -114,7 +114,7 @@ class _VerifyEmailPasswordState extends State<VerifyEmailPassword> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Check your inbox',
                   style: TextStyle(
                       color: ConstantsColors.iconColors,
@@ -127,7 +127,7 @@ class _VerifyEmailPasswordState extends State<VerifyEmailPassword> {
                   child: Text(
                       "To confirm your email, tap on the link we sent to ${user.email}",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: ConstantsColors.iconColors,
                         fontSize: 18,
                       )),

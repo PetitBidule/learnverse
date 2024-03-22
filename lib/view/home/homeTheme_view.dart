@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:learnverse/Model/category_model.dart';
@@ -30,7 +32,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
       pseudoUser: widget.pseudoUser,
     ),
     const Dashboard(),
-    const Settings()
+    const Setting()
   ];
 
   @override
@@ -148,45 +150,26 @@ List<MostPopularCategory> categoriesComponents = [
 class _HomePage2State extends State<HomePage2> {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return SafeArea(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 32),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  width: 160,
-                  height: 60,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: ConstantsColors.iconColors),
-                      color: const Color.fromARGB(0, 155, 39, 176),
-                      borderRadius: BorderRadius.circular(38)),
-                  child: const Row(children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: CircleAvatar(
-                        minRadius: 28,
-                        maxRadius: 28,
-                        backgroundColor: Color.fromRGBO(203, 178, 254, 1),
-                        child: Icon(
-                          Icons.search,
-                          color: ConstantsColors.iconColors,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      'Search',
-                      style: TextStyle(
-                          color: ConstantsColors.iconColors,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400),
-                    )
-                  ]),
+                SizedBox(
+                  child: CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    backgroundImage:
+                        AssetImage("asset/image/logoLearnVerse.png"),
+                    minRadius: 28,
+                    maxRadius: 28,
+                  ),
                 ),
-                const SizedBox(
+                SizedBox(
                   child: CircleAvatar(
                     backgroundImage: NetworkImage(
                         "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHFpaHJyMHQ5bjlmYWNiNXB5eDF5ZXBpdG9scGRseWxoZmxkaGJ2cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YRThiAEEYVNtC5acLO/giphy.gif"),
@@ -226,7 +209,7 @@ class _HomePage2State extends State<HomePage2> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 435,
+                  height: size.height * 0.50,
                   child: PageView.builder(
                       controller: controller,
                       itemCount: allCollection.length,

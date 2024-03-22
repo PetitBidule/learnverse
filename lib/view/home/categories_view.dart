@@ -27,12 +27,18 @@ class Categories extends StatefulWidget {
 }
 
 class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
-  bool _isLike = false;
+  var db = FirebaseFirestore.instance;
+  late final _isLike = FirebaseFirestore.instance
+      .collection("users")
+      .doc("${FirebaseAuth.instance.currentUser?.email}")
+      .collection(widget.categories)
+      .doc(widget.title)
+      .get();
   bool _isFavorite = false;
   bool _isLikeComment = false;
   final List<String> titleFav = [];
   int _incrementCommentUser = 0;
-  var db = FirebaseFirestore.instance;
+
   late var incrementLike = db
       .collection("comment")
       .doc(widget.categories)
@@ -47,7 +53,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
       content: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          FaIcon(
+          const FaIcon(
             FontAwesomeIcons.check,
             size: 15,
             color: ConstantsColors.iconColors,
@@ -98,6 +104,16 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
         );
   }
 
+  Future _isLikedTheme() async {
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc("${FirebaseAuth.instance.currentUser?.email}")
+        .collection(widget.categories)
+        .doc(widget.title)
+        .set({"isLiked": false});
+    print("les données ont été creées");
+  }
+
   @override
   void initState() {
     super.initState();
@@ -117,6 +133,10 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    _isLikedTheme();
+    print(_isLike);
+
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
         children: [
@@ -161,7 +181,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                               onPressed: () => setState(() {
                                     Navigator.pop(context);
                                   }),
-                              icon: FaIcon(
+                              icon: const FaIcon(
                                 FontAwesomeIcons.chevronLeft,
                                 size: 18,
                                 color: ConstantsColors.iconColors,
@@ -181,8 +201,8 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                 Positioned(
                   bottom: 0,
                   child: Container(
-                    height: 475,
-                    width: MediaQuery.of(context).size.width,
+                    height: size.height * 0.7,
+                    width: size.width,
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
@@ -220,7 +240,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                width: 225,
+                                width: 200,
                                 child: Text(
                                   widget.title,
                                   style: AllConstants.title,
@@ -237,12 +257,20 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                     child: IconButton(
                                         onPressed: () => setState(() {
                                               allComments.clear();
-
                                               if (_isLike == false) {
-                                                _isLike = true;
+                                                print(_isLike);
+                                                db
+                                                    .collection("users")
+                                                    .doc(
+                                                        "${FirebaseAuth.instance.currentUser?.email}")
+                                                    .collection(
+                                                        widget.categories)
+                                                    .doc(widget.title)
+                                                    .update({"isLiked": true});
+                                                // _isLike = true;
                                                 _controllerLike.forward();
                                               } else {
-                                                _isLike = false;
+                                                // _isLike = false;
                                                 _controllerLike.reverse();
                                               }
                                             }),
@@ -263,7 +291,6 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                         onPressed: () {
                                           setState(() {
                                             allComments.clear();
-
                                             if (_isFavorite == false) {
                                               _isFavorite = true;
                                               _controllerFavorite.forward();
@@ -328,7 +355,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 28.0),
                         child: SizedBox(
-                          height: 276,
+                          height: size.height * 0.4,
                           child: ListView(
                             children: [
                               const Text("Synopsis", style: AllConstants.title),
@@ -342,11 +369,12 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                               TextField(
                                 controller: _controller,
                                 maxLines: 5,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                     hintText: "Comment",
                                     fillColor: ConstantsColors.iconColors),
                               ),
                               TextButton(
+                                  style: const ButtonStyle(),
                                   onPressed: () {
                                     setState(() {
                                       allComments.clear();
@@ -370,7 +398,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                       });
                                     });
                                   },
-                                  child: const Text('Submit')),
+                                  child: const Text('Commenter')),
                               const Divider(),
                               FutureBuilder(
                                   future: getComment(
@@ -381,6 +409,9 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                       return SizedBox(
                                         height: 400,
                                         child: ListView.builder(
+                                            shrinkWrap: true,
+                                            physics:
+                                                const ClampingScrollPhysics(),
                                             itemCount: allComments.length,
                                             itemBuilder: (context, int index) {
                                               return ListTile(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
 
@@ -123,7 +124,7 @@ class MostPopularCategories extends StatelessWidget {
 
   dynamic isFirsts() {
     if (isFirst == 0) {
-      return Image.asset("asset/image/crown.png");
+      return Positioned(top: -9, child: Image.asset("asset/image/crown.png"));
     }
     return Container();
   }
@@ -163,6 +164,21 @@ class MostPopularCategories extends StatelessWidget {
                             color: ConstantsColors.blackColors,
                             fontWeight: FontWeight.w900,
                             fontSize: 14),
+                      ),
+                      const Row(
+                        children: <Widget>[
+                          FaIcon(
+                            FontAwesomeIcons.heart,
+                            size: 10,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "3802",
+                            style: TextStyle(fontSize: 10),
+                          )
+                        ],
                       )
                     ],
                   ),
@@ -177,7 +193,6 @@ class MostPopularCategories extends StatelessWidget {
           child: SizedBox(
             width: 90,
             height: 110,
-            // color: ConstantsColors.iconColors,
             child: Image.asset(
               background,
               fit: BoxFit.cover,

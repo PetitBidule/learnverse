@@ -138,7 +138,7 @@ class _LoginState extends State<Login> {
                 children: [
                   IconButton(
                     onPressed: () => Navigator.pop(context),
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_back,
                       color: ConstantsColors.iconColors,
                       size: 35,
