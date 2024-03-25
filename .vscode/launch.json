@@ -1,25 +1,46 @@
+// {
+//     // Utilisez IntelliSense pour en savoir plus sur les attributs possibles.
+//     // Pointez pour afficher la description des attributs existants.
+//     // Pour plus d'informations, visitez : https://go.microsoft.com/fwlink/?linkid=830387
+//     "version": "0.2.0",
+//     "configurations": [
+//         {
+//             "name": "learnverse",
+//             "request": "launch",
+//             "type": "dart"
+//         },
+//         {
+//             "name": "learnverse (profile mode)",
+//             "request": "launch",
+//             "type": "dart",
+//             "flutterMode": "profile"
+//         },
+//         {
+//             "name": "learnverse (release mode)",
+//             "request": "launch",
+//             "type": "dart",
+//             "flutterMode": "release"
+//         }
+//     ]
+// }
 {
-    // Utilisez IntelliSense pour en savoir plus sur les attributs possibles.
-    // Pointez pour afficher la description des attributs existants.
-    // Pour plus d'informations, visitez : https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "learnverse",
-            "request": "launch",
-            "type": "dart"
+            "name": "Flutter-All",
+            "preLaunchTask": "Flutter-Launch-All",
+            "type": "dart",
         },
         {
-            "name": "learnverse (profile mode)",
-            "request": "launch",
+            "name": "Flutter-iOS",
+            "preLaunchTask": "Flutter-Launch-iOS",
             "type": "dart",
-            "flutterMode": "profile"
         },
         {
-            "name": "learnverse (release mode)",
-            "request": "launch",
+            "name": "Flutter-Android",
+            "preLaunchTask": "Flutter-Launch-Android",
             "type": "dart",
-            "flutterMode": "release"
-        }
-    ]
+        },
+       
+    ],
 }
