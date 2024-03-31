@@ -34,7 +34,7 @@ class ThemeChooseHome extends StatelessWidget {
           ],
           borderRadius: BorderRadius.circular(44),
           image: DecorationImage(
-              image: nametheme == "Napoleon"
+              image: nameCategories == "Movies"
                   ? NetworkImage(
                       "https://image.tmdb.org/t/p/w500/$backGroundTheme")
                   : NetworkImage(backGroundTheme),

@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:learnverse/Model/category_model.dart';
@@ -15,11 +13,9 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class ThemeScreen extends StatefulWidget {
   late dynamic createAccount;
   String? pseudoUser;
-  ThemeScreen({
-    super.key,
-    this.createAccount,
-    this.pseudoUser,
-  });
+  int? incrementUser;
+  ThemeScreen(
+      {super.key, this.createAccount, this.pseudoUser, this.incrementUser});
 
   @override
   State<ThemeScreen> createState() => _ThemeScreenState();
@@ -30,6 +26,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
   late final List routes = [
     HomePage2(
       pseudoUser: widget.pseudoUser,
+      increment: widget.incrementUser,
     ),
     const Dashboard(),
     const Setting()
@@ -79,7 +76,8 @@ class _ThemeScreenState extends State<ThemeScreen> {
 
 class HomePage2 extends StatefulWidget {
   String? pseudoUser;
-  HomePage2({super.key, required this.pseudoUser});
+  int? increment;
+  HomePage2({super.key, required this.pseudoUser, required this.increment});
 
   @override
   State<HomePage2> createState() => _HomePage2State();
@@ -89,6 +87,7 @@ final controller =
     PageController(viewportFraction: 0.7, keepPage: true, initialPage: 3);
 
 int currentPageIndex = 0;
+int incrementCurrentCategory = 0;
 
 List allCollection = [
   MongoDB.getDataCollectionAnime(),
@@ -97,7 +96,6 @@ List allCollection = [
   MongoDB.getDataCollectionMusic(),
   MongoDB.getDataCollectionGaming(),
 ];
-
 List allNameFields = ["title", "title", "_name", "name", "name"];
 
 List<String> classement = [
@@ -194,12 +192,7 @@ class _HomePage2State extends State<HomePage2> {
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Next 18.40",
-                      style: AllConstants.text,
-                    ),
-                  ],
+                  children: [],
                 )
               ],
             ),
@@ -221,6 +214,7 @@ class _HomePage2State extends State<HomePage2> {
                               builder: (context) => DisplayDataCategories(
                                 snapshot2: allCollection[index],
                                 collectionChoose: classement[index],
+                                incrementCategory: widget.increment!,
                               ),
                             ),
                           ),
@@ -229,6 +223,7 @@ class _HomePage2State extends State<HomePage2> {
                             snapshot2: allCollection[index],
                             nameField: allNameFields[index],
                             collectionChoose: classement[index],
+                            incrementCategory: widget.increment!,
                             // nameField: allNameFields[index],
                           ),
                         );

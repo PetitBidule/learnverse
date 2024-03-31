@@ -7,11 +7,13 @@ class CollectionMongoDB extends StatelessWidget {
   dynamic snapshot2;
   final String nameField;
   final String collectionChoose;
+  final int incrementCategory;
   CollectionMongoDB(
       {super.key,
       required this.snapshot2,
       required this.nameField,
-      required this.collectionChoose});
+      required this.collectionChoose,
+      required this.incrementCategory});
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -24,11 +26,12 @@ class CollectionMongoDB extends StatelessWidget {
               ThemeChooseHome collection;
               if (collectionChoose == "collectionFilm") {
                 collection = ThemeChooseHome(
-                  nametheme: snapshot.data[0]["results"][0]["title"],
+                  nametheme: snapshot.data[0]["results"][incrementCategory]
+                      ["title"],
                   noteTheme: "12",
                   nameCategories: "Movies",
-                  backGroundTheme: snapshot.data[0]["results"][0]
-                      ["backdrop_path"],
+                  backGroundTheme: snapshot.data[0]["results"]
+                      [incrementCategory]["backdrop_path"],
                 );
               } else if (collectionChoose == "collectionMusic") {
                 collection = ThemeChooseHome(
@@ -39,17 +42,19 @@ class CollectionMongoDB extends StatelessWidget {
                         ["images"][0]["url"]);
               } else if (collectionChoose == "collectionGaming") {
                 collection = ThemeChooseHome(
-                    nametheme: snapshot.data[0]["results"][0]["name"],
+                    nametheme: snapshot.data[0]["results"][incrementCategory]
+                        ["name"],
                     noteTheme: "12",
-                    nameCategories: "Manga",
-                    backGroundTheme: snapshot.data[0]["results"][0]
-                        ["background_image"]);
+                    nameCategories: "Gaming",
+                    backGroundTheme: snapshot.data[0]["results"]
+                        [incrementCategory]["background_image"]);
               } else {
                 collection = ThemeChooseHome(
-                  nametheme: snapshot.data[0][nameField],
+                  nametheme: snapshot.data[incrementCategory][nameField],
                   noteTheme: "8",
                   nameCategories: "Manga",
-                  backGroundTheme: snapshot.data[0]["main_picture"]["medium"],
+                  backGroundTheme: snapshot.data[incrementCategory]
+                      ["main_picture"]["medium"],
                 );
               }
               return collection;
@@ -67,8 +72,12 @@ class CollectionMongoDB extends StatelessWidget {
 class DisplayDataCategories extends StatelessWidget {
   dynamic snapshot2;
   final String collectionChoose;
+  final int incrementCategory;
   DisplayDataCategories(
-      {super.key, required this.snapshot2, required this.collectionChoose});
+      {super.key,
+      required this.snapshot2,
+      required this.collectionChoose,
+      required this.incrementCategory});
 
   @override
   Widget build(BuildContext context) {
@@ -82,26 +91,29 @@ class DisplayDataCategories extends StatelessWidget {
               Categories collections;
               if (collectionChoose == "collectionFilm") {
                 collections = Categories(
-                    title: snapshot.data[0]["results"][0]["title"],
-                    backgroundBanner: snapshot.data[0]["results"][0]
-                        ["backdrop_path"],
-                    synopsis: snapshot.data[0]["results"][0]["overview"],
+                    title: snapshot.data[0]["results"][incrementCategory]
+                        ["title"],
+                    backgroundBanner: snapshot.data[0]["results"]
+                        [incrementCategory]["backdrop_path"],
+                    synopsis: snapshot.data[0]["results"][incrementCategory]
+                        ["overview"],
                     description: "",
                     categories: "movie");
               } else if (collectionChoose == "collectionGaming") {
                 collections = Categories(
-                  title: snapshot.data[0]["results"][0]["name"],
-                  backgroundBanner: snapshot.data[0]["results"][0]
-                      ["background_image"],
+                  title: snapshot.data[0]["results"][incrementCategory]["name"],
+                  backgroundBanner: snapshot.data[0]["results"]
+                      [incrementCategory]["background_image"],
                   synopsis: "bonjour les enfants",
                   description: "",
                   categories: "gaming",
                 );
               } else {
                 collections = Categories(
-                  title: snapshot.data[0]["title"],
-                  backgroundBanner: snapshot.data[0]["main_picture"]["large"],
-                  synopsis: snapshot.data[0]["synopsis"],
+                  title: snapshot.data[incrementCategory]["title"],
+                  backgroundBanner: snapshot.data[incrementCategory]
+                      ["main_picture"]["large"],
+                  synopsis: snapshot.data[incrementCategory]["synopsis"],
                   description: "",
                   categories: "manga",
                 );

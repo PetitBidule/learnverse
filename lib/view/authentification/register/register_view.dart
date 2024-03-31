@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:learnverse/controller/account_controller.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/home/homeTheme_view.dart';
@@ -11,8 +10,9 @@ import 'package:learnverse/view/authentification/register/verify_email.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
 class Account extends StatefulWidget {
-  final CreateAccountController accountController;
-  const Account({super.key, required this.accountController});
+  const Account({
+    super.key,
+  });
 
   @override
   State<Account> createState() => _AccountState();

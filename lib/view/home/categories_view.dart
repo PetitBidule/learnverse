@@ -32,8 +32,10 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
       .collection("users")
       .doc("${FirebaseAuth.instance.currentUser?.email}")
       .collection(widget.categories)
-      .doc(widget.title)
-      .get();
+      .doc(widget.title);
+
+  late final r = _isLike.get();
+
   bool _isFavorite = false;
   bool _isLikeComment = false;
   final List<String> titleFav = [];
@@ -133,9 +135,6 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    _isLikedTheme();
-    print(_isLike);
-
     var size = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
@@ -147,7 +146,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                    image: widget.title == "Napoleon"
+                    image: widget.categories == "movie"
                         ? NetworkImage(
                             "https://image.tmdb.org/t/p/w500/${widget.backgroundBanner}")
                         : NetworkImage(widget.backgroundBanner),
@@ -258,7 +257,6 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                         onPressed: () => setState(() {
                                               allComments.clear();
                                               if (_isLike == false) {
-                                                print(_isLike);
                                                 db
                                                     .collection("users")
                                                     .doc(
@@ -374,7 +372,6 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                     fillColor: ConstantsColors.iconColors),
                               ),
                               TextButton(
-                                  style: const ButtonStyle(),
                                   onPressed: () {
                                     setState(() {
                                       allComments.clear();
@@ -409,6 +406,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                       return SizedBox(
                                         height: 400,
                                         child: ListView.builder(
+                                            // a revoir
                                             shrinkWrap: true,
                                             physics:
                                                 const ClampingScrollPhysics(),

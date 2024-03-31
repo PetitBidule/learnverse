@@ -38,7 +38,7 @@ class _LoginState extends State<Login> {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(
               email: _controller[0].text, password: _controller[1].text)
-          .then((_) => Navigator.push(
+          .then((_) => Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                     builder: (context) => ThemeScreen(
@@ -50,12 +50,16 @@ class _LoginState extends State<Login> {
     }
   }
 
+  final DateTime _dateTime = DateTime.now();
+// String formatHour = DateFormat.Hm().format(_dateTime);
   Future addUserDetailsGoogle() async {
     await FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser?.email)
         .set({
       "pseudo": FirebaseAuth.instance.currentUser?.displayName,
+      "currentPage": 0,
+      "dateTime": DateTime.now(),
       "imageProfile": FirebaseAuth.instance.currentUser?.photoURL,
       "watchlist": [],
     }).then((_) => Navigator.pushReplacement<void, void>(
