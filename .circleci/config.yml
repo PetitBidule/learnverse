@@ -5,7 +5,7 @@ version: '2.1'
 orbs:
   flutter: circleci/flutter@2.0.0
 jobs:
-  distribute:
+  build:
     macos:
       xcode: 15.1.0
     steps:
