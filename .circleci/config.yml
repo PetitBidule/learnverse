@@ -7,17 +7,19 @@ orbs:
 jobs:
   distribute:
     macos:
-      xcode: 12.5.1
+      xcode: 15.1.0
     steps:
       - flutter/install_sdk_and_pub:
           version: 3.0.3
       - flutter/install_ios_pod
       - flutter/install_ios_gem
       - run:
-          command: bundle exec fastlane distribute
-          working_directory: ios
-workflows:
-  distribute:
-    jobs:
-      - distribute
+          name: Flutter pub get
+          command: |
+            flutter pub get
+      - run:
+          name: Flutter pub get
+          command: |
+            flutter analyze
+          
 
