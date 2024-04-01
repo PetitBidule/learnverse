@@ -4,6 +4,8 @@
 version: 2.1
 jobs:
   build:
+  macos: 
+      xcode: 15.1 
     steps:
       - checkout
       - run: flutter pub get
