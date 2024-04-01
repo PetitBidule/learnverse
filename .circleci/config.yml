@@ -3,17 +3,16 @@
 # See: https://circleci.com/docs/configuration-reference
 version: '2.1'
 orbs:
-  android: circleci/android@1.0.3
   flutter: circleci/flutter@2.0.0
 jobs:
   distribute:
-    executor:
-      name: android/android-machine
+    macos:
+      xcode: 12.5.1
     steps:
       - flutter/install_sdk_and_pub:
           version: 3.0.3
-      - flutter/install_android_gradle_dependencies
-      - flutter/install_android_gem
+      - flutter/install_ios_pod
+      - flutter/install_ios_gem
       - run:
           command: bundle exec fastlane distribute
           working_directory: ios
@@ -21,3 +20,4 @@ workflows:
   distribute:
     jobs:
       - distribute
+
