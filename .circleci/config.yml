@@ -9,10 +9,11 @@ jobs:
     macos:
       xcode: 15.1.0
     steps:
-      - flutter/install_sdk_and_pub:
-          version: 3.0.3
-      - flutter/install_ios_pod
-      - flutter/install_ios_gem
+      - checkout
+      - flutter/install_sdk: 
+          version: 3.7.9
+      - flutter/install_pub:
+          cache-version: v1
       - run:
           name: Flutter pub get
           command: |
