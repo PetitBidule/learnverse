@@ -17,10 +17,6 @@ jobs:
       - run:
           name: Flutter pub get
           command: |
-            flutter pub get
-      - run:
-          name: Flutter pub get
-          command: |
             flutter analyze
                 
 
