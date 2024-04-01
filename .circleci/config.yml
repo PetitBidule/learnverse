@@ -1,0 +1,22 @@
+# Couldn't automatically generate a config from your source code.
+# This is a generic template to serve as a base for your custom config
+# See: https://circleci.com/docs/configuration-reference
+version: '2.1'
+orbs:
+  flutter: circleci/flutter@2.0.0
+jobs:
+  build:
+    macos:
+      xcode: 15.1.0
+    steps:
+      - checkout
+      - flutter/install_sdk: 
+          version: 3.16.4
+      - flutter/install_pub:
+          cache-version: v1
+      - run:
+          name: Flutter pub get
+          command: |
+            flutter analyze
+                
+
