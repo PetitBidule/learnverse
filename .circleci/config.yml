@@ -11,7 +11,7 @@ jobs:
       - run:
           name: Flutter pub get
           command: |
-            flutter pub get
+            dart analyze
       - run:
           name: Run tests
           command: echo 'replace me with real tests!' && false
