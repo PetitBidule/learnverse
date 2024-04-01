@@ -18,5 +18,10 @@ jobs:
           name: Flutter pub get
           command: |
             flutter analyze
+      - run:
+          name: Flutter pub get
+          command: |
+            dart fix --dry-run
+            dart fix --apply
                 
 
