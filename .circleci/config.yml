@@ -1,20 +1,23 @@
 # Couldn't automatically generate a config from your source code.
 # This is a generic template to serve as a base for your custom config
 # See: https://circleci.com/docs/configuration-reference
-version: 2.1
+version: '2.1'
 orbs:
-  flutter: circleci/flutter@2.0.2
+  android: circleci/android@1.0.3
+  flutter: circleci/flutter@2.0.0
 jobs:
-  build:
-    macos: 
-      xcode: 15.1.0
+  distribute:
+    executor:
+      name: android/android-machine
     steps:
-      - checkout
+      - flutter/install_sdk_and_pub:
+          version: 3.0.3
+      - flutter/install_android_gradle_dependencies
+      - flutter/install_android_gem
       - run:
-          name: Flutter pub get
-          command: |
-            flutter pub get
-      - run:
-          name: Run tests
-          command: echo 'replace me with real tests!' && false
-  
+          command: bundle exec fastlane distribute
+          working_directory: ios
+workflows:
+  distribute:
+    jobs:
+      - distribute
