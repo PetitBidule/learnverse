@@ -15,13 +15,14 @@ jobs:
       - flutter/install_pub:
           cache-version: v1
       - run:
-          name: Flutter pub get
-          command: |
-            flutter analyze
-      - run:
-          name: Flutter pub get
+          name: Flutter fix:linter
           command: |
             dart fix --dry-run
             dart fix --apply
+      - run:
+          name: Flutter fix:linter 2
+          command: |
+            flutter analyze
+     
                 
 
