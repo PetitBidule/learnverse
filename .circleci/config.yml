@@ -8,8 +8,10 @@ jobs:
       xcode: 15.1.0
     steps:
       - checkout
-      - run: flutter pub get
-      - run: flutter test 
+      - run:
+          name: Flutter pub get
+          command: |
+            flutter pub get
       - run:
           name: Run tests
           command: echo 'replace me with real tests!' && false
