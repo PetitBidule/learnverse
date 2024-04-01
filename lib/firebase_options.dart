@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1010863199796',
     projectId: 'learnverse-ebdd6',
     authDomain: 'learnverse-ebdd6.firebaseapp.com',
+    databaseURL: 'https://learnverse-ebdd6-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'learnverse-ebdd6.appspot.com',
     measurementId: 'G-N8D328EPBB',
   );
@@ -58,6 +59,7 @@ class DefaultFirebaseOptions {
     appId: '1:1010863199796:android:2ac8c8611c74891d645c61',
     messagingSenderId: '1010863199796',
     projectId: 'learnverse-ebdd6',
+    databaseURL: 'https://learnverse-ebdd6-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'learnverse-ebdd6.appspot.com',
   );
 
@@ -66,6 +68,7 @@ class DefaultFirebaseOptions {
     appId: '1:1010863199796:ios:41a3baa2df4b9ebd645c61',
     messagingSenderId: '1010863199796',
     projectId: 'learnverse-ebdd6',
+    databaseURL: 'https://learnverse-ebdd6-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'learnverse-ebdd6.appspot.com',
     iosClientId: '1010863199796-0j8qhdudjf9ddf41nv43k081ad5e7ps0.apps.googleusercontent.com',
     iosBundleId: 'com.example.learnverse',
@@ -76,6 +79,7 @@ class DefaultFirebaseOptions {
     appId: '1:1010863199796:ios:7a21b9716bdc1021645c61',
     messagingSenderId: '1010863199796',
     projectId: 'learnverse-ebdd6',
+    databaseURL: 'https://learnverse-ebdd6-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'learnverse-ebdd6.appspot.com',
     iosClientId: '1010863199796-11kaf9igr4eut43hdvvr53bcp4ssj07e.apps.googleusercontent.com',
     iosBundleId: 'com.example.learnverse.RunnerTests',
