@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - flutter/install_sdk: 
-          version: 3.2.3
+          version: 3.16.4
       - flutter/install_pub:
           cache-version: v1
       - run:
