@@ -8,7 +8,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run: flutter doctor
+      - run: flutter pub get
       - run: flutter test 
       - run:
           name: Run tests
