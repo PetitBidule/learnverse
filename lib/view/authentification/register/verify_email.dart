@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/view/authentification/register/chooseTheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
@@ -49,7 +50,7 @@ class _VerifyEmailPasswordState extends State<VerifyEmailPassword> {
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
       path: 'theo.saint-amand@orange.fr',
-      query: "subject=News&body=New%20plugin",
+      query: 'subject=News&body=New%20plugin',
     );
     launchUrl(emailLaunchUri);
   }
@@ -110,6 +111,25 @@ class _VerifyEmailPasswordState extends State<VerifyEmailPassword> {
               color: Colors.black.withOpacity(0.1),
             ),
           ),
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: ConstantsColors.iconColors),
+                    borderRadius: BorderRadius.circular(50)),
+                child: IconButton(
+                    onPressed: () => setState(() {
+                          Navigator.pop(context);
+                        }),
+                    icon: const FaIcon(
+                      FontAwesomeIcons.chevronLeft,
+                      size: 18,
+                      color: ConstantsColors.iconColors,
+                    )),
+              ),
+            ),
+          ),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -125,7 +145,7 @@ class _VerifyEmailPasswordState extends State<VerifyEmailPassword> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 90.0, vertical: 20),
                   child: Text(
-                      "To confirm your email, tap on the link we sent to ${user.email}",
+                      'To confirm your email, tap on the link we sent to ${user.email}',
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: ConstantsColors.iconColors,
@@ -133,14 +153,24 @@ class _VerifyEmailPasswordState extends State<VerifyEmailPassword> {
                       )),
                 ),
                 Lottie.network(
-                  "https://lottie.host/ce9d0c96-22e6-47a0-b633-17b130a2613c/pkTuAEqKly.json",
+                  'https://lottie.host/ce9d0c96-22e6-47a0-b633-17b130a2613c/pkTuAEqKly.json',
                   width: 200,
                 ),
-                TextButton(
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ConstantsColors.iconColors,
+                    ),
                     onPressed: () {
                       _sendEmail();
                     },
-                    child: const Text('Open Email App'))
+                    child: const Text(
+                      'Open Email App',
+                      style: TextStyle(
+                          color: ConstantsColors.blackColors,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          letterSpacing: 0.8),
+                    )),
               ],
             ),
           )

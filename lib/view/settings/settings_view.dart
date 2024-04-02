@@ -102,55 +102,55 @@ class _SettingState extends State<Setting> {
             SizedBox(
               height: size.height * 0.52,
               child: ListView(
-                children: const <Widget>[
-                  MailButton(
-                      textConnexion: 'Adresse Mail',
-                      icon: FontAwesomeIcons.envelope),
-                  MailButton(
+                children: <Widget>[
+                  const MailButton(
                       textConnexion: 'Mot de passe',
                       icon: FontAwesomeIcons.key),
-                  MailButton(
+                  const MailButton(
                       textConnexion: 'Support', icon: FontAwesomeIcons.headset),
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(
-                  //       horizontal: 12.0, vertical: 4.0),
-                  //   child: SizedBox(
-                  //     width: 400,
-                  //     height: 60,
-                  //     child: ElevatedButton(
-                  //         onPressed: () {
-                  //           signOut();
-                  //         },
-                  //         style: ElevatedButton.styleFrom(
-                  //           backgroundColor:
-                  //               const Color.fromARGB(255, 255, 255, 255),
-                  //           shape: RoundedRectangleBorder(
-                  //             borderRadius: BorderRadius.circular(7.0),
-                  //           ),
-                  //         ),
-                  //         child: const Row(
-                  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //           children: [
-                  //             Text(
-                  //               'Log Out',
-                  //               style: TextStyle(
-                  //                   color: ConstantsColors.blackColors,
-                  //                   fontSize: 16,
-                  //                   fontWeight: FontWeight.w400,
-                  //                   letterSpacing: 0.8),
-                  //             ),
-                  //             FaIcon(
-                  //               size: 16,
-                  //               FontAwesomeIcons.chevronRight,
-                  //               color: ConstantsColors.blackColors,
-                  //             ),
-                  //           ],
-                  //         )),
-                  //   ),
-                  // ),
-                  MailButton(
-                      textConnexion: 'Delete Account',
-                      icon: FontAwesomeIcons.arrowRightFromBracket),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12.0, vertical: 8.0),
+                    child: SizedBox(
+                      width: 400,
+                      height: 60,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            // setState(() async {
+                            //   User? user;
+                            //   await user?.delete();
+                            // });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: ConstantsColors.iconColors,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              FaIcon(
+                                FontAwesomeIcons.arrowRightFromBracket,
+                                color: ConstantsColors.blackColors,
+                              ),
+                              Text(
+                                'Delete Account',
+                                style: TextStyle(
+                                    color: ConstantsColors.blackColors,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    letterSpacing: 0.8),
+                              ),
+                              FaIcon(
+                                size: 16,
+                                FontAwesomeIcons.chevronRight,
+                                color: ConstantsColors.blackColors,
+                              ),
+                            ],
+                          )),
+                    ),
+                  ),
                 ],
               ),
             ),

@@ -32,33 +32,51 @@ class _LoginState extends State<Login> {
     false,
     true,
   ];
-  IconData _iconData = FontAwesomeIcons.eyeSlash;
-  Future signIn() async {
-    try {
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-              email: _controller[0].text, password: _controller[1].text)
-          .then((_) => Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ThemeScreen(
-                          pseudoUser: 'rien',
-                        )),
-              ));
-    } on FirebaseAuthException catch (e) {
-      return e.message;
+
+  Future getIncrement() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc('theo.saint-amand@orange.fr')
+        .update({
+      'currentPage': FieldValue.increment(1),
+    });
+  }
+
+  int incrementn = 0;
+
+  Future getIncrementCategories() async {
+    var docSnapshots = await FirebaseFirestore.instance
+        .collection('users')
+        .doc('theo.saint-amand@orange.fr')
+        .get();
+    if (docSnapshots.exists) {
+      Map<String, dynamic>? data = docSnapshots.data();
+      var value = data?['currentPage'];
+      incrementn = value;
+      print('$incrementn + cioln');
+      return incrementn;
     }
   }
 
-  final DateTime _dateTime = DateTime.now();
-// String formatHour = DateFormat.Hm().format(_dateTime);
+  void incrementCurrrentPage() async {
+    var dateTime = DateTime.now();
+    var time1 = DateTime(dateTime.year, dateTime.month, dateTime.day);
+    var time2 = DateTime(dateTime.year + 1, dateTime.month, dateTime.day);
+    if (time1.compareTo(time2) == -1) {
+      getIncrement();
+      print('les categories ont ete mis a jour');
+    } else {
+      print("les categories n'ont pas changé");
+    }
+  }
+
+  IconData _iconData = FontAwesomeIcons.eyeSlash;
   Future addUserDetailsGoogle() async {
     await FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser?.email)
         .set({
       'pseudo': FirebaseAuth.instance.currentUser?.displayName,
-      'currentPage': 0,
       'dateTime': DateTime.now(),
       'imageProfile': FirebaseAuth.instance.currentUser?.photoURL,
       'watchlist': [],
@@ -233,9 +251,34 @@ class _LoginState extends State<Login> {
               child: SizedBox(
                 width: 250,
                 height: 60,
-                child: LogInButton(
-                  signIn: signIn(),
-                ),
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ConstantsColors.iconColors,
+                    ),
+                    onPressed: () async {
+                      AuthService()
+                          .signIn(_controller[0].text, _controller[1].text);
+                      incrementCurrrentPage();
+                      getIncrement();
+                      getIncrementCategories();
+                      int incrementValue = await getIncrementCategories();
+                      print(incrementValue);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ThemeScreen(
+                                  incrementUser: incrementValue,
+                                )),
+                      );
+                    },
+                    child: const Text(
+                      'Log in',
+                      style: TextStyle(
+                          color: ConstantsColors.blackColors,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          letterSpacing: 0.8),
+                    )),
               ),
             ),
             Padding(
@@ -247,6 +290,7 @@ class _LoginState extends State<Login> {
                     onPressed: () async {
                       User? user;
                       user = await AuthService().signInWithGoogle();
+                      incrementCurrrentPage();
                       addUserDetailsGoogle();
                     },
                     style: ElevatedButton.styleFrom(

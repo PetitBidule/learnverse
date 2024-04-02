@@ -1,3 +1,6 @@
+import 'dart:ffi';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:learnverse/Model/category_model.dart';
@@ -5,7 +8,9 @@ import 'package:learnverse/Model/dbHelper/display_data.dart';
 import 'package:learnverse/Model/dbHelper/mongo_db.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
+import 'package:learnverse/view/authentification/sign_out.dart';
 import 'package:learnverse/view/dashboard_view.dart';
+import 'package:learnverse/view/homepage_view.dart';
 import 'package:learnverse/view/settings/settings_view.dart';
 import 'package:learnverse/widgets/list_viewHome.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -29,7 +34,8 @@ class _ThemeScreenState extends State<ThemeScreen> {
       increment: widget.incrementUser,
     ),
     const Dashboard(),
-    const Setting()
+    const Setting(),
+    const LogOutScreen()
   ];
 
   @override

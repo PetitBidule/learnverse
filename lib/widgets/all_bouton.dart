@@ -8,11 +8,13 @@ class ButtonConnexion extends StatefulWidget {
   final String textConnexion;
   dynamic pageRoutesConnexion;
   bool isConnexion = false;
+  var currentPage;
   ButtonConnexion(
       {super.key,
       required this.textConnexion,
       required this.isConnexion,
-      required this.pageRoutesConnexion});
+      required this.pageRoutesConnexion,
+      this.currentPage});
 
   @override
   State<ButtonConnexion> createState() => _ButtonConnexionState();
@@ -52,7 +54,9 @@ class _ButtonConnexionState extends State<ButtonConnexion> {
 
 class LogInButton extends StatefulWidget {
   final Future signIn;
-  const LogInButton({super.key, required this.signIn});
+  final int currentPage;
+  const LogInButton(
+      {super.key, required this.signIn, required this.currentPage});
 
   @override
   State<LogInButton> createState() => _LogInButtonState();
@@ -67,16 +71,16 @@ class _LogInButtonState extends State<LogInButton> {
         ),
         onPressed: () {
           widget.signIn;
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(
                 builder: (context) => ThemeScreen(
-                      pseudoUser: "rien",
+                      incrementUser: widget.currentPage,
                     )),
           );
         },
         child: const Text(
-          "Log in",
+          'Log in',
           style: TextStyle(
               color: ConstantsColors.blackColors,
               fontSize: 16,

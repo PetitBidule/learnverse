@@ -18,55 +18,55 @@ class Theme1 extends StatefulWidget {
 class _Theme1State extends State<Theme1> {
   List<ThemeChoose> chooseTheme = [
     ThemeChoose(
-        theme: "Food",
+        theme: 'Food',
         backgroundColor: const Color.fromRGBO(243, 255, 193, 1),
-        backgroundImage: const AssetImage("asset/image/imageF.png")),
+        backgroundImage: const AssetImage('asset/image/imageF.png')),
     ThemeChoose(
-      theme: "Manga",
+      theme: 'Manga',
       backgroundColor: const Color.fromRGBO(240, 248, 255, 1),
-      backgroundImage: const AssetImage("asset/image/imageMan.png"),
+      backgroundImage: const AssetImage('asset/image/imageMan.png'),
     ),
     ThemeChoose(
-      theme: "Gaming",
+      theme: 'Gaming',
       backgroundColor: const Color.fromRGBO(0, 223, 255, 1),
-      backgroundImage: const AssetImage("asset/image/imageG.png"),
+      backgroundImage: const AssetImage('asset/image/imageG.png'),
     ),
     ThemeChoose(
-      theme: "Movie",
+      theme: 'Movie',
       backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
-      backgroundImage: const AssetImage("asset/image/imageM.png"),
+      backgroundImage: const AssetImage('asset/image/imageM.png'),
     ),
     ThemeChoose(
-      theme: "Music",
+      theme: 'Music',
       backgroundColor: const Color.fromRGBO(252, 188, 188, 1),
-      backgroundImage: const AssetImage("asset/image/imageMu.png"),
+      backgroundImage: const AssetImage('asset/image/imageMu.png'),
     )
   ];
   List<ThemeChoose> chooseTheme2 = [
     ThemeChoose(
-      theme: "Sport",
+      theme: 'Sport',
       backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-      backgroundImage: const AssetImage("asset/image/imageT.png"),
+      backgroundImage: const AssetImage('asset/image/imageT.png'),
     ),
     ThemeChoose(
-      theme: "Anime",
+      theme: 'Anime',
       backgroundColor: const Color.fromRGBO(140, 178, 114, 1),
-      backgroundImage: const AssetImage("asset/image/imageA.png"),
+      backgroundImage: const AssetImage('asset/image/imageA.png'),
     ),
     ThemeChoose(
-      theme: "Book",
+      theme: 'Book',
       backgroundColor: const Color.fromRGBO(248, 231, 222, 1),
-      backgroundImage: const AssetImage("asset/image/imageB.png"),
+      backgroundImage: const AssetImage('asset/image/imageB.png'),
     ),
     ThemeChoose(
-      theme: "Animals",
+      theme: 'Animals',
       backgroundColor: const Color.fromRGBO(255, 235, 202, 1),
-      backgroundImage: const AssetImage("asset/image/imageL.png"),
+      backgroundImage: const AssetImage('asset/image/imageL.png'),
     ),
     ThemeChoose(
-      theme: "Series",
+      theme: 'Series',
       backgroundColor: const Color.fromRGBO(237, 215, 19, 1),
-      backgroundImage: const AssetImage("asset/image/imageS.png"),
+      backgroundImage: const AssetImage('asset/image/imageS.png'),
     )
   ];
   final List<Color> back3 = [
@@ -133,7 +133,7 @@ class _Theme1State extends State<Theme1> {
               child: Column(
                 children: <Widget>[
                   Image.asset(
-                    "asset/image/logoLearnVerse.png",
+                    'asset/image/logoLearnVerse.png',
                     width: 120,
                     height: 120,
                   ),
@@ -180,7 +180,6 @@ class _Theme1State extends State<Theme1> {
                                         if (chooseTheme[index]
                                                 .backgroundColor ==
                                             back3[index]) {
-                                          print("nn");
                                         } else {
                                           chooseTheme[index].backgroundColor =
                                               back3[index];
@@ -268,7 +267,7 @@ class _Theme1State extends State<Theme1> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            " $_valueSelected of 3 selected",
+                            ' $_valueSelected of 3 selected',
                             style: const TextStyle(
                                 color: ConstantsColors.iconColors),
                           ),
@@ -297,7 +296,7 @@ class _Theme1State extends State<Theme1> {
                               ),
                               child: const Center(
                                 child: Text(
-                                  "Next",
+                                  'Next',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                   ),
