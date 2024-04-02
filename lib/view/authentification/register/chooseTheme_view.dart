@@ -68,7 +68,7 @@ class _Theme1State extends State<Theme1> {
       backgroundColor: const Color.fromRGBO(237, 215, 19, 1),
       backgroundImage: const AssetImage('asset/image/imageS.png'),
     )
-  ];
+  ]
   final List<Color> back3 = [
     const Color.fromRGBO(243, 255, 193, 0.40),
     const Color.fromRGBO(240, 248, 255, 0.40),
@@ -212,6 +212,7 @@ class _Theme1State extends State<Theme1> {
                                           child: Text(chooseTheme[index].theme,
                                               style: AllConstants.textBtn),
                                         ),
+
                                       ),
                                     ),
                                   ]),
