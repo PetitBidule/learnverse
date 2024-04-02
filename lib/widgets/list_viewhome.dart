@@ -34,9 +34,9 @@ class ThemeChooseHome extends StatelessWidget {
           ],
           borderRadius: BorderRadius.circular(44),
           image: DecorationImage(
-              image: nameCategories == "Movies"
+              image: nameCategories == 'Movies'
                   ? NetworkImage(
-                      "https://image.tmdb.org/t/p/w500/$backGroundTheme")
+                      'https://image.tmdb.org/t/p/w500/$backGroundTheme')
                   : NetworkImage(backGroundTheme),
               fit: BoxFit.cover)),
       child: Stack(children: [
@@ -124,7 +124,7 @@ class MostPopularCategories extends StatelessWidget {
 
   dynamic isFirsts() {
     if (isFirst == 0) {
-      return Positioned(top: -9, child: Image.asset("asset/image/crown.png"));
+      return Positioned(top: -9, child: Image.asset('asset/image/crown.png'));
     }
     return Container();
   }
@@ -175,7 +175,7 @@ class MostPopularCategories extends StatelessWidget {
                             width: 5,
                           ),
                           Text(
-                            "3802",
+                            '3802',
                             style: TextStyle(fontSize: 10),
                           )
                         ],

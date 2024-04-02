@@ -38,10 +38,10 @@ class _DashboardState extends State<Dashboard> {
                   onPressed: () {
                     setState(() {
                       FirebaseFirestore.instance
-                          .collection("users")
+                          .collection('users')
                           .doc(FirebaseAuth.instance.currentUser?.email)
                           .update({
-                        "watchlist": FieldValue.arrayRemove([
+                        'watchlist': FieldValue.arrayRemove([
                           {
                             'url': url,
                             'name': name,
@@ -121,11 +121,11 @@ class _DashboardState extends State<Dashboard> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const Text("Dashboard", style: AllConstants.title),
+                      const Text('Dashboard', style: AllConstants.title),
                       SizedBox(
                         child: CircleAvatar(
                           backgroundImage: NetworkImage(
-                              "${FirebaseAuth.instance.currentUser?.photoURL}"),
+                              '${FirebaseAuth.instance.currentUser?.photoURL}'),
                           minRadius: 28,
                           maxRadius: 28,
                         ),
@@ -238,7 +238,7 @@ class _DashboardState extends State<Dashboard> {
                         height: 250,
                         child: FutureBuilder(
                             future: FirebaseFirestore.instance
-                                .collection("users")
+                                .collection('users')
                                 .doc(FirebaseAuth.instance.currentUser?.email)
                                 .get(),
                             builder: (context, snapshot) {
@@ -246,8 +246,10 @@ class _DashboardState extends State<Dashboard> {
                                 var data = snapshot.data!.data();
                                 var firstName = data!['watchlist'];
                                 if (firstName.isEmpty) {
-                                  return const Text(
-                                      "vous n'avez encore rien enregistrée");
+                                  return const Center(
+                                    child: Text(
+                                        "vous n'avez encore rien enregistrée"),
+                                  );
                                 } else {
                                   var data = snapshot.data!.data();
                                   var firstName = data!['watchlist'];
@@ -264,19 +266,19 @@ class _DashboardState extends State<Dashboard> {
                                                       BorderRadius.circular(9)),
                                               child: ListTile(
                                                 leading: Image.network(
-                                                  firstName[index]["url"],
+                                                  firstName[index]['url'],
                                                   width: 38,
                                                   height: 48,
                                                 ),
                                                 title: Text(
-                                                    firstName[index]["name"]),
+                                                    firstName[index]['name']),
                                                 trailing: GestureDetector(
                                                     onTap: () {
                                                       showDialogBox(
                                                           firstName[index]
-                                                              ["name"],
+                                                              ['name'],
                                                           firstName[index]
-                                                              ["url"]);
+                                                              ['url']);
                                                     },
                                                     child: const Icon(
                                                         Icons.delete)),

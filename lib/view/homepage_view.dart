@@ -66,7 +66,7 @@ class ScreenLog extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset("asset/image/logoLearnVerse.png"),
+            Image.asset('asset/image/logoLearnVerse.png'),
             const Text(
               'LearnVerse',
               style: TextStyle(
@@ -78,7 +78,7 @@ class ScreenLog extends StatelessWidget {
               height: size,
             ),
             ButtonConnexion(
-              textConnexion: "Sign Up",
+              textConnexion: 'Sign Up',
               isConnexion: true,
               pageRoutesConnexion: const Account(),
             ),
@@ -86,7 +86,7 @@ class ScreenLog extends StatelessWidget {
               height: 30,
             ),
             ButtonConnexion(
-              textConnexion: "Log In  ",
+              textConnexion: 'Log In  ',
               isConnexion: false,
               pageRoutesConnexion: const Login(),
             ),

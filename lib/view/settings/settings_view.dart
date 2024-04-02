@@ -87,12 +87,12 @@ class _SettingState extends State<Setting> {
                     borderRadius: BorderRadius.circular(999),
                     image: DecorationImage(
                         image: NetworkImage(
-                            "${FirebaseAuth.instance.currentUser?.photoURL}"))),
+                            '${FirebaseAuth.instance.currentUser?.photoURL}'))),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
-              child: Text("${FirebaseAuth.instance.currentUser?.email}",
+              child: Text('${FirebaseAuth.instance.currentUser?.email}',
                   style: const TextStyle(
                     color: ConstantsColors.iconColors,
                     fontSize: 20,
@@ -102,57 +102,54 @@ class _SettingState extends State<Setting> {
             SizedBox(
               height: size.height * 0.52,
               child: ListView(
-                children: <Widget>[
-                  const MailButton(
-                      textConnexion: "Adresse Mail",
+                children: const <Widget>[
+                  MailButton(
+                      textConnexion: 'Adresse Mail',
                       icon: FontAwesomeIcons.envelope),
-                  const MailButton(
-                      textConnexion: "Mot de passe",
+                  MailButton(
+                      textConnexion: 'Mot de passe',
                       icon: FontAwesomeIcons.key),
-                  const MailButton(
-                      textConnexion: "Notifications",
-                      icon: FontAwesomeIcons.bell),
-                  const MailButton(
-                      textConnexion: "Support", icon: FontAwesomeIcons.headset),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0, vertical: 4.0),
-                    child: SizedBox(
-                      width: 400,
-                      height: 60,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            signOut();
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromARGB(255, 255, 255, 255),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(7.0),
-                            ),
-                          ),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Log Out",
-                                style: TextStyle(
-                                    color: ConstantsColors.blackColors,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                    letterSpacing: 0.8),
-                              ),
-                              FaIcon(
-                                size: 16,
-                                FontAwesomeIcons.chevronRight,
-                                color: ConstantsColors.blackColors,
-                              ),
-                            ],
-                          )),
-                    ),
-                  ),
-                  const MailButton(
-                      textConnexion: "Delete Account",
+                  MailButton(
+                      textConnexion: 'Support', icon: FontAwesomeIcons.headset),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(
+                  //       horizontal: 12.0, vertical: 4.0),
+                  //   child: SizedBox(
+                  //     width: 400,
+                  //     height: 60,
+                  //     child: ElevatedButton(
+                  //         onPressed: () {
+                  //           signOut();
+                  //         },
+                  //         style: ElevatedButton.styleFrom(
+                  //           backgroundColor:
+                  //               const Color.fromARGB(255, 255, 255, 255),
+                  //           shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(7.0),
+                  //           ),
+                  //         ),
+                  //         child: const Row(
+                  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //           children: [
+                  //             Text(
+                  //               'Log Out',
+                  //               style: TextStyle(
+                  //                   color: ConstantsColors.blackColors,
+                  //                   fontSize: 16,
+                  //                   fontWeight: FontWeight.w400,
+                  //                   letterSpacing: 0.8),
+                  //             ),
+                  //             FaIcon(
+                  //               size: 16,
+                  //               FontAwesomeIcons.chevronRight,
+                  //               color: ConstantsColors.blackColors,
+                  //             ),
+                  //           ],
+                  //         )),
+                  //   ),
+                  // ),
+                  MailButton(
+                      textConnexion: 'Delete Account',
                       icon: FontAwesomeIcons.arrowRightFromBracket),
                 ],
               ),

@@ -28,10 +28,10 @@ Future getIncrementCategories() async {
 
 Future getIncrement() async {
   await FirebaseFirestore.instance
-      .collection("users")
+      .collection('users')
       .doc(FirebaseAuth.instance.currentUser?.email)
       .update({
-    "currentPage": FieldValue.increment(1),
+    'currentPage': FieldValue.increment(1),
   });
 }
 
@@ -42,13 +42,13 @@ void main() async {
 
   try {
     await Firebase.initializeApp(
-      name: "learnverse-ebdd6",
+      name: 'learnverse-ebdd6',
       options: DefaultFirebaseOptions.currentPlatform,
     );
     await MongoDB.connect();
-    print("tout est connecte chef");
+    print('tout est connecte chef');
   } catch (e) {
-    print("Erreur:$e");
+    print('Erreur:$e');
   }
   int incrementValue = await getIncrementCategories();
   var dateTime = DateTime.now();

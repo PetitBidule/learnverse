@@ -52,19 +52,19 @@ class _ThemeScreenState extends State<ThemeScreen> {
             tabs: const [
               GButton(
                 icon: Icons.home,
-                text: "Home",
+                text: 'Home',
               ),
               GButton(
                 icon: Icons.dashboard,
-                text: "Dashboard",
+                text: 'Dashboard',
               ),
               GButton(
                 icon: Icons.settings,
-                text: "Settings",
+                text: 'Settings',
               ),
               GButton(
-                icon: Icons.settings,
-                text: "Like",
+                icon: Icons.login_rounded,
+                text: 'Like',
               )
             ],
           ),
@@ -96,51 +96,51 @@ List allCollection = [
   MongoDB.getDataCollectionMusic(),
   MongoDB.getDataCollectionGaming(),
 ];
-List allNameFields = ["title", "title", "_name", "name", "name"];
+List allNameFields = ['title', 'title', '_name', 'name', 'name'];
 
 List<String> classement = [
-  "collectionAnime",
-  "collectionManga",
-  "collectionFilm",
-  "collectionMusic",
-  "collectionGaming",
+  'collectionAnime',
+  'collectionManga',
+  'collectionFilm',
+  'collectionMusic',
+  'collectionGaming',
   // "collectionUser"
 ];
 
 List<MostPopularCategory> categoriesComponents = [
   MostPopularCategory(
-    name: "One Piece",
+    name: 'One Piece',
     note: 4,
-    categories: "Manga",
-    backgroundImage: "asset/image/zoro.png",
+    categories: 'Manga',
+    backgroundImage: 'asset/image/zoro.png',
     backGroundColor: const Color.fromRGBO(140, 178, 114, 1),
   ),
   MostPopularCategory(
-    name: "Naruto",
+    name: 'Naruto',
     note: 4,
-    categories: "Anime",
-    backgroundImage: "asset/image/imageMan.png",
+    categories: 'Anime',
+    backgroundImage: 'asset/image/imageMan.png',
     backGroundColor: const Color.fromRGBO(240, 248, 255, 1),
   ),
   MostPopularCategory(
-    name: "Handball",
+    name: 'Handball',
     note: 4,
-    categories: "Sport",
-    backgroundImage: "asset/image/sportbg.png",
+    categories: 'Sport',
+    backgroundImage: 'asset/image/sportbg.png',
     backGroundColor: const Color.fromRGBO(255, 255, 255, 1),
   ),
   MostPopularCategory(
-    name: "GTA",
+    name: 'GTA',
     note: 4,
-    categories: "Gaming",
-    backgroundImage: "asset/image/imageG.png",
+    categories: 'Gaming',
+    backgroundImage: 'asset/image/imageG.png',
     backGroundColor: const Color.fromRGBO(0, 223, 255, 1),
   ),
   MostPopularCategory(
-    name: "KOC",
+    name: 'KOC',
     note: 4,
-    categories: "Music",
-    backgroundImage: "asset/image/imageMu.png",
+    categories: 'Music',
+    backgroundImage: 'asset/image/imageMu.png',
     backGroundColor: const Color.fromRGBO(252, 188, 188, 1),
   )
 ];
@@ -162,7 +162,7 @@ class _HomePage2State extends State<HomePage2> {
                   child: CircleAvatar(
                     backgroundColor: Colors.transparent,
                     backgroundImage:
-                        AssetImage("asset/image/logoLearnVerse.png"),
+                        AssetImage('asset/image/logoLearnVerse.png'),
                     minRadius: 28,
                     maxRadius: 28,
                   ),
@@ -170,7 +170,7 @@ class _HomePage2State extends State<HomePage2> {
                 SizedBox(
                   child: CircleAvatar(
                     backgroundImage: NetworkImage(
-                        "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHFpaHJyMHQ5bjlmYWNiNXB5eDF5ZXBpdG9scGRseWxoZmxkaGJ2cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YRThiAEEYVNtC5acLO/giphy.gif"),
+                        'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHFpaHJyMHQ5bjlmYWNiNXB5eDF5ZXBpdG9scGRseWxoZmxkaGJ2cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YRThiAEEYVNtC5acLO/giphy.gif'),
                     minRadius: 28,
                     maxRadius: 28,
                   ),
@@ -187,7 +187,7 @@ class _HomePage2State extends State<HomePage2> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Category of the Day",
+                  'Category of the Day',
                   style: AllConstants.text,
                 ),
                 Column(
@@ -249,7 +249,7 @@ class _HomePage2State extends State<HomePage2> {
             child: Row(
               children: [
                 Text(
-                  "Most Popular Categories",
+                  'Most Popular Categories',
                   style: AllConstants.text,
                 ),
               ],

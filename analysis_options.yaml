@@ -9,6 +9,10 @@
 # packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml
 
+# analyzer:
+#   errors:
+#     prefer_single_quotes: error
+
 linter:
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`
@@ -20,8 +24,19 @@ linter:
   # or a specific dart file by using the `// ignore: name_of_lint` and
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
+
   rules:
     avoid_print: false
+    prefer_single_quotes: true
+    always_declare_return_types: true
+    prefer_final_fields: true
+    annotate_overrides: true
+    await_only_futures: true
+    camel_case_extensions: true
+    camel_case_types: true
+    secure_pubspec_urls: true
+    depend_on_referenced_packages: true
+    avoid_empty_else: true
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
 # Additional information about this file can be found at

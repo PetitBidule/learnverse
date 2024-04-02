@@ -29,8 +29,8 @@ class Categories extends StatefulWidget {
 class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
   var db = FirebaseFirestore.instance;
   late final _isLike = FirebaseFirestore.instance
-      .collection("users")
-      .doc("${FirebaseAuth.instance.currentUser?.email}")
+      .collection('users')
+      .doc('${FirebaseAuth.instance.currentUser?.email}')
       .collection(widget.categories)
       .doc(widget.title);
 
@@ -42,7 +42,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
   int _incrementCommentUser = 0;
 
   late var incrementLike = db
-      .collection("comment")
+      .collection('comment')
       .doc(widget.categories)
       .collection(widget.title)
       .doc();
@@ -69,7 +69,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
               );
             },
             child: const Text(
-              "View wishlist",
+              'View wishlist',
               style: TextStyle(color: Color.fromARGB(255, 255, 175, 71)),
             ),
           ),
@@ -91,15 +91,15 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
   List allDateUser = [];
   List allLikeUser = [];
   Future getComment(String categories, String anime) async {
-    await db.collection("comment").doc(categories).collection(anime).get().then(
+    await db.collection('comment').doc(categories).collection(anime).get().then(
           (comments) => {
             for (var comment in comments.docs)
               {
-                allComments.add(comment.data()["comment"]),
-                allUser.add(comment.data()["user"]),
-                allImageUser.add(comment.data()["urlImage"]),
-                allDateUser.add(comment.data()["timeStamp"]),
-                allLikeUser.add(comment.data()["like"]),
+                allComments.add(comment.data()['comment']),
+                allUser.add(comment.data()['user']),
+                allImageUser.add(comment.data()['urlImage']),
+                allDateUser.add(comment.data()['timeStamp']),
+                allLikeUser.add(comment.data()['like']),
               }
           },
           onError: (e) => print('Error: ${e.message}'),
@@ -108,12 +108,12 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
 
   Future _isLikedTheme() async {
     await FirebaseFirestore.instance
-        .collection("users")
-        .doc("${FirebaseAuth.instance.currentUser?.email}")
+        .collection('users')
+        .doc('${FirebaseAuth.instance.currentUser?.email}')
         .collection(widget.categories)
         .doc(widget.title)
-        .set({"isLiked": false});
-    print("les données ont été creées");
+        .set({'isLiked': false});
+    print('les données ont été creées');
   }
 
   @override
@@ -146,9 +146,9 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                    image: widget.categories == "movie"
+                    image: widget.categories == 'movie'
                         ? NetworkImage(
-                            "https://image.tmdb.org/t/p/w500/${widget.backgroundBanner}")
+                            'https://image.tmdb.org/t/p/w500/${widget.backgroundBanner}')
                         : NetworkImage(widget.backgroundBanner),
                     fit: BoxFit.cover,
                   )),
@@ -193,7 +193,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                           minRadius: 28,
                           maxRadius: 28,
                           backgroundImage: NetworkImage(
-                              "${FirebaseAuth.instance.currentUser?.photoURL}"),
+                              '${FirebaseAuth.instance.currentUser?.photoURL}'),
                         )
                       ]),
                 ),
@@ -258,13 +258,13 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                               allComments.clear();
                                               if (_isLike == false) {
                                                 db
-                                                    .collection("users")
+                                                    .collection('users')
                                                     .doc(
-                                                        "${FirebaseAuth.instance.currentUser?.email}")
+                                                        '${FirebaseAuth.instance.currentUser?.email}')
                                                     .collection(
                                                         widget.categories)
                                                     .doc(widget.title)
-                                                    .update({"isLiked": true});
+                                                    .update({'isLiked': true});
                                                 // _isLike = true;
                                                 _controllerLike.forward();
                                               } else {
@@ -273,7 +273,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                               }
                                             }),
                                         icon: Lottie.network(
-                                            "https://lottie.host/ad6f0cd6-10ce-40cd-84f4-f1044a254299/oSmNtNSKDJ.json",
+                                            'https://lottie.host/ad6f0cd6-10ce-40cd-84f4-f1044a254299/oSmNtNSKDJ.json',
                                             controller: _controllerLike,
                                             width: 30,
                                             height: 30)),
@@ -304,7 +304,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                                     .currentUser?.email)
                                                 .update(
                                               {
-                                                "watchlist":
+                                                'watchlist':
                                                     FieldValue.arrayUnion([
                                                   {
                                                     'url':
@@ -317,7 +317,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                           });
                                         },
                                         icon: Lottie.network(
-                                            "https://lottie.host/d69a82ec-02b6-4ef1-bd02-c0411f6d8613/IhsBGlTAAY.json",
+                                            'https://lottie.host/d69a82ec-02b6-4ef1-bd02-c0411f6d8613/IhsBGlTAAY.json',
                                             controller: _controllerFavorite,
                                             width: 30,
                                             height: 30)),
@@ -356,7 +356,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                           height: size.height * 0.4,
                           child: ListView(
                             children: [
-                              const Text("Synopsis", style: AllConstants.title),
+                              const Text('Synopsis', style: AllConstants.title),
                               const SizedBox(
                                 height: 18,
                               ),
@@ -368,7 +368,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                 controller: _controller,
                                 maxLines: 5,
                                 decoration: const InputDecoration(
-                                    hintText: "Comment",
+                                    hintText: 'Comment',
                                     fillColor: ConstantsColors.iconColors),
                               ),
                               TextButton(
@@ -377,21 +377,21 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                       allComments.clear();
                                       _incrementCommentUser++;
                                       db
-                                          .collection("comment")
+                                          .collection('comment')
                                           .doc(widget.categories)
                                           .collection(widget.title)
                                           .doc(
-                                              "${FirebaseAuth.instance.currentUser?.email} ($_incrementCommentUser)")
+                                              '${FirebaseAuth.instance.currentUser?.email} ($_incrementCommentUser)')
                                           .set({
                                         // displayName marche que pour les compte google
-                                        "user": FirebaseAuth
+                                        'user': FirebaseAuth
                                             .instance.currentUser?.displayName,
-                                        "comment": _controller.text,
-                                        "urlImage": FirebaseAuth
+                                        'comment': _controller.text,
+                                        'urlImage': FirebaseAuth
                                             .instance.currentUser?.photoURL,
-                                        "timeStamp":
+                                        'timeStamp':
                                             FieldValue.serverTimestamp(),
-                                        "like": 0,
+                                        'like': 0,
                                       });
                                     });
                                   },
@@ -474,7 +474,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                                               ),
                                                       ),
                                                       Text(
-                                                          "${allLikeUser[index]}")
+                                                          '${allLikeUser[index]}')
                                                     ],
                                                   ));
                                             }),

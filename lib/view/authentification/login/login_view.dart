@@ -25,8 +25,8 @@ class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
 
   final List<String> _labelText = [
-    "Email",
-    "Password",
+    'Email',
+    'Password',
   ];
   final List<bool> _obscureText = [
     false,
@@ -42,7 +42,7 @@ class _LoginState extends State<Login> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => ThemeScreen(
-                          pseudoUser: "rien",
+                          pseudoUser: 'rien',
                         )),
               ));
     } on FirebaseAuthException catch (e) {
@@ -57,11 +57,11 @@ class _LoginState extends State<Login> {
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser?.email)
         .set({
-      "pseudo": FirebaseAuth.instance.currentUser?.displayName,
-      "currentPage": 0,
-      "dateTime": DateTime.now(),
-      "imageProfile": FirebaseAuth.instance.currentUser?.photoURL,
-      "watchlist": [],
+      'pseudo': FirebaseAuth.instance.currentUser?.displayName,
+      'currentPage': 0,
+      'dateTime': DateTime.now(),
+      'imageProfile': FirebaseAuth.instance.currentUser?.photoURL,
+      'watchlist': [],
     }).then((_) => Navigator.pushReplacement<void, void>(
             context,
             MaterialPageRoute<void>(
@@ -173,7 +173,7 @@ class _LoginState extends State<Login> {
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
                         child: TextFormField(
                           decoration: InputDecoration(
-                            suffixIcon: _labelText[index] == "Password"
+                            suffixIcon: _labelText[index] == 'Password'
                                 ? Padding(
                                     padding: const EdgeInsets.only(top: 12.0),
                                     child: GestureDetector(
@@ -191,7 +191,7 @@ class _LoginState extends State<Login> {
                                       },
                                       child: Tooltip(
                                         message:
-                                            "Le mot de passe doit contenit minimum 8 caracteres",
+                                            'Le mot de passe doit contenit minimum 8 caracteres',
                                         child: FaIcon(
                                           _iconData,
                                           color: ConstantsColors.iconColors,
@@ -255,10 +255,10 @@ class _LoginState extends State<Login> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Image.asset("asset/image/google.png"),
+                        Image.asset('asset/image/google.png'),
                         const SizedBox(width: 50),
                         const Text(
-                          "Google",
+                          'Google',
                           style: AllConstants.textBtn,
                         ),
                       ],

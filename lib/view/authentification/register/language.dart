@@ -121,7 +121,7 @@ class language extends StatelessWidget {
                                     builder: (context) => ThemeScreen()),
                               );
                             },
-                            child: Text(
+                            child: const Text(
                               'Agree',
                               style:
                                   TextStyle(color: ConstantsColors.iconColors),
