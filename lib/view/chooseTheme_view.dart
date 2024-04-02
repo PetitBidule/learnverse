@@ -165,7 +165,7 @@ class _Theme1State extends State<Theme1> {
                     ),
                   ),
                   SizedBox(
-                    height: 400,
+                    height: 300,
                     child: ListView.builder(
                       itemCount: 5,
                       itemBuilder: (BuildContext context, int index) {
