@@ -7,14 +7,24 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.android.tools.build:gradle:7.0.4"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // START: FlutterFire Configuration
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.gms:google-services:4.3.10'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.8.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // END: FlutterFire Configuration
     }
 }
-
 allprojects {
     repositories {
         google()
         mavenCentral()
     }
+    tasks.withType(JavaCompile){
+            options.compilerArgs <<"-Xlint:deprecation"
+        }
 }
 
 rootProject.buildDir = '../build'

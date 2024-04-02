@@ -1,19 +1,19 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:learnverse/controller/account_controller.dart';
-import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/view/register_view.dart';
-import 'package:learnverse/view/login_view.dart';
+import 'package:learnverse/utils/constantsColors.dart';
+import 'package:learnverse/utils/constantsFont.dart';
+import 'package:learnverse/view/authentification/register/register_view.dart';
+import 'package:learnverse/view/authentification/login/login_view.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
 class ScreenLog extends StatelessWidget {
-  final CreateAccountController controller = CreateAccountController();
-  ScreenLog({super.key});
+  const ScreenLog({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size.width * 0.10;
     return Scaffold(
         body: Stack(children: [
       Container(
@@ -66,29 +66,27 @@ class ScreenLog extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset("asset/image/logoLearnVerse.png"),
+            Image.asset('asset/image/logoLearnVerse.png'),
             const Text(
               'LearnVerse',
               style: TextStyle(
-                  color: Colors.white,
+                  color: ConstantsColors.iconColors,
                   fontSize: 40,
                   fontWeight: FontWeight.w700),
             ),
-            const SizedBox(
-              height: 30,
+            SizedBox(
+              height: size,
             ),
             ButtonConnexion(
-              textConnexion: "Sign Up",
+              textConnexion: 'Sign Up',
               isConnexion: true,
-              pageRoutesConnexion: Account(
-                accountController: controller,
-              ),
+              pageRoutesConnexion: const Account(),
             ),
             const SizedBox(
               height: 30,
             ),
             ButtonConnexion(
-              textConnexion: "Log In  ",
+              textConnexion: 'Log In  ',
               isConnexion: false,
               pageRoutesConnexion: const Login(),
             ),

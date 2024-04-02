@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Flutter-Launch-All",
+      "dependsOn": [
+        "Flutter-Launch-iOS",
+        "Flutter-Launch-Android"
+      ]
+    },
+    {
+      "label": "Flutter-Launch-iOS",
+      "type": "shell",
+      "command": "flutter run -d 'iPhone 15 Pro' " 
+    },
+    {
+      "label": "Flutter-Launch-Android",
+      "type": "shell",
+      "command": "flutter run -d 'Android SDK built for arm64' "
+    }
+   
+  ]
+}

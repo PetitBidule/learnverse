@@ -2,7 +2,8 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:learnverse/utils/constants.dart';
+import 'package:learnverse/utils/constantsColors.dart';
+import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
@@ -37,17 +38,16 @@ class _DashboardState extends State<Dashboard> {
                   onPressed: () {
                     setState(() {
                       FirebaseFirestore.instance
-                          .collection("users")
+                          .collection('users')
                           .doc(FirebaseAuth.instance.currentUser?.email)
                           .update({
-                        "watchlist": FieldValue.arrayRemove([
+                        'watchlist': FieldValue.arrayRemove([
                           {
                             'url': url,
                             'name': name,
                           },
                         ]),
-                      });
-                      Navigator.pop(context);
+                      }).then((_) => Navigator.pop(context));
                     });
                   },
                   child: const Text('Delete')),
@@ -66,7 +66,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(children: [
+      body: Stack(children: <Widget>[
         Container(
           width: double.infinity,
           height: double.infinity,
@@ -114,45 +114,31 @@ class _DashboardState extends State<Dashboard> {
         ),
         SafeArea(
           child: Center(
-            child: ListView(children: [
+            child: ListView(children: <Widget>[
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const Text("Dashboard",
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 255, 255, 255),
-                            fontSize: 40,
-                            fontWeight: FontWeight.w700,
-                          )),
+                      const Text('Dashboard', style: AllConstants.title),
                       SizedBox(
                         child: CircleAvatar(
                           backgroundImage: NetworkImage(
-                              "${FirebaseAuth.instance.currentUser?.photoURL}"),
-                          minRadius: 30,
-                          maxRadius: 30,
+                              '${FirebaseAuth.instance.currentUser?.photoURL}'),
+                          minRadius: 28,
+                          maxRadius: 28,
                         ),
                       )
                     ],
                   ),
                   Row(
-                    children: [
-                      // const Padding(
-                      //   padding: EdgeInsets.all(20.0),
-                      //   child: Text('Watchlist',
-                      //       style: TextStyle(
-                      //         color: Color.fromARGB(255, 255, 255, 255),
-                      //         fontSize: 30,
-                      //         fontWeight: FontWeight.w700,
-                      //       )),
-                      // ),
+                    children: <Widget>[
                       Container(
                         width: 110,
                         height: 30,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: ConstantsColors.iconColors,
                           border: Border.all(
                               color: const Color.fromARGB(255, 255, 255, 255)),
                           borderRadius: BorderRadius.circular(40),
@@ -199,7 +185,7 @@ class _DashboardState extends State<Dashboard> {
                           width: 110,
                           height: 30,
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: ConstantsColors.iconColors,
                             boxShadow: const [],
                             border: Border.all(
                                 color:
@@ -252,7 +238,7 @@ class _DashboardState extends State<Dashboard> {
                         height: 250,
                         child: FutureBuilder(
                             future: FirebaseFirestore.instance
-                                .collection("users")
+                                .collection('users')
                                 .doc(FirebaseAuth.instance.currentUser?.email)
                                 .get(),
                             builder: (context, snapshot) {
@@ -260,8 +246,10 @@ class _DashboardState extends State<Dashboard> {
                                 var data = snapshot.data!.data();
                                 var firstName = data!['watchlist'];
                                 if (firstName.isEmpty) {
-                                  return const Text(
-                                      "vous n'avez encore rien enregistrée");
+                                  return const Center(
+                                    child: Text(
+                                        "vous n'avez encore rien enregistrée"),
+                                  );
                                 } else {
                                   var data = snapshot.data!.data();
                                   var firstName = data!['watchlist'];
@@ -278,19 +266,19 @@ class _DashboardState extends State<Dashboard> {
                                                       BorderRadius.circular(9)),
                                               child: ListTile(
                                                 leading: Image.network(
-                                                  firstName[index]["url"],
+                                                  firstName[index]['url'],
                                                   width: 38,
                                                   height: 48,
                                                 ),
                                                 title: Text(
-                                                    firstName[index]["name"]),
+                                                    firstName[index]['name']),
                                                 trailing: GestureDetector(
                                                     onTap: () {
                                                       showDialogBox(
                                                           firstName[index]
-                                                              ["name"],
+                                                              ['name'],
                                                           firstName[index]
-                                                              ["url"]);
+                                                              ['url']);
                                                     },
                                                     child: const Icon(
                                                         Icons.delete)),
@@ -315,7 +303,7 @@ class _DashboardState extends State<Dashboard> {
                   //     width: 200,
                   //     height: 200,
                   //     decoration: BoxDecoration(
-                  //       color: Colors.white,
+                  //       color: ConstantsColors.iconColors,
                   //       boxShadow: [
                   //         BoxShadow(
                   //           color: Colors.grey.withOpacity(0.7),
@@ -375,7 +363,7 @@ class _DashboardState extends State<Dashboard> {
                   //     width: 200,
                   //     height: 200,
                   //     decoration: BoxDecoration(
-                  //       color: Colors.white,
+                  //       color: ConstantsColors.iconColors,
                   //       boxShadow: [
                   //         BoxShadow(
                   //           color: Colors.grey.withOpacity(0.7),

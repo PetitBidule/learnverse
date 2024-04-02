@@ -1,7 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/view/hometheme_view.dart';
+import 'package:learnverse/utils/constantsColors.dart';
+import 'package:learnverse/utils/constantsFont.dart';
+import 'package:learnverse/view/home/hometheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
@@ -77,7 +78,7 @@ class _PrivacypolicyState extends State<Privacypolicy> {
                         children: [
                           IconButton(
                       icon: const Icon(Icons.arrow_back),
-                      color: Colors.white,
+                      color: ConstantsColors.iconColors,
                       onPressed: () => setState(() => Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -118,9 +119,9 @@ This page is used to inform visitors regarding our policies with the collection,
 If you choose to use our Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that we collect is used for providing and improving the Service. We will not use or share your information with anyone except as described in this Privacy Policy.
                     
 The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which are accessible at LearnVerse unless otherwise defined in this Privacy Policy.''',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(fontSize: 20.0, color: Colors.white),
-                      ),
+                      textAlign: TextAlign.center,
+                      style: AllConstants.text,
+
                     ),
                     const SizedBox(height: 16.0),
                     const Padding(
@@ -131,12 +132,11 @@ The terms used in this Privacy Policy have the same meanings as in our Terms and
 The app does use third-party services that may collect information used to identify you.
                     
 Link to the privacy policy of third-party service providers used by the app:
-                    
-* [Google Play Services]\n(https://www.google.com/policies/privacy/)
-* [AdMob]\n(https://support.google.com/admob/answer/6128543?hl=en)''',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(fontSize: 20.0, color: Colors.white),
-                      ),
+* [Google Play Services](https://www.google.com/policies/privacy/)
+* [AdMob](https://support.google.com/admob/answer/6128543?hl=en)''',
+                      textAlign: TextAlign.center,
+                      style: AllConstants.text,
+
                     ),
                   ],
                 ),

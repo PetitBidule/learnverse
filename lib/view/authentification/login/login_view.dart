@@ -5,8 +5,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/controller/auth_services.dart';
-import 'package:learnverse/utils/constants.dart';
-import 'package:learnverse/view/homeTheme_view.dart';
+import 'package:learnverse/utils/constantsColors.dart';
+import 'package:learnverse/utils/constantsFont.dart';
+import 'package:learnverse/view/home/homeTheme_view.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
@@ -24,41 +25,66 @@ class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
 
   final List<String> _labelText = [
-    "Email",
-    "Password",
+    'Email',
+    'Password',
   ];
   final List<bool> _obscureText = [
     false,
     true,
   ];
-  IconData _iconData = FontAwesomeIcons.eyeSlash;
-  Future signIn() async {
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _controller[0].text, password: _controller[1].text);
-      print("l'authentication c'est bien passé");
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => ThemeScreen(
-                  pseudoUser: "rien",
-                )),
-      );
-    } on FirebaseAuthException catch (e) {
-      print("error: ${e.message}");
-      return e.message;
+
+  Future getIncrement() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc('theo.saint-amand@orange.fr')
+        .update({
+      'currentPage': FieldValue.increment(1),
+    });
+  }
+
+  int incrementn = 0;
+
+  Future getIncrementCategories() async {
+    var docSnapshots = await FirebaseFirestore.instance
+        .collection('users')
+        .doc('theo.saint-amand@orange.fr')
+        .get();
+    if (docSnapshots.exists) {
+      Map<String, dynamic>? data = docSnapshots.data();
+      var value = data?['currentPage'];
+      incrementn = value;
+      print('$incrementn + cioln');
+      return incrementn;
     }
   }
 
+  void incrementCurrrentPage() async {
+    var dateTime = DateTime.now();
+    var time1 = DateTime(dateTime.year, dateTime.month, dateTime.day);
+    var time2 = DateTime(dateTime.year + 1, dateTime.month, dateTime.day);
+    if (time1.compareTo(time2) == -1) {
+      getIncrement();
+      print('les categories ont ete mis a jour');
+    } else {
+      print("les categories n'ont pas changé");
+    }
+  }
+
+  IconData _iconData = FontAwesomeIcons.eyeSlash;
   Future addUserDetailsGoogle() async {
     await FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser?.email)
         .set({
-      "pseudo": FirebaseAuth.instance.currentUser?.displayName,
-      "imageProfile": FirebaseAuth.instance.currentUser?.photoURL,
-      "watchlist": [],
-    });
+      'pseudo': FirebaseAuth.instance.currentUser?.displayName,
+      'dateTime': DateTime.now(),
+      'imageProfile': FirebaseAuth.instance.currentUser?.photoURL,
+      'watchlist': [],
+    }).then((_) => Navigator.pushReplacement<void, void>(
+            context,
+            MaterialPageRoute<void>(
+              builder: (BuildContext context) => ThemeScreen(),
+            )));
   }
 
   @override
@@ -70,6 +96,8 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
         body: Stack(children: [
       Container(
@@ -134,16 +162,11 @@ class _LoginState extends State<Login> {
                     onPressed: () => Navigator.pop(context),
                     icon: const Icon(
                       Icons.arrow_back,
-                      color: Colors.white,
+                      color: ConstantsColors.iconColors,
                       size: 35,
                     ),
                   ),
-                  const Text('Log In  ',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 40,
-                        fontWeight: FontWeight.w300,
-                      )),
+                  const Text('Log In  ', style: AllConstants.title),
                   const SizedBox(
                     width: 20,
                   )
@@ -152,12 +175,8 @@ class _LoginState extends State<Login> {
             ),
             const Padding(
               padding: EdgeInsets.only(bottom: 64.0),
-              child: Text('log in to your account',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w200,
-                  )),
+              child:
+                  Text('log in to your account', style: AllConstants.subtitle),
             ),
             SizedBox(
               width: 350,
@@ -172,7 +191,7 @@ class _LoginState extends State<Login> {
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
                         child: TextFormField(
                           decoration: InputDecoration(
-                            suffixIcon: _labelText[index] == "Password"
+                            suffixIcon: _labelText[index] == 'Password'
                                 ? Padding(
                                     padding: const EdgeInsets.only(top: 12.0),
                                     child: GestureDetector(
@@ -190,17 +209,17 @@ class _LoginState extends State<Login> {
                                       },
                                       child: Tooltip(
                                         message:
-                                            "Le mot de passe doit contenit minimum 8 caracteres",
+                                            'Le mot de passe doit contenit minimum 8 caracteres',
                                         child: FaIcon(
                                           _iconData,
-                                          color: Colors.white,
+                                          color: ConstantsColors.iconColors,
                                         ),
                                       ),
                                     ),
                                   )
                                 : null,
                             labelText: _labelText[index],
-                            labelStyle: const TextStyle(color: Colors.white),
+                            labelStyle: AllConstants.placeholder,
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25),
                               borderSide: const BorderSide(
@@ -232,9 +251,34 @@ class _LoginState extends State<Login> {
               child: SizedBox(
                 width: 250,
                 height: 60,
-                child: LogInButton(
-                  signIn: signIn(),
-                ),
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ConstantsColors.iconColors,
+                    ),
+                    onPressed: () async {
+                      AuthService()
+                          .signIn(_controller[0].text, _controller[1].text);
+                      incrementCurrrentPage();
+                      getIncrement();
+                      getIncrementCategories();
+                      int incrementValue = await getIncrementCategories();
+                      print(incrementValue);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ThemeScreen(
+                                  incrementUser: incrementValue,
+                                )),
+                      );
+                    },
+                    child: const Text(
+                      'Log in',
+                      style: TextStyle(
+                          color: ConstantsColors.blackColors,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          letterSpacing: 0.8),
+                    )),
               ),
             ),
             Padding(
@@ -246,30 +290,20 @@ class _LoginState extends State<Login> {
                     onPressed: () async {
                       User? user;
                       user = await AuthService().signInWithGoogle();
+                      incrementCurrrentPage();
                       addUserDetailsGoogle();
-                      Navigator.pushReplacement<void, void>(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) => ThemeScreen(),
-                          ));
                     },
-
-                    // AuthService().signInWithGoogle(),@@
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: ConstantsColors.iconColors,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Image.asset("asset/image/google.png"),
+                        Image.asset('asset/image/google.png'),
                         const SizedBox(width: 50),
                         const Text(
-                          "Google",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              letterSpacing: 0.8),
+                          'Google',
+                          style: AllConstants.textBtn,
                         ),
                       ],
                     )),

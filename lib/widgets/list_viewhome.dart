@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:learnverse/utils/constants.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:learnverse/utils/constantsColors.dart';
+import 'package:learnverse/utils/constantsFont.dart';
 
 class ThemeChooseHome extends StatelessWidget {
   final String noteTheme;
@@ -32,9 +34,9 @@ class ThemeChooseHome extends StatelessWidget {
           ],
           borderRadius: BorderRadius.circular(44),
           image: DecorationImage(
-              image: nametheme == "Napoleon"
+              image: nameCategories == 'Movies'
                   ? NetworkImage(
-                      "https://image.tmdb.org/t/p/w500/$backGroundTheme")
+                      'https://image.tmdb.org/t/p/w500/$backGroundTheme')
                   : NetworkImage(backGroundTheme),
               fit: BoxFit.cover)),
       child: Stack(children: [
@@ -45,13 +47,13 @@ class ThemeChooseHome extends StatelessWidget {
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white),
-                  color: const Color.fromARGB(140, 0, 0, 0),
-                  borderRadius: BorderRadius.circular(10)),
+                  border: Border.all(color: ConstantsColors.iconColors),
+                  color: ConstantsColors.blackColors,
+                  borderRadius: BorderRadius.circular(12)),
               child: Center(
                 child: Text(
                   noteTheme,
-                  style: AllConstants.textColors,
+                  style: AllConstants.text,
                 ),
               )),
         ),
@@ -64,7 +66,10 @@ class ThemeChooseHome extends StatelessWidget {
                 gradient: LinearGradient(
                     end: Alignment.topCenter,
                     begin: Alignment.bottomCenter,
-                    colors: [Colors.black, Color.fromARGB(0, 0, 0, 0)]),
+                    colors: [
+                      ConstantsColors.blackColors,
+                      Color.fromARGB(0, 0, 0, 0)
+                    ]),
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(44),
                     bottomRight: Radius.circular(44))),
@@ -73,23 +78,23 @@ class ThemeChooseHome extends StatelessWidget {
         Positioned(
           bottom: 30,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: 250,
+                  width: 225,
                   child: Text(
                     nametheme.toUpperCase(),
                     style: const TextStyle(
-                        color: Color.fromARGB(255, 255, 255, 255),
+                        color: ConstantsColors.iconColors,
                         fontSize: 32,
                         fontWeight: FontWeight.w700),
                   ),
                 ),
                 Text(nameCategories,
                     style: const TextStyle(
-                        color: Color.fromARGB(255, 255, 255, 255),
+                        color: ConstantsColors.iconColors,
                         fontSize: 20,
                         fontWeight: FontWeight.w400)),
               ],
@@ -119,7 +124,7 @@ class MostPopularCategories extends StatelessWidget {
 
   dynamic isFirsts() {
     if (isFirst == 0) {
-      return Image.asset("asset/image/crown.png");
+      return Positioned(top: -9, child: Image.asset('asset/image/crown.png'));
     }
     return Container();
   }
@@ -132,7 +137,7 @@ class MostPopularCategories extends StatelessWidget {
       ),
       child: Stack(children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 15),
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           child: Container(
             width: 180,
             height: 100,
@@ -140,7 +145,7 @@ class MostPopularCategories extends StatelessWidget {
                 color: backGroundColor,
                 borderRadius: BorderRadius.circular(21.5)),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 13.0),
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -150,15 +155,30 @@ class MostPopularCategories extends StatelessWidget {
                     children: [
                       Text(
                         nameCategories,
-                        style: const TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0)),
+                        style:
+                            const TextStyle(color: ConstantsColors.blackColors),
                       ),
                       Text(
                         nameNotion,
                         style: const TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: ConstantsColors.blackColors,
                             fontWeight: FontWeight.w900,
                             fontSize: 14),
+                      ),
+                      const Row(
+                        children: <Widget>[
+                          FaIcon(
+                            FontAwesomeIcons.heart,
+                            size: 10,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            '3802',
+                            style: TextStyle(fontSize: 10),
+                          )
+                        ],
                       )
                     ],
                   ),
@@ -173,7 +193,6 @@ class MostPopularCategories extends StatelessWidget {
           child: SizedBox(
             width: 90,
             height: 110,
-            // color: Colors.white,
             child: Image.asset(
               background,
               fit: BoxFit.cover,
