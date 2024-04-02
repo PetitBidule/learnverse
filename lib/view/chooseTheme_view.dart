@@ -30,7 +30,7 @@ class _Theme1State extends State<Theme1> {
   ];
 
   final List<Color> back1 = [
-    const Color.fromRGBO(243, 255, 193, 1),
+    const Color.fromARGB(255, 243, 255, 193),
     const Color.fromRGBO(240, 248, 255, 1),
     const Color.fromRGBO(0, 223, 255, 1),
     const Color.fromRGBO(245, 245, 245, 1),
@@ -53,18 +53,18 @@ class _Theme1State extends State<Theme1> {
   ];
 
   final List<Image> image1 = [
-    Image.asset("asset/image/imageF.png"),
+    Image.asset("asset/image/imageF2.png"),
     Image.asset("asset/image/imageMan.png"),
-    Image.asset("asset/image/imageG.png"),
-    Image.asset("asset/image/imageM.png"),
+    Image.asset("asset/image/imageG2.png"),
+    Image.asset("asset/image/imageM2.png"),
     Image.asset("asset/image/imageMu.png"),
   ];
 
   final List<Image> image2 = [
-    Image.asset("asset/image/imageT.png"),
-    Image.asset("asset/image/imageA.png"),
-    Image.asset("asset/image/imageB.png"),
-    Image.asset("asset/image/imageL.png"),
+    Image.asset("asset/image/imageT2.png"),
+    Image.asset("asset/image/imageA2.png"),
+    Image.asset("asset/image/imageB2.png"),
+    Image.asset("asset/image/imageL2.png"),
     Image.asset("asset/image/imageS.png"),
   ];
 
@@ -216,7 +216,7 @@ class _Theme1State extends State<Theme1> {
                                               fontSize: 14,
                                             ),
                                           ),
-                                        ),
+                                         ),
                                       ),
                                     ),
                                   ]),

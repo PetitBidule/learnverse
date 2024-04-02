@@ -7,7 +7,7 @@ import 'package:learnverse/view/homeTheme_view.dart';
 import 'package:learnverse/view/homepage_view.dart';
 import 'package:device_preview/device_preview.dart';
 
-
+x
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Future.delayed(const Duration(seconds: 2));
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       //     elevatedButtonTheme:  ElevatedButtonThemeData(
       //         style: ButtonStyle(backgroundColor: MaterialStateProperty<Color> Colors.white))),
       debugShowCheckedModeBanner: false,
-      home: language(),
+      home: Theme1(),
     );
   }
 }
