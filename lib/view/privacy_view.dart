@@ -5,7 +5,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/view/hometheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 
 class Privacy extends StatelessWidget {
@@ -80,25 +79,25 @@ class Privacy extends StatelessWidget {
                         ),
                       ),
                     ),
-                     Padding(
-                      padding: const EdgeInsets.only(right:112.0),
-                      child:GradientText(
-                            'Conditions',
-                            style: const TextStyle(
-                              fontSize: 50,
-                              fontWeight: FontWeight.w700,
-                            ),
-                            colors: const [
-                            Color.fromARGB(255, 153, 118, 224),
-                            Color.fromARGB(255, 153, 107, 156),
-                            ],
-                        ),
-                    ),
+                    //  Padding(
+                    //   padding: const EdgeInsets.only(right:112.0),
+                    //   child:GradientText(
+                    //         'Conditions',
+                    //         style: const TextStyle(
+                    //           fontSize: 50,
+                    //           fontWeight: FontWeight.w700,
+                    //         ),
+                    //         colors: const [
+                    //         Color.fromARGB(255, 153, 118, 224),
+                    //         Color.fromARGB(255, 153, 107, 156),
+                    //         ],
+                    //     ),
+                    // ),
                     SizedBox(
                       width: 400,
                       height: 450,
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
                         child: ListView(children: const [
                           Text(
                             'Terms and Conditions\n'
@@ -176,9 +175,7 @@ class Privacy extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ThemeScreen(
-                                          firstConnexion: false,
-                                        )),
+                                    builder: (context) => ThemeScreen()),
                               );
                             },
                             child: const Text(
@@ -186,28 +183,6 @@ class Privacy extends StatelessWidget {
                               style: TextStyle(color: Colors.white),
                             ),
                             // style: ButtonStyle(fontWeight: FontWeight.w700),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: 300,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(0, 255, 255, 255),
-                          border: Border.all(
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                          ),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            "Cancel",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white),
                           ),
                         ),
                       ),

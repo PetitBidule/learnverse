@@ -68,9 +68,9 @@ class _Theme1State extends State<Theme1> {
     Image.asset("asset/image/imageS.png"),
   ];
 
-  final bool _isSelected = false;
+  // final bool _isSelected = false;
   int _valueSelected = 0;
-  final List _colors = [];
+  // final List _colors = [];
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +165,7 @@ class _Theme1State extends State<Theme1> {
                     ),
                   ),
                   SizedBox(
-                    height: 300,
+                    height: 320,
                     child: ListView.builder(
                       itemCount: 5,
                       itemBuilder: (BuildContext context, int index) {
@@ -219,22 +219,6 @@ class _Theme1State extends State<Theme1> {
                                          ),
                                       ),
                                     ),
-                                    // Container(
-                                    //   width: 140,
-                                    //   height: 75,
-                                    //   decoration: BoxDecoration(
-                                    //     border: Border.all(
-                                    //       color: Colors.white,
-                                    //     ),
-                                    //     color: _valueSelected == index
-                                    //         ? back1[index] =
-                                    //             const Color.fromARGB(
-                                    //                 132, 213, 205, 205)
-                                    //         : const Color.fromARGB(
-                                    //             1, 255, 255, 255),
-                                    //     borderRadius: BorderRadius.circular(20),
-                                    //   ),
-                                    // ),
                                   ]),
                                 ),
                               ),
@@ -246,7 +230,6 @@ class _Theme1State extends State<Theme1> {
                                   image: DecorationImage(
                                     image: image2[index].image,
                                   ),
-                                  boxShadow: const [],
                                   border: Border.all(
                                     color: const Color.fromARGB(
                                         255, 255, 255, 255),

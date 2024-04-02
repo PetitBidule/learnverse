@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/view/hometheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
@@ -97,7 +98,6 @@ class _languageState extends State<language> {
                             height: 40,
                           ),
                           Padding(
-
                              padding: const EdgeInsets.only(right:100.0),
                              child: GradientText('Language',
                              style: const TextStyle(
@@ -235,7 +235,6 @@ class _languageState extends State<language> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ThemeScreen(
-                                          firstConnexion: false,
                                         )),
                               );
                             },

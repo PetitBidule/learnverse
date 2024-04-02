@@ -6,12 +6,14 @@ class ThemeChooseHome extends StatelessWidget {
   final String nametheme;
   final String nameCategories;
   final String backGroundTheme;
-  const ThemeChooseHome(
-      {super.key,
-      required this.noteTheme,
-      required this.nametheme,
-      required this.nameCategories,
-      required this.backGroundTheme});
+
+  const ThemeChooseHome({
+    super.key,
+    required this.noteTheme,
+    required this.nametheme,
+    required this.nameCategories,
+    required this.backGroundTheme,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,11 @@ class ThemeChooseHome extends StatelessWidget {
           ],
           borderRadius: BorderRadius.circular(44),
           image: DecorationImage(
-              image: NetworkImage(backGroundTheme), fit: BoxFit.cover)),
+              image: nametheme == "Napoleon"
+                  ? NetworkImage(
+                      "https://image.tmdb.org/t/p/w500/$backGroundTheme")
+                  : NetworkImage(backGroundTheme),
+              fit: BoxFit.cover)),
       child: Stack(children: [
         Positioned(
           top: 20,
@@ -101,13 +107,22 @@ class MostPopularCategories extends StatelessWidget {
   final String nameNotion;
   final dynamic background;
   final dynamic backGroundColor;
+  final int isFirst;
+  const MostPopularCategories({
+    super.key,
+    required this.background,
+    required this.nameCategories,
+    required this.nameNotion,
+    required this.backGroundColor,
+    required this.isFirst,
+  });
 
-  const MostPopularCategories(
-      {super.key,
-      required this.background,
-      required this.nameCategories,
-      required this.nameNotion,
-      required this.backGroundColor});
+  dynamic isFirsts() {
+    if (isFirst == 0) {
+      return Image.asset("asset/image/crown.png");
+    }
+    return Container();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,13 +162,25 @@ class MostPopularCategories extends StatelessWidget {
                       )
                     ],
                   ),
-                  Image.asset(background),
                 ],
               ),
             ),
           ),
         ),
-        // crown(),
+        Positioned(
+          bottom: 18,
+          left: 100,
+          child: SizedBox(
+            width: 90,
+            height: 110,
+            // color: Colors.white,
+            child: Image.asset(
+              background,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        isFirsts()
       ]),
     );
   }

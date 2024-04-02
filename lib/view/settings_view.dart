@@ -1,8 +1,8 @@
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:learnverse/controller/app_configuration.dart';
 import 'package:learnverse/utils/constants.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
@@ -12,6 +12,10 @@ class Settings extends StatefulWidget {
 
   @override
   State<Settings> createState() => _SettingsState();
+}
+
+Future signOut() async {
+  await FirebaseAuth.instance.signOut();
 }
 
 class _SettingsState extends State<Settings> {
@@ -79,14 +83,15 @@ class _SettingsState extends State<Settings> {
                 height: 145,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(9999),
-                    image: const DecorationImage(
-                        image: AssetImage('asset/image/Profil.png'))),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            "${FirebaseAuth.instance.currentUser?.photoURL}"))),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 32.0),
-              child: Text('Filippe',
-                  style: TextStyle(
+            Padding(
+              padding: const EdgeInsets.only(bottom: 32.0),
+              child: Text("${FirebaseAuth.instance.currentUser?.email}",
+                  style: const TextStyle(
                     color: Color.fromARGB(255, 255, 255, 255),
                     fontSize: 20,
                     fontWeight: FontWeight.w400,
@@ -107,7 +112,7 @@ class _SettingsState extends State<Settings> {
                 height: 60,
                 child: ElevatedButton(
                     onPressed: () {
-                      UserFunctions.logoutUser();
+                      signOut();
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 255, 255, 255),

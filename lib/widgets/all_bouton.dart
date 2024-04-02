@@ -49,7 +49,8 @@ class _ButtonConnexionState extends State<ButtonConnexion> {
 }
 
 class LogInButton extends StatefulWidget {
-  const LogInButton({super.key});
+  final Future signIn;
+  const LogInButton({super.key, required this.signIn});
 
   @override
   State<LogInButton> createState() => _LogInButtonState();
@@ -63,11 +64,11 @@ class _LogInButtonState extends State<LogInButton> {
           backgroundColor: Colors.white,
         ),
         onPressed: () {
+          widget.signIn;
           Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => ThemeScreen(
-                      firstConnexion: false,
                       pseudoUser: "rien",
                     )),
           );
@@ -135,7 +136,7 @@ class _MailButtonConnexionState extends State<MailButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 3.0),
       child: SizedBox(
         width: 400,
         height: 60,
