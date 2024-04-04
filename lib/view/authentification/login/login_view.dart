@@ -53,7 +53,6 @@ class _LoginState extends State<Login> {
       Map<String, dynamic>? data = docSnapshots.data();
       var value = data?['currentPage'];
       incrementn = value;
-      print('$incrementn + cioln');
       return incrementn;
     }
   }
@@ -259,7 +258,6 @@ class _LoginState extends State<Login> {
                       AuthService()
                           .signIn(_controller[0].text, _controller[1].text);
                       incrementCurrrentPage();
-                      getIncrement();
                       getIncrementCategories();
                       int incrementValue = await getIncrementCategories();
                       print(incrementValue);

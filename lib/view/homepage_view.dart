@@ -6,6 +6,7 @@ import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/authentification/register/register_view.dart';
 import 'package:learnverse/view/authentification/login/login_view.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
 class ScreenLog extends StatelessWidget {
@@ -14,6 +15,7 @@ class ScreenLog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size.width * 0.10;
+    //update this
     return Scaffold(
         body: Stack(children: [
       Container(

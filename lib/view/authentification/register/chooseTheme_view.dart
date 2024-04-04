@@ -6,6 +6,7 @@ import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/settings/privacy_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //ignore: must_be_immutable
 class Theme1 extends StatefulWidget {
@@ -68,7 +69,7 @@ class _Theme1State extends State<Theme1> {
       backgroundColor: const Color.fromRGBO(237, 215, 19, 1),
       backgroundImage: const AssetImage('asset/image/imageS.png'),
     )
-  ]
+  ];
   final List<Color> back3 = [
     const Color.fromRGBO(243, 255, 193, 0.40),
     const Color.fromRGBO(240, 248, 255, 0.40),
@@ -137,20 +138,21 @@ class _Theme1State extends State<Theme1> {
                     width: 120,
                     height: 120,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     width: 360,
                     child: Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: Text('What do you want to see on LearnVerse?',
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text(
+                          AppLocalizations.of(context)!.chooseTheme_title,
                           style: AllConstants.title),
                     ),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     width: 360,
                     child: Padding(
-                      padding: EdgeInsets.all(4.0),
+                      padding: const EdgeInsets.all(4.0),
                       child: Text(
-                          'Select at least 3 interest to personalize your LearnVerse experience.',
+                          AppLocalizations.of(context)!.chooseTheme_subtitle,
                           style: AllConstants.subtitle),
                     ),
                   ),
@@ -212,7 +214,6 @@ class _Theme1State extends State<Theme1> {
                                           child: Text(chooseTheme[index].theme,
                                               style: AllConstants.textBtn),
                                         ),
-
                                       ),
                                     ),
                                   ]),
@@ -295,10 +296,10 @@ class _Theme1State extends State<Theme1> {
                                         139, 255, 255, 255)),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: const Center(
+                              child: Center(
                                 child: Text(
-                                  'Next',
-                                  style: TextStyle(
+                                  AppLocalizations.of(context)!.chooseTheme_btn,
+                                  style: const TextStyle(
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),

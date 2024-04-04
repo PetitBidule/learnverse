@@ -1,6 +1,5 @@
 import 'dart:ffi';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:learnverse/Model/category_model.dart';
@@ -10,10 +9,10 @@ import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/authentification/sign_out.dart';
 import 'package:learnverse/view/dashboard_view.dart';
-import 'package:learnverse/view/homepage_view.dart';
 import 'package:learnverse/view/settings/settings_view.dart';
 import 'package:learnverse/widgets/list_viewHome.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ThemeScreen extends StatefulWidget {
   late dynamic createAccount;
@@ -55,22 +54,22 @@ class _ThemeScreenState extends State<ThemeScreen> {
             gap: 7,
             padding: const EdgeInsets.all(16),
             onTabChange: (index) => setState(() => _selectedIndex = index),
-            tabs: const [
+            tabs: [
               GButton(
                 icon: Icons.home,
-                text: 'Home',
+                text: AppLocalizations.of(context)!.navigationBarItem1,
               ),
               GButton(
                 icon: Icons.dashboard,
-                text: 'Dashboard',
+                text: AppLocalizations.of(context)!.navigationBarItem2,
               ),
               GButton(
                 icon: Icons.settings,
-                text: 'Settings',
+                text: AppLocalizations.of(context)!.navigationBarItem3,
               ),
               GButton(
                 icon: Icons.login_rounded,
-                text: 'Like',
+                text: AppLocalizations.of(context)!.navigationBarItem4,
               )
             ],
           ),
@@ -187,16 +186,16 @@ class _HomePage2State extends State<HomePage2> {
           const SizedBox(
             height: 20,
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 32),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Category of the Day',
+                  AppLocalizations.of(context)!.homeThemesTitle,
                   style: AllConstants.text,
                 ),
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [],
                 )
@@ -250,12 +249,12 @@ class _HomePage2State extends State<HomePage2> {
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 32, vertical: 8),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
             child: Row(
               children: [
                 Text(
-                  'Most Popular Categories',
+                  AppLocalizations.of(context)!.homeThemesMostPopularCategory,
                   style: AllConstants.text,
                 ),
               ],

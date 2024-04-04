@@ -6,6 +6,7 @@ import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/dashboard_view.dart';
 import 'package:lottie/lottie.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Categories extends StatefulWidget {
   final String title;
@@ -361,7 +362,8 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                 height: 18,
                               ),
                               Text(
-                                widget.synopsis,
+                                AppLocalizations.of(context)!
+                                    .categories_widget_text(widget.synopsis),
                                 style: AllConstants.text,
                               ),
                               TextField(

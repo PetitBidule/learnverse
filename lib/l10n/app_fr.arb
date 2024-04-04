@@ -1,0 +1,13 @@
+{
+    "homeThemesTitle": "Catégorie du jour",
+    "homeThemesMostPopularCategory": "Catégories les plus populaires",
+    "navigationBarItem1": "Accueil",
+    "navigationBarItem2": "Dashboard",
+    "navigationBarItem3": "Paramètres",
+    "navigationBarItem4": "Déconnexion",
+    "chooseTheme_title": "Que voulez-vous voir sur LearnVerse ?",
+    "chooseTheme_subtitle": "Sélectionnez au moins 3 centres d'intérêt pour personnaliser votre expérience LearnVerse.",
+    "chooseTheme_btn": "Suivant",
+    "categories_widget_text": "kiwi jaune {widgetSynopsis}"
+
+}

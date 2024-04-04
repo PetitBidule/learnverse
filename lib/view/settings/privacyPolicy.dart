@@ -66,7 +66,7 @@ class _PrivacypolicyState extends State<Privacypolicy> {
               color: Colors.black.withOpacity(0.1),
             ),
           ),
-         SafeArea(
+          SafeArea(
             child: SingleChildScrollView(
               child: Center(
                 child: Column(
@@ -77,52 +77,50 @@ class _PrivacypolicyState extends State<Privacypolicy> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(
-                      icon: const Icon(Icons.arrow_back),
-                      color: ConstantsColors.iconColors,
-                      onPressed: () => setState(() => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ThemeScreen()),
-                          )),
-                      iconSize: 36.0,
-                    ),
-                     Padding(
-                          padding: const EdgeInsets.only(right:48.0),
-                          child: GradientText(
-                                  'Privacy Policy',
-                                  style: const TextStyle(
-                                    fontSize: 36,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                              colors: const [
-                                  Color.fromARGB(255, 153, 118, 224),
-                                  Color.fromARGB(255, 153, 107, 156),
-                                  ],
+                            icon: const Icon(Icons.arrow_back),
+                            color: ConstantsColors.iconColors,
+                            onPressed: () => setState(() => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ThemeScreen()),
+                                )),
+                            iconSize: 36.0,
                           ),
-                        ),
-                       ],
-                     ),
-        
+                          Padding(
+                            padding: const EdgeInsets.only(right: 48.0),
+                            child: GradientText(
+                              'Privacy Policy',
+                              style: const TextStyle(
+                                fontSize: 36,
+                                fontWeight: FontWeight.w700,
+                              ),
+                              colors: const [
+                                Color.fromARGB(255, 153, 118, 224),
+                                Color.fromARGB(255, 153, 107, 156),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
+                    ),
                     const Divider(
                       indent: 10,
                       endIndent: 30,
                     ),
                     const SizedBox(height: 16.0),
                     const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        '''Learnverse built the LearnVerse app as a Freemium app. This SERVICE is provided by Learnverse at no cost and is intended for use as is.
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          '''Learnverse built the LearnVerse app as a Freemium app. This SERVICE is provided by Learnverse at no cost and is intended for use as is.
                     
 This page is used to inform visitors regarding our policies with the collection, use, and disclosure of Personal Information if anyone decided to use our Service.
                     
 If you choose to use our Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that we collect is used for providing and improving the Service. We will not use or share your information with anyone except as described in this Privacy Policy.
                     
 The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which are accessible at LearnVerse unless otherwise defined in this Privacy Policy.''',
-                      textAlign: TextAlign.center,
-                      style: AllConstants.text,
-
-                    ),
+                          textAlign: TextAlign.center,
+                          style: AllConstants.text,
+                        )),
                     const SizedBox(height: 16.0),
                     const Padding(
                       padding: EdgeInsets.all(8.0),
@@ -134,10 +132,10 @@ The app does use third-party services that may collect information used to ident
 Link to the privacy policy of third-party service providers used by the app:
 * [Google Play Services](https://www.google.com/policies/privacy/)
 * [AdMob](https://support.google.com/admob/answer/6128543?hl=en)''',
-                      textAlign: TextAlign.center,
-                      style: AllConstants.text,
-
-                    ),
+                        textAlign: TextAlign.center,
+                        style: AllConstants.text,
+                      ),
+                    )
                   ],
                 ),
               ),

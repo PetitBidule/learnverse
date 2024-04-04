@@ -1,0 +1,25 @@
+{
+   
+   "homeThemesTitle": "Category of the day",
+   "homeThemesMostPopularCategory": "most popular categories",
+   "navigationBarItem1": "Home",
+   "navigationBarItem2": "Dashboard",
+   "navigationBarItem3": "Settings",
+   "navigationBarItem4": "Disconnect",
+    "chooseTheme_title": "What do you want to see on LearnVerse?",
+    "@chooseTheme_title":{
+        "description": "What do you want to see on LearnVerse?"
+    },
+    "chooseTheme_subtitle": "Select at least 3 interest to personalize your LearnVerse experience.",
+    "chooseTheme_btn": "Next",
+    "categories_widget_text": "{widgetSynopsis}",
+    "@categories_widget_text":{
+        "description": "description of the category",
+        "placeholders": {
+            "widgetSynopsis": {
+                "type": "String"
+            }
+        }
+    }
+
+} 
