@@ -1,11 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:learnverse/main.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/authentification/register/language.dart';
-import 'package:learnverse/view/authentification/register/register_view.dart';
 import 'package:learnverse/view/authentification/login/login_view.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -75,33 +73,6 @@ class _ScreenLogState extends State<ScreenLog> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextButton(
-                onPressed: () {
-                  setState(() {
-                    // Navigator.pushReplacement<void, void>(
-                    //     context,
-                    //     MaterialPageRoute<void>(
-                    //       builder: (BuildContext context) => MyApp(
-                    //         language: 'en',
-                    //       ),
-                    //     ));
-                  });
-                },
-                child: const Text('en')),
-            TextButton(
-                onPressed: () {
-                  setState(() {
-                    // Navigator.pushReplacement<void, void>(
-                    //     context,
-                    //     MaterialPageRoute<void>(
-                    //       builder: (BuildContext context) => MyApp(
-                    //         language: 'fr',
-                    //       ),
-                    //     ));
-                    // Navigator.pushNamed(context, '/b');
-                  });
-                },
-                child: const Text('fr')),
             Image.asset('asset/image/logoLearnVerse.png'),
             const Text(
               'LearnVerse',

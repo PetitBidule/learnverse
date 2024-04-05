@@ -6,6 +6,7 @@ import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({
@@ -32,7 +33,8 @@ class _DashboardState extends State<Dashboard> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            content: const Text('Ce dernier sera supprimer définitivement '),
+            content: Text(
+                AppLocalizations.of(context)!.dashboard_screen_alertDialog),
             actions: [
               TextButton(
                   onPressed: () {
@@ -50,12 +52,14 @@ class _DashboardState extends State<Dashboard> {
                       }).then((_) => Navigator.pop(context));
                     });
                   },
-                  child: const Text('Delete')),
+                  child: Text(AppLocalizations.of(context)!
+                      .dashboard_screen_alertDialog_btn)),
               TextButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: const Text('Cancel'))
+                  child: Text(AppLocalizations.of(context)!
+                      .dashboard_screen_alertDialog_btn2))
             ],
           );
         });
@@ -121,7 +125,8 @@ class _DashboardState extends State<Dashboard> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const Text('Dashboard', style: AllConstants.title),
+                      Text(AppLocalizations.of(context)!.dashboard_screen_title,
+                          style: AllConstants.title),
                       SizedBox(
                         child: CircleAvatar(
                           backgroundImage: NetworkImage(
@@ -186,7 +191,6 @@ class _DashboardState extends State<Dashboard> {
                           height: 30,
                           decoration: BoxDecoration(
                             color: ConstantsColors.iconColors,
-                            boxShadow: const [],
                             border: Border.all(
                                 color:
                                     const Color.fromARGB(255, 255, 255, 255)),
@@ -246,9 +250,9 @@ class _DashboardState extends State<Dashboard> {
                                 var data = snapshot.data!.data();
                                 var firstName = data!['watchlist'];
                                 if (firstName.isEmpty) {
-                                  return const Center(
-                                    child: Text(
-                                        "vous n'avez encore rien enregistrée"),
+                                  return Center(
+                                    child: Text(AppLocalizations.of(context)!
+                                        .dashboard_emptyscreen),
                                   );
                                 } else {
                                   var data = snapshot.data!.data();

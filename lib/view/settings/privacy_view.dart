@@ -101,13 +101,14 @@ class Privacy extends StatelessWidget {
                         child: Center(
                           child: TextButton(
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ThemeScreen(
-                                          languageUser: 'fr',
-                                        )),
-                              );
+                              Navigator.pushReplacement<void, void>(
+                                  context,
+                                  MaterialPageRoute<void>(
+                                    builder: (BuildContext context) =>
+                                        ThemeScreen(
+                                      languageUser: 'fr',
+                                    ),
+                                  ));
                             },
                             child: const Text(
                               'Agree',

@@ -1,12 +1,8 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:learnverse/Model/category_model.dart';
 import 'package:learnverse/Model/dbHelper/display_data.dart';
 import 'package:learnverse/Model/dbHelper/mongo_db.dart';
-import 'package:learnverse/l10n/l10n.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/authentification/sign_out.dart';
@@ -111,7 +107,6 @@ List<String> classement = [
   'collectionFilm',
   'collectionMusic',
   'collectionGaming',
-  // "collectionUser"
 ];
 
 List<MostPopularCategory> categoriesComponents = [
@@ -197,10 +192,10 @@ class _HomePage2State extends State<HomePage2> {
                   AppLocalizations.of(context)!.homeThemesTitle,
                   style: AllConstants.text,
                 ),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [],
-                )
+                // const Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [],
+                // )
               ],
             ),
           ),

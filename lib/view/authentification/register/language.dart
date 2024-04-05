@@ -1,12 +1,8 @@
 import 'dart:ui';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:learnverse/main.dart';
 import 'package:learnverse/utils/constantsFont.dart';
-import 'package:learnverse/view/authentification/register/chooseTheme_view.dart';
-import 'package:learnverse/view/home/homeTheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
@@ -143,7 +139,6 @@ class _languageState extends State<language> {
                               child: GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    print('object $index');
                                     if (index == 0) {
                                       language = 'fr';
                                     } else if (index == 1) {

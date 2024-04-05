@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,10 +12,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:learnverse/l10n/l10n.dart';
 import 'package:learnverse/view/authentification/login/login_view.dart';
 import 'package:learnverse/view/authentification/register/chooseTheme_view.dart';
-import 'package:learnverse/view/authentification/register/language.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:learnverse/view/authentification/register/register_view.dart';
-import 'package:learnverse/view/home/homeTheme_view.dart';
 import 'package:learnverse/view/homepage_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -41,7 +37,7 @@ void main() async {
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) => runApp(MyApp(
-            languages: 'es',
+            languages: 'fr',
             isLanguage: false,
           )));
 }

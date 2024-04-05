@@ -7,6 +7,7 @@ import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/settings/privacy_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 //ignore: must_be_immutable
 class Theme1 extends StatefulWidget {
@@ -19,28 +20,34 @@ class Theme1 extends StatefulWidget {
 class _Theme1State extends State<Theme1> {
   late List<ThemeChoose> chooseTheme = [
     ThemeChoose(
-        theme: AppLocalizations.of(context)!.chooseTheme_item1,
-        backgroundColor: const Color.fromRGBO(243, 255, 193, 1),
-        backgroundImage: const AssetImage('asset/image/imageF2.png')),
+      theme: AppLocalizations.of(context)!.chooseTheme_item1,
+      backgroundColor: const Color.fromRGBO(243, 255, 193, 1),
+      backgroundImage: const AssetImage('asset/image/imageF2.png'),
+      isDispo: false,
+    ),
     ThemeChoose(
       theme: AppLocalizations.of(context)!.chooseTheme_item3,
       backgroundColor: const Color.fromRGBO(240, 248, 255, 1),
       backgroundImage: const AssetImage('asset/image/imageMan.png'),
+      isDispo: true,
     ),
     ThemeChoose(
       theme: AppLocalizations.of(context)!.chooseTheme_item5,
       backgroundColor: const Color.fromRGBO(0, 223, 255, 1),
       backgroundImage: const AssetImage('asset/image/imageG2.png'),
+      isDispo: true,
     ),
     ThemeChoose(
       theme: AppLocalizations.of(context)!.chooseTheme_item6,
       backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
       backgroundImage: const AssetImage('asset/image/imageM2.png'),
+      isDispo: true,
     ),
     ThemeChoose(
       theme: AppLocalizations.of(context)!.chooseTheme_item7,
       backgroundColor: const Color.fromRGBO(252, 188, 188, 1),
       backgroundImage: const AssetImage('asset/image/imageMu.png'),
+      isDispo: true,
     )
   ];
   late List<ThemeChoose> chooseTheme2 = [
@@ -48,26 +55,31 @@ class _Theme1State extends State<Theme1> {
       theme: AppLocalizations.of(context)!.chooseTheme_item2,
       backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       backgroundImage: const AssetImage('asset/image/imageT2.png'),
+      isDispo: false,
     ),
     ThemeChoose(
       theme: AppLocalizations.of(context)!.chooseTheme_item4,
       backgroundColor: const Color.fromRGBO(140, 178, 114, 1),
       backgroundImage: const AssetImage('asset/image/imageA2.png'),
+      isDispo: true,
     ),
     ThemeChoose(
       theme: 'Book',
       backgroundColor: const Color.fromRGBO(248, 231, 222, 1),
       backgroundImage: const AssetImage('asset/image/imageB2.png'),
+      isDispo: false,
     ),
     ThemeChoose(
       theme: AppLocalizations.of(context)!.chooseTheme_item8,
       backgroundColor: const Color.fromRGBO(255, 235, 202, 1),
       backgroundImage: const AssetImage('asset/image/imageL2.png'),
+      isDispo: false,
     ),
     ThemeChoose(
       theme: AppLocalizations.of(context)!.chooseTheme_item10,
       backgroundColor: const Color.fromRGBO(237, 215, 19, 1),
       backgroundImage: const AssetImage('asset/image/imageS.png'),
+      isDispo: true,
     )
   ];
   final List<Color> back3 = [
@@ -78,21 +90,59 @@ class _Theme1State extends State<Theme1> {
     const Color.fromRGBO(252, 188, 188, 0.40),
   ];
   int _valueSelected = 0;
-  //  x == list view & y == list generate
+  final List<String> _userFavoritesThemes = [];
+
+  Future addUserTheme() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc('theo.saint-amand@orange.fr')
+        .update({'favorite_theme': _userFavoritesThemes}).then(
+            (_) => Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Privacy()),
+                ));
+  }
+
   void _selectedTheme(int x, int y) {
     if (y == 0) {
-      if (chooseTheme[x].backgroundColor == back3[x]) {
-      } else {
+      if (chooseTheme[x].backgroundColor != back3[x] &&
+          chooseTheme[x].isDispo == true) {
         chooseTheme[x].backgroundColor = back3[x];
+        _userFavoritesThemes.add(chooseTheme[x].theme);
         _valueSelected++;
       }
     } else {
-      if (chooseTheme2[x].backgroundColor == back3[x]) {
-      } else {
+      if (chooseTheme2[x].backgroundColor != back3[x] &&
+          chooseTheme2[x].isDispo == true) {
         chooseTheme2[x].backgroundColor = back3[x];
+        _userFavoritesThemes.add(chooseTheme2[x].theme);
         _valueSelected++;
       }
     }
+  }
+
+  Widget _themeIsDispo(int x, int y) {
+    if (y == 0) {
+      if (chooseTheme[x].isDispo == false) {
+        return const Icon(
+          Icons.lock,
+          size: 52,
+          color: Color.fromARGB(188, 18, 18, 18),
+        );
+      }
+    } else {
+      if (chooseTheme2[x].isDispo == false) {
+        return const Icon(
+          Icons.lock,
+          size: 52,
+          color: Color.fromARGB(188, 18, 18, 18),
+        );
+      }
+    }
+    return const Icon(
+      Icons.face_unlock_rounded,
+      size: 0,
+    );
   }
 
   @override
@@ -191,50 +241,58 @@ class _Theme1State extends State<Theme1> {
                                   2,
                                   (index2) => Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              print('object $index2 $index');
-                                              // if (_valueSelected < 3) {
-                                              _selectedTheme(index, index2);
-                                              // }
-                                            });
-                                          },
-                                          child: Container(
-                                            width: 140,
-                                            height: 80,
-                                            decoration: BoxDecoration(
-                                              color: index2 == 0
-                                                  ? chooseTheme[index]
-                                                      .backgroundColor
-                                                  : chooseTheme2[index]
-                                                      .backgroundColor,
-                                              image: DecorationImage(
-                                                image: index2 == 0
+                                        child: Stack(children: [
+                                          GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                if (_valueSelected < 3) {
+                                                  _selectedTheme(index, index2);
+                                                }
+                                              });
+                                            },
+                                            child: Container(
+                                              width: 140,
+                                              height: 80,
+                                              decoration: BoxDecoration(
+                                                color: index2 == 0
                                                     ? chooseTheme[index]
-                                                        .backgroundImage
+                                                        .backgroundColor
                                                     : chooseTheme2[index]
-                                                        .backgroundImage,
-                                              ),
-                                              border: Border.all(
-                                                color: const Color.fromARGB(
-                                                    255, 255, 255, 255),
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                  index2 == 0
-                                                      ? chooseTheme[index].theme
+                                                        .backgroundColor,
+                                                image: DecorationImage(
+                                                  image: index2 == 0
+                                                      ? chooseTheme[index]
+                                                          .backgroundImage
                                                       : chooseTheme2[index]
-                                                          .theme,
-                                                  style: AllConstants.textBtn),
+                                                          .backgroundImage,
+                                                ),
+                                                border: Border.all(
+                                                  color: const Color.fromARGB(
+                                                      255, 255, 255, 255),
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Text(
+                                                    index2 == 0
+                                                        ? chooseTheme[index]
+                                                            .theme
+                                                        : chooseTheme2[index]
+                                                            .theme,
+                                                    style:
+                                                        AllConstants.textBtn),
+                                              ),
                                             ),
                                           ),
-                                        ),
+                                          Positioned(
+                                              top: 17,
+                                              left: 43,
+                                              child:
+                                                  _themeIsDispo(index, index2)),
+                                        ]),
                                       ))))),
                   Container(
                     width: double.infinity,
@@ -262,14 +320,9 @@ class _Theme1State extends State<Theme1> {
                           ),
                           TextButton(
                             onPressed: () {
-                              _valueSelected == 3
-                                  ? Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const Privacy()),
-                                    )
-                                  : null;
+                              if (_valueSelected == 3) {
+                                addUserTheme();
+                              }
                             },
                             child: Container(
                               width: 90,

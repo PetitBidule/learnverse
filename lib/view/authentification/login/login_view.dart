@@ -8,7 +8,6 @@ import 'package:learnverse/controller/auth_services.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/home/homeTheme_view.dart';
-import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
 class Login extends StatefulWidget {

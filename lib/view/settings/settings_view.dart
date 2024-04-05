@@ -7,6 +7,7 @@ import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Setting extends StatefulWidget {
   const Setting({super.key});
@@ -103,11 +104,14 @@ class _SettingState extends State<Setting> {
               height: size.height * 0.52,
               child: ListView(
                 children: <Widget>[
-                  const MailButton(
-                      textConnexion: 'Mot de passe',
+                  MailButton(
+                      textConnexion:
+                          AppLocalizations.of(context)!.settings_screen_btn1,
                       icon: FontAwesomeIcons.key),
-                  const MailButton(
-                      textConnexion: 'Support', icon: FontAwesomeIcons.headset),
+                  MailButton(
+                      textConnexion:
+                          AppLocalizations.of(context)!.settings_screen_btn2,
+                      icon: FontAwesomeIcons.headset),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 12.0, vertical: 8.0),
@@ -127,22 +131,23 @@ class _SettingState extends State<Setting> {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              FaIcon(
+                              const FaIcon(
                                 FontAwesomeIcons.arrowRightFromBracket,
                                 color: ConstantsColors.blackColors,
                               ),
                               Text(
-                                'Delete Account',
-                                style: TextStyle(
+                                AppLocalizations.of(context)!
+                                    .settings_screen_btn3,
+                                style: const TextStyle(
                                     color: ConstantsColors.blackColors,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
                                     letterSpacing: 0.8),
                               ),
-                              FaIcon(
+                              const FaIcon(
                                 size: 16,
                                 FontAwesomeIcons.chevronRight,
                                 color: ConstantsColors.blackColors,

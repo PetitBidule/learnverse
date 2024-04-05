@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
-import 'package:learnverse/view/home/homeTheme_view.dart';
 import 'package:learnverse/view/authentification/register/verify_email.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -77,7 +76,7 @@ class _AccountState extends State<Account> {
     if (emailIsValid == true) {
       return null;
     } else {
-      return "Votre Email n'est pas valide";
+      return AppLocalizations.of(context)!.registe_screen_error;
     }
   }
 
@@ -85,7 +84,7 @@ class _AccountState extends State<Account> {
     if (password != null && password.length >= 8) {
       return null;
     } else {
-      return "Votre mot de passe n'est pas bien conforme";
+      return AppLocalizations.of(context)!.registe_screen_error1;
     }
   }
 
@@ -93,7 +92,7 @@ class _AccountState extends State<Account> {
     if (password == cpassword) {
       return null;
     } else {
-      return "Votre mot de passe n'est pas bien confirmé";
+      return AppLocalizations.of(context)!.registe_screen_error2;
     }
   }
 
@@ -151,9 +150,6 @@ class _AccountState extends State<Account> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 10,
-            ),
             Padding(
               padding: const EdgeInsets.only(bottom: 26.0),
               child: Row(
@@ -203,11 +199,13 @@ class _AccountState extends State<Account> {
                                       : null,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           decoration: InputDecoration(
-                            suffixIcon: _labelText[index] == 'Password'
-                                ? const Tooltip(
-                                    message:
-                                        'Le mot de passe doit contenit minimum 8 caracteres',
-                                    child: Icon(
+                            suffixIcon: _labelText[index] ==
+                                    AppLocalizations.of(context)!
+                                        .registe_screen_placeholder_password
+                                ? Tooltip(
+                                    message: AppLocalizations.of(context)!
+                                        .registe_screen_tooltips,
+                                    child: const Icon(
                                       Icons.info,
                                       color: ConstantsColors.iconColors,
                                     ),
@@ -246,7 +244,9 @@ class _AccountState extends State<Account> {
                                 signUp();
                               });
                             },
-                            child: const Text('Sign In',
+                            child: Text(
+                                AppLocalizations.of(context)!
+                                    .registe_screen_btn,
                                 style: AllConstants.textBtn)),
                       ),
                     ),
