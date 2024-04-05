@@ -1,0 +1,46 @@
+{
+   "homeThemesTitle": "Categoría del día",
+   "homeThemesMostPopularCategory": "categorías más populares",
+   "navigationBarItem1": "Inicio",
+   "navigationBarItem2": "Tablero",
+   "navigationBarItem3": "Configuración",
+   "navigationBarItem4": "Desconectar",
+   "chooseTheme_title": "¿Qué quieres ver en LearnVerse?",
+   "@chooseTheme_title":{
+       "description": "¿Qué quieres ver en LearnVerse?"
+   },
+   "chooseTheme_subtitle": "Selecciona al menos 3 intereses para personalizar tu experiencia en LearnVerse.",
+   "chooseTheme_btn": "Siguiente",
+   "categories_widget_text": "{widgetSynopsis}",
+   "@categories_widget_text":{
+       "description": "descripción de la categoría",
+       "placeholders": {
+           "widgetSynopsis": {
+               "type": "String"
+           }
+       }
+   },
+   "sign": "Empezar",
+   "login": "Iniciar sesión",
+   "registe_screen_title": "Registrarse",
+   "registe_screen_subtitle": "Crea tu cuenta",
+   "registe_screen_placeholder_pseudo": "Pseudo",
+   "registe_screen_placeholder_email": "Correo electrónico",
+   "registe_screen_placeholder_password": "Contraseña",
+   "registe_screen_placeholder_cpassword": "Confirmar contraseña",
+    "chooseTheme_title": "¿Qué quieres ver en LearnVerse?",
+    "chooseTheme_subtitle": "Selecciona al menos 3 intereses para personalizar tu experiencia en LearnVerse.",
+    "chooseTheme_item1":"Comida",
+    "chooseTheme_item2":"Deporte",
+    "chooseTheme_item3":"Manga",
+    "chooseTheme_item4":"Anime",
+    "chooseTheme_item5":"Videojuegos",
+    "chooseTheme_item6":"Películas",
+    "chooseTheme_item7":"Música",
+    "chooseTheme_item8":"Animales",
+    "chooseTheme_item9":"Música",
+    "chooseTheme_item10":"Series",
+    "chooseTheme_selectTheme": "seleccionado",
+    "chooseTheme_btn": "Siguiente",
+   "privacyPolicy":"Términos y condiciones ¡Bienvenido a Learnverse! Estos términos y condiciones delinean las reglas y regulaciones para el uso del sitio web de LearnVerse, ubicado en learnverse.fr. Al acceder a este sitio web, asumimos que acepta estos términos y condiciones. No continúe utilizando Learnverse si no acepta todas las condiciones y términos indicados en esta página. La siguiente terminología se aplica a estos Términos y Condiciones, Declaración de Privacidad y Aviso de Descargo de Responsabilidad y todos los Acuerdos: 'Cliente', 'Usted' y 'Su' se refieren a usted, la persona que inicia sesión en este sitio web y cumple con los términos y condiciones de la Compañía. 'La Compañía', 'Nosotros', 'Nosotros', 'Nuestro' y 'Nosotros', se refiere a nuestra Compañía. 'Parte', 'Partes' o 'Nosotros', se refiere tanto al Cliente como a nosotros mismos. Todos los términos se refieren a la oferta, aceptación y consideración del pago necesario para llevar a cabo el proceso de nuestra asistencia al Cliente de la manera más adecuada con el fin expreso de satisfacer las necesidades del Cliente en cuanto a la provisión de los servicios declarados de la Compañía, de acuerdo con y sujeto a la legislación vigente de fr. Cualquier uso de la terminología anterior u otras palabras en singular, plural, mayúsculas y/o él/ella o ellos, se toma como intercambiable y, por lo tanto, como referente al mismo. Licencia A menos que se indique lo contrario, LearnVerse y/o sus licenciantes poseen los derechos de propiedad intelectual de todo el material en Learnverse. Todos los derechos de propiedad intelectual están reservados. Puede acceder a esto desde Learnverse para su propio uso personal sujeto a las restricciones establecidas en estos términos y condiciones. Usted no debe: * Republicar material de Learnverse * Vender, alquilar o sublicenciar material de Learnverse * Reproducir, duplicar o copiar material de Learnverse * Redistribuir contenido de Learnverse Este Acuerdo comenzará en la fecha de la presente. Nuestros Términos y Condiciones fueron creados con la ayuda del Generador de Términos y Condiciones Gratuitos. Partes de este sitio web ofrecen la oportunidad para que los usuarios publiquen y intercambien opiniones e información en ciertas áreas del sitio web. LearnVerse no filtra, edita, publica ni revisa los Comentarios antes de su presencia en el sitio web. Los comentarios no reflejan los puntos de vista y opiniones de LearnVerse, sus agentes y/o afiliados. Los comentarios reflejan los puntos de vista y opiniones de la persona que publica sus puntos de vista y opiniones. En la medida en que lo permitan las leyes aplicables, LearnVerse no será responsable de los Comentarios o de ninguna responsabilidad, daño o gasto causado y/o sufrido como resultado de cualquier uso y/o publicación y/o aparición de los Comentarios en este sitio web. LearnVerse se reserva el derecho de monitorear todos los Comentarios y de eliminar cualquier Comentario que pueda considerarse inapropiado, ofensivo o que incumpla estas Condiciones y Términos. Usted garantiza y declara que: * Tiene derecho a publicar los Comentarios en nuestro sitio web y tiene todas las licencias y consentimientos necesarios para hacerlo; * Los Comentarios no invaden ningún derecho de propiedad intelectual, incluidos, entre otros, el derecho de autor, patente o marca registrada de cualquier tercero; * Los Comentarios no contienen ningún material difamatorio, calumnioso, ofensivo, indecente o ilegal que sea una invasión de la privacidad * Los Comentarios no se utilizarán para solicitar o promover negocios o costumbres o presentar actividades comerciales o"
+}

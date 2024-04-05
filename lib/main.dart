@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,23 +7,23 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:learnverse/Model/dbHelper/mongo_db.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:learnverse/l10n/l10n.dart';
 // import 'package:device_preview/device_preview.dart';
 import 'package:learnverse/firebase_options.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:learnverse/pubs/admob.dart';
+import 'package:learnverse/l10n/l10n.dart';
+import 'package:learnverse/view/authentification/login/login_view.dart';
 import 'package:learnverse/view/authentification/register/chooseTheme_view.dart';
 import 'package:learnverse/view/authentification/register/language.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:learnverse/view/authentification/register/register_view.dart';
 import 'package:learnverse/view/home/homeTheme_view.dart';
 import 'package:learnverse/view/homepage_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-// import 'package:localization_i18n_arb/l10n/l10n.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Future.delayed(const Duration(seconds: 2));
-  unawaited(MobileAds.instance.initialize());
+  // unawaited(MobileAds.instance.initialize());
 
   FlutterNativeSplash.remove();
 
@@ -39,30 +40,42 @@ void main() async {
 
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((_) => runApp(const MyApp()));
+      .then((_) => runApp(MyApp(
+            languages: 'es',
+            isLanguage: false,
+          )));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  String languages;
+  bool isLanguage = false;
+  MyApp({super.key, required this.languages, required this.isLanguage});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        // useInheritedMediaQuery: true,
-        // locale: DevicePreview.locale(context),
-        // builder: DevicePreview.appBuilder,
-        // theme: ThemeData(
-        //     elevatedButtonTheme:  ElevatedButtonThemeData(
-        //         style: ButtonStyle(backgroundColor: MaterialStateProperty<Color> ConstantsColors.iconColors))),
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: L10n.all,
-        locale: const Locale('fr'),
-        debugShowCheckedModeBanner: false,
-        home: const AdMob());
+      // useInheritedMediaQuery: true,
+      // locale: DevicePreview.locale(context),
+      // builder: DevicePreview.appBuilder,
+      // theme: ThemeData(
+      //     elevatedButtonTheme:  ElevatedButtonThemeData(
+      //         style: ButtonStyle(backgroundColor: MaterialStateProperty<Color> ConstantsColors.iconColors))),
+      locale: Locale(languages),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: L10n.all,
+      // showPerformanceOverlay: true,
+      debugShowCheckedModeBanner: false,
+      // checkerboardRasterCacheImages: true,
+      home: isLanguage == false ? const Theme1() : const Account(),
+      routes: {
+        '/a': (BuildContext context) => const Account(),
+        '/b': (BuildContext context) => const Login()
+      },
+    );
   }
 }

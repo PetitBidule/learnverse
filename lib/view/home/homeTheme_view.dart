@@ -1,10 +1,12 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:learnverse/Model/category_model.dart';
 import 'package:learnverse/Model/dbHelper/display_data.dart';
 import 'package:learnverse/Model/dbHelper/mongo_db.dart';
+import 'package:learnverse/l10n/l10n.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/authentification/sign_out.dart';
@@ -15,11 +17,11 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ThemeScreen extends StatefulWidget {
-  late dynamic createAccount;
   String? pseudoUser;
   int? incrementUser;
+  String? languageUser;
   ThemeScreen(
-      {super.key, this.createAccount, this.pseudoUser, this.incrementUser});
+      {super.key, this.pseudoUser, this.incrementUser, this.languageUser});
 
   @override
   State<ThemeScreen> createState() => _ThemeScreenState();
@@ -219,7 +221,8 @@ class _HomePage2State extends State<HomePage2> {
                               builder: (context) => DisplayDataCategories(
                                 snapshot2: allCollection[index],
                                 collectionChoose: classement[index],
-                                incrementCategory: widget.increment!,
+                                // a changer par widget.incrementUser!
+                                incrementCategory: 1,
                               ),
                             ),
                           ),
@@ -228,7 +231,8 @@ class _HomePage2State extends State<HomePage2> {
                             snapshot2: allCollection[index],
                             nameField: allNameFields[index],
                             collectionChoose: classement[index],
-                            incrementCategory: widget.increment!,
+                            // a changer par widget.incrementUser!
+                            incrementCategory: 1,
                             // nameField: allNameFields[index],
                           ),
                         );

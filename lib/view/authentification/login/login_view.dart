@@ -82,7 +82,9 @@ class _LoginState extends State<Login> {
     }).then((_) => Navigator.pushReplacement<void, void>(
             context,
             MaterialPageRoute<void>(
-              builder: (BuildContext context) => ThemeScreen(),
+              builder: (BuildContext context) => ThemeScreen(
+                languageUser: 'fr',
+              ),
             )));
   }
 
@@ -266,6 +268,7 @@ class _LoginState extends State<Login> {
                         MaterialPageRoute(
                             builder: (context) => ThemeScreen(
                                   incrementUser: incrementValue,
+                                  languageUser: 'fr',
                                 )),
                       );
                     },

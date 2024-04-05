@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/view/authentification/register/chooseTheme_view.dart';
-import 'package:learnverse/view/authentification/register/language.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -41,7 +40,7 @@ class _VerifyEmailPasswordState extends State<VerifyEmailPassword> {
     if (FirebaseAuth.instance.currentUser!.emailVerified) {
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) {
-        return const language();
+        return const Theme1();
       }));
       _timer.cancel();
     }

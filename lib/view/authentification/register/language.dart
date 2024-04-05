@@ -1,11 +1,12 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:learnverse/utils/constantsColors.dart';
+import 'package:learnverse/main.dart';
 import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/authentification/register/chooseTheme_view.dart';
-import 'package:learnverse/view/home/hometheme_view.dart';
+import 'package:learnverse/view/home/homeTheme_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
@@ -17,37 +18,32 @@ class language extends StatefulWidget {
 }
 
 class _languageState extends State<language> {
-  final List<Image> image1 = [
-    Image.asset('asset/image/france.jpg'),
-    Image.asset('asset/image/pizz2.png'),
+  final List<String> languageChooseBackground = [
+    'asset/image/france.jpg',
+    'asset/image/pizz2.png',
+    'asset/image/usa.png',
+    'asset/image/spain.jpg',
   ];
-
-  final List<Image> image2 = [
-    Image.asset('asset/image/usa.png'),
-    Image.asset('asset/image/spain.jpg'),
-  ];
-
-  List<String> theme2 = [
+  List<String> languageChoose = [
+    'Français',
+    'Allemand',
     'English',
     'Español',
   ];
-
-  List<String> theme1 = [
-    'Français',
-    'Italiano',
-  ];
-  final List<Color> back1 = [
-    const Color.fromARGB(255, 255, 255, 255),
-    const Color.fromARGB(255, 255, 255, 255),
-  ];
-  final List<Color> back2 = [
-    const Color.fromARGB(255, 255, 255, 255),
-    const Color.fromARGB(255, 255, 255, 255),
-  ];
-  final List<Color> back3 = [
-    const Color.fromARGB(123, 255, 255, 255),
-    const Color.fromARGB(123, 255, 255, 255),
-  ];
+  String language = 'en';
+  int? test = 1;
+  // final List<Color> back1 = [
+  //   const Color.fromARGB(255, 255, 255, 255),
+  //   const Color.fromARGB(255, 255, 255, 255),
+  // ];
+  // final List<Color> back2 = [
+  //   const Color.fromARGB(255, 255, 255, 255),
+  //   const Color.fromARGB(255, 255, 255, 255),
+  // ];
+  // final List<Color> back3 = [
+  //   const Color.fromARGB(123, 255, 255, 255),
+  //   const Color.fromARGB(123, 255, 255, 255),
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +119,7 @@ class _languageState extends State<language> {
                       child: SizedBox(
                         width: 400,
                         child: Padding(
-                          padding: EdgeInsets.all(4.0),
+                          padding: EdgeInsets.all(16.0),
                           child: Text(
                             'Select language',
                             style: TextStyle(
@@ -135,85 +131,53 @@ class _languageState extends State<language> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 400,
-                      child: ListView.builder(
-                        itemCount: 2,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 10.0),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        print('bonjour');
-                                      });
-                                    },
-                                    child: Stack(children: [
-                                      Positioned(
-                                        child: Container(
-                                          width: 180,
-                                          height: 180,
-                                          decoration: BoxDecoration(
-                                            color: back1[index],
-                                            image: DecorationImage(
-                                              image: image1[index].image,
-                                            ),
-                                            border: Border.all(
-                                              color: const Color.fromARGB(
-                                                  255, 255, 255, 255),
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              theme1[index],
-                                              style: const TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 0, 0, 0),
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 18,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ]),
-                                  ),
-                                ),
-                                Container(
-                                  width: 180,
-                                  height: 180,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: SizedBox(
+                        height: 425,
+                        child: GridView.count(
+                          crossAxisCount: 2,
+                          children: List.generate(4, (index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    print('object $index');
+                                    if (index == 0) {
+                                      language = 'fr';
+                                    } else if (index == 1) {
+                                      language = 'de';
+                                    } else if (index == 2) {
+                                      language = 'en';
+                                    } else {
+                                      language = 'es';
+                                    }
+                                  });
+                                },
+                                child: Container(
                                   decoration: BoxDecoration(
-                                    color: back2[index],
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10),
                                     image: DecorationImage(
-                                      image: image2[index].image,
+                                      image: AssetImage(
+                                          languageChooseBackground[index]),
+                                      fit: BoxFit.contain,
                                     ),
-                                    border: Border.all(
-                                      color: const Color.fromARGB(
-                                          255, 255, 255, 255),
-                                    ),
-                                    borderRadius: BorderRadius.circular(20),
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      theme2[index],
-                                      style: const TextStyle(
+                                  child: Center(
+                                      child: Text(
+                                    languageChoose[index],
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w700,
                                         color: Color.fromARGB(255, 0, 0, 0),
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ),
+                                        fontSize: 24),
+                                  )),
                                 ),
-                              ]);
-                        },
+                              ),
+                            );
+                          }),
+                        ),
                       ),
                     ),
                     Padding(
@@ -230,11 +194,14 @@ class _languageState extends State<language> {
                         ),
                         child: Center(
                           child: TextButton(
-                            onPressed: () {
-                              Navigator.push(
+                            onPressed: () async {
+                              Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const Theme1()),
+                                    builder: (context) => MyApp(
+                                          isLanguage: true,
+                                          languages: language,
+                                        )),
                               );
                             },
                             child: const Text(
