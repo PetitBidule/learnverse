@@ -1,0 +1,67 @@
+{
+   "homeThemesTitle": "Kategorie des Tages",
+   "homeThemesMostPopularCategory": "beliebteste Kategorien",
+   "navigationBarItem1": "Startseite",
+   "navigationBarItem2": "Dashboard",
+   "navigationBarItem3": "Einstellungen",
+   "navigationBarItem4": "Trennen",
+   "chooseTheme_title": "Was möchtest du auf LearnVerse sehen?",
+   "@chooseTheme_title":{
+       "description": "Was möchtest du auf LearnVerse sehen?"
+   },
+   "chooseTheme_subtitle": "Wählen Sie mindestens 3 Interessen aus, um Ihre LearnVerse-Erfahrung zu personalisieren.",
+   "chooseTheme_btn": "Weiter",
+   "categories_widget_text": "{widgetSynopsis}",
+   "@categories_widget_text":{
+       "description": "Beschreibung der Kategorie",
+       "placeholders": {
+           "widgetSynopsis": {
+               "type": "String"
+           }
+       }
+   },
+   "sign": "Loslegen",
+   "login": "Anmelden",
+   "registe_screen_title": "Anmelden",
+   "registe_screen_subtitle": "Erstellen Sie Ihr Konto",
+   "registe_screen_placeholder_pseudo": "Pseudo",
+   "registe_screen_placeholder_email": "E-Mail",
+   "registe_screen_placeholder_password": "Passwort",
+   "registe_screen_placeholder_cpassword": "Passwort bestätigen",
+    "registe_screen_btn": "Anmelden",
+    "registe_screen_tooltips": "Das Passwort muss mindestens 8 Zeichen enthalten",
+    "registe_screen_error": "Ihre E-Mail ist ungültig",
+    "registe_screen_error1": "Ihr Passwort ist nicht korrekt",
+    "registe_screen_error2": "Ihr Passwort wurde nicht ordnungsgemäß bestätigt",
+   "chooseTheme_title": "Was möchten Sie auf LearnVerse sehen?",
+    "chooseTheme_subtitle": "Wählen Sie mindestens 3 Interessen aus, um Ihre LearnVerse-Erfahrung zu personalisieren.",
+    "chooseTheme_item1":"Essen",
+    "chooseTheme_item2":"Sport",
+    "chooseTheme_item3":"Manga",
+    "chooseTheme_item4":"Anime",
+    "chooseTheme_item5":"Gaming",
+    "chooseTheme_item6":"Film",
+    "chooseTheme_item7":"Musik",
+    "chooseTheme_item8":"Tiere",
+    "chooseTheme_item9":"Musik",
+    "chooseTheme_item10":"Serien",
+    "chooseTheme_selectTheme": "ausgewählt",
+    "chooseTheme_btn": "Weiter",
+    "verifyEmail_screen_title": "Überprüfen Sie Ihren Posteingang",
+    "verifyEmail_screen_subtitle": "Um Ihre E-Mail zu bestätigen, klicken Sie auf den Link, den wir gesendet haben an",
+    "verifyEmail_screen_btn": "E-Mail-App öffnen",
+
+    "privacy_screen_title": "Bedingungen &",
+    "privacy_screen_btn": "Zustimmen",
+
+    "settings_screen_btn1": "Passwort",
+    "settings_screen_btn2": "Support",
+    "settings_screen_btn3": "Konto löschen",
+
+    "dashboard_screen_title": "Dashboard",
+    "dashboard_emptyscreen": "Sie haben noch nichts registriert",
+    "dashboard_screen_alertDialog": "Letzteres wird dauerhaft gelöscht",
+    "dashboard_screen_alertDialog_btn": "Löschen",
+    "dashboard_screen_alertDialog_btn2": "Abbrechen",
+   "privacyPolicy":"Nutzungsbedingungen Willkommen bei Learnverse! Diese Nutzungsbedingungen legen die Regeln und Vorschriften für die Nutzung der Website von LearnVerse fest, die sich unter learnverse.fr befindet. Durch den Zugriff auf diese Website gehen wir davon aus, dass Sie diese Nutzungsbedingungen akzeptieren. Verwenden Sie Learnverse nicht weiter, wenn Sie nicht allen auf dieser Seite angegebenen Bedingungen und Konditionen zustimmen. Die folgende Terminologie gilt für diese Allgemeinen Geschäftsbedingungen, die Datenschutzerklärung und den Haftungsausschluss und alle Vereinbarungen: 'Kunde', 'Sie' und 'Ihr' beziehen sich auf Sie, die Person, die sich auf dieser Website anmeldet und die Bedingungen und Konditionen des Unternehmens einhält. 'Das Unternehmen', 'Wir', 'Uns', 'Unser' und 'Uns', bezieht sich auf unser Unternehmen. 'Partei', 'Parteien' oder 'Uns', bezieht sich sowohl auf den Kunden als auch auf uns selbst. Alle Begriffe beziehen sich auf das Angebot, die Annahme und die Berücksichtigung der Zahlung, die erforderlich ist, um den Prozess unserer Unterstützung für den Kunden auf die geeignetste Weise mit dem ausdrücklichen Zweck der Erfüllung der Bedürfnisse des Kunden in Bezug auf die Bereitstellung der angegebenen Dienstleistungen des Unternehmens gemäß und vorbehaltlich des geltenden Rechts von fr durchzuführen. Jegliche Verwendung der oben genannten Terminologie oder anderer Wörter im Singular, Plural, Großschreibung und/oder er/sie oder sie, wird als austauschbar angesehen und daher als auf dasselbe Bezug nehmend. Lizenz Sofern nicht anders angegeben, besitzt LearnVerse und/oder seine Lizenzgeber die geistigen Eigentumsrechte an allem Material auf Learnverse. Alle geistigen Eigentumsrechte sind vorbehalten. Sie können auf diese von Learnverse aus für Ihre eigene persönliche Nutzung zugreifen, unterliegen jedoch den in diesen Allgemeinen Geschäftsbedingungen festgelegten Beschränkungen. Sie dürfen nicht: * Material von Learnverse erneut veröffentlichen * Material von Learnverse verkaufen, vermieten oder unterlizenzieren * Material von Learnverse vervielfältigen, duplizieren oder kopieren * Inhalt von Learnverse neu verteilen Diese Vereinbarung tritt mit Datum in Kraft. Unsere Allgemeinen Geschäftsbedingungen wurden mit Hilfe des kostenlosen Allgemeinen Geschäftsbedingungsgenerators erstellt. Teile dieser Website bieten Benutzern die Möglichkeit, Meinungen und Informationen in bestimmten Bereichen der Website zu veröffentlichen und auszutauschen. LearnVerse filtert, bearbeitet, veröffentlicht oder überprüft Kommentare nicht vor ihrem Erscheinen auf der Website. Kommentare spiegeln nicht die Ansichten und Meinungen von LearnVerse, seinen Agenten und/oder verbundenen Unternehmen wider. Kommentare spiegeln die Ansichten und Meinungen der Person wider, die ihre Ansichten und Meinungen veröffentlicht. Soweit dies nach geltendem Recht zulässig ist, haftet LearnVerse nicht für Kommentare oder für Haftung, Schäden oder Kosten, die durch oder im Zusammenhang mit der Verwendung und/oder Veröffentlichung und/oder dem Erscheinen der Kommentare auf dieser Website verursacht wurden und/oder erlitten wurden. LearnVerse behält sich das Recht vor, alle Kommentare zu überwachen und Kommentare zu entfernen, die als unangemessen, beleidigend oder Verstöße gegen diese Allgemeinen Geschäftsbedingungen angesehen werden können. Sie garantieren und erklären, dass: * Sie berechtigt sind, die Kommentare auf unserer Website zu veröffentlichen, und alle erforderlichen Lizenzen und Zustimmungen dazu haben; * Die Kommentare greifen nicht in irgendein geistiges Eigentumsrecht, einschließlich, aber nicht beschränkt auf Urheberrecht, Patent oder Markenrecht, eines Dritten ein; * Die Kommentare enthalten kein diffamierendes, verleumderisches, beleidigendes, anstößiges, anstößiges oder anderweitig rechtswidriges Material, das eine Verletzung der Privatsphäre darstellt * Die Kommentare werden nicht dazu verwendet, Geschäfte oder Kunden zu werben oder kommerzielle Aktivitäten oder illegale Aktivitäten vorzustellen. Hiermit gewähren Sie LearnVerse eine nicht exklusive Lizenz zur Nutzung, Vervielfältigung, Bearbeitung und Autorisierung anderer zur Nutzung, Vervielfältigung und Bearbeitung Ihrer Kommentare in jeder Form, in jedem Format oder Medium. iFrames Ohne vorherige Genehmigung und schriftliche Erlaubnis dürfen Sie keine Rahmen um unsere Webseiten erstellen, die die visuelle Präsentation oder das Erscheinungsbild unserer Website in irgendeiner Weise verändern. Haftung für Inhalte Wir haften nicht für Inhalte, die auf Ihrer Website erscheinen. Sie erklären sich damit einverstanden, uns gegen alle Ansprüche zu verteidigen, die auf Ihrer Website erhoben werden. Auf keiner Website"
+}

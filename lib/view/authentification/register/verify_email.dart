@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/view/authentification/register/chooseTheme_view.dart';
-import 'package:learnverse/view/authentification/register/language.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class VerifyEmailPassword extends StatefulWidget {
   const VerifyEmailPassword({super.key});
@@ -41,7 +41,7 @@ class _VerifyEmailPasswordState extends State<VerifyEmailPassword> {
     if (FirebaseAuth.instance.currentUser!.emailVerified) {
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) {
-        return const language();
+        return const Theme1();
       }));
       _timer.cancel();
     }
@@ -135,9 +135,9 @@ class _VerifyEmailPasswordState extends State<VerifyEmailPassword> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'Check your inbox',
-                  style: TextStyle(
+                Text(
+                  AppLocalizations.of(context)!.verifyEmail_screen_title,
+                  style: const TextStyle(
                       color: ConstantsColors.iconColors,
                       fontSize: 24,
                       fontWeight: FontWeight.w700),
@@ -146,7 +146,7 @@ class _VerifyEmailPasswordState extends State<VerifyEmailPassword> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 90.0, vertical: 20),
                   child: Text(
-                      'To confirm your email, tap on the link we sent to ${user.email}',
+                      '${AppLocalizations.of(context)!.verifyEmail_screen_subtitle} ${user.email}',
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: ConstantsColors.iconColors,
@@ -164,9 +164,9 @@ class _VerifyEmailPasswordState extends State<VerifyEmailPassword> {
                     onPressed: () {
                       _sendEmail();
                     },
-                    child: const Text(
-                      'Open Email App',
-                      style: TextStyle(
+                    child: Text(
+                      AppLocalizations.of(context)!.verifyEmail_screen_btn,
+                      style: const TextStyle(
                           color: ConstantsColors.blackColors,
                           fontSize: 16,
                           fontWeight: FontWeight.w400,

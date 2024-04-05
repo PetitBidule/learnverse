@@ -3,15 +3,20 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
-import 'package:learnverse/view/authentification/register/register_view.dart';
+import 'package:learnverse/view/authentification/register/language.dart';
 import 'package:learnverse/view/authentification/login/login_view.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
-class ScreenLog extends StatelessWidget {
+class ScreenLog extends StatefulWidget {
   const ScreenLog({super.key});
 
+  @override
+  State<ScreenLog> createState() => _ScreenLogState();
+}
+
+class _ScreenLogState extends State<ScreenLog> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size.width * 0.10;
@@ -80,15 +85,15 @@ class ScreenLog extends StatelessWidget {
               height: size,
             ),
             ButtonConnexion(
-              textConnexion: 'Sign Up',
+              textConnexion: AppLocalizations.of(context)!.sign,
               isConnexion: true,
-              pageRoutesConnexion: const Account(),
+              pageRoutesConnexion: const language(),
             ),
             const SizedBox(
               height: 30,
             ),
             ButtonConnexion(
-              textConnexion: 'Log In  ',
+              textConnexion: AppLocalizations.of(context)!.login,
               isConnexion: false,
               pageRoutesConnexion: const Login(),
             ),

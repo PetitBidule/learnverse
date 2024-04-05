@@ -23,32 +23,35 @@ class ButtonConnexion extends StatefulWidget {
 class _ButtonConnexionState extends State<ButtonConnexion> {
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-        onPressed: () {
-          setState(() {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => widget.pageRoutesConnexion),
-            );
-          }); // routes
-        },
-        style: ButtonStyle(
-            padding: MaterialStateProperty.all<EdgeInsets>(
-                const EdgeInsets.symmetric(horizontal: 80, vertical: 15)),
-            shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(22.0),
-                    side:
-                        const BorderSide(color: ConstantsColors.iconColors)))),
-        child: Text(
-          widget.textConnexion,
-          style: const TextStyle(
-              color: ConstantsColors.iconColors,
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              letterSpacing: 0.8),
-        ));
+    return SizedBox(
+      width: 270,
+      child: TextButton(
+          onPressed: () {
+            setState(() {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => widget.pageRoutesConnexion),
+              );
+            }); // routes
+          },
+          style: ButtonStyle(
+              padding: MaterialStateProperty.all<EdgeInsets>(
+                  const EdgeInsets.symmetric(horizontal: 80, vertical: 15)),
+              shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(22.0),
+                      side: const BorderSide(
+                          color: ConstantsColors.iconColors)))),
+          child: Text(
+            widget.textConnexion,
+            style: const TextStyle(
+                color: ConstantsColors.iconColors,
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                letterSpacing: 0.8),
+          )),
+    );
   }
 }
 
@@ -75,6 +78,7 @@ class _LogInButtonState extends State<LogInButton> {
             context,
             MaterialPageRoute(
                 builder: (context) => ThemeScreen(
+                      languageUser: 'fr',
                       incrementUser: widget.currentPage,
                     )),
           );

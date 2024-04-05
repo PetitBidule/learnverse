@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:learnverse/Model/category_model.dart';
@@ -15,11 +13,11 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ThemeScreen extends StatefulWidget {
-  late dynamic createAccount;
   String? pseudoUser;
   int? incrementUser;
+  String? languageUser;
   ThemeScreen(
-      {super.key, this.createAccount, this.pseudoUser, this.incrementUser});
+      {super.key, this.pseudoUser, this.incrementUser, this.languageUser});
 
   @override
   State<ThemeScreen> createState() => _ThemeScreenState();
@@ -109,7 +107,6 @@ List<String> classement = [
   'collectionFilm',
   'collectionMusic',
   'collectionGaming',
-  // "collectionUser"
 ];
 
 List<MostPopularCategory> categoriesComponents = [
@@ -195,10 +192,10 @@ class _HomePage2State extends State<HomePage2> {
                   AppLocalizations.of(context)!.homeThemesTitle,
                   style: AllConstants.text,
                 ),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [],
-                )
+                // const Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [],
+                // )
               ],
             ),
           ),
@@ -219,7 +216,8 @@ class _HomePage2State extends State<HomePage2> {
                               builder: (context) => DisplayDataCategories(
                                 snapshot2: allCollection[index],
                                 collectionChoose: classement[index],
-                                incrementCategory: widget.increment!,
+                                // a changer par widget.incrementUser!
+                                incrementCategory: 1,
                               ),
                             ),
                           ),
@@ -228,7 +226,8 @@ class _HomePage2State extends State<HomePage2> {
                             snapshot2: allCollection[index],
                             nameField: allNameFields[index],
                             collectionChoose: classement[index],
-                            incrementCategory: widget.increment!,
+                            // a changer par widget.incrementUser!
+                            incrementCategory: 1,
                             // nameField: allNameFields[index],
                           ),
                         );
