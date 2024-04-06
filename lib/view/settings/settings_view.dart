@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
+import 'package:learnverse/view/settings/reset_password_view.dart';
 import 'package:learnverse/widgets/all_bouton.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -105,6 +106,12 @@ class _SettingState extends State<Setting> {
               child: ListView(
                 children: <Widget>[
                   MailButton(
+                      redirection: Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => (const ResetPasswordScreen()),
+                        ),
+                      ),
                       textConnexion:
                           AppLocalizations.of(context)!.settings_screen_btn1,
                       icon: FontAwesomeIcons.key),

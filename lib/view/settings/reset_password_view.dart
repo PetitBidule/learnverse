@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
@@ -21,13 +22,25 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     super.dispose();
   }
 
-  // reset passord function
+  void showDialogBox(String validate) {
+    _emailController.clear();
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text(validate),
+          );
+        });
+  }
+
   Future _resetPasswordUser() async {
     try {
       await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: _emailController.text);
+          .sendPasswordResetEmail(email: _emailController.text)
+          .then((value) => showDialogBox(
+              'Un email vous a été envoyé pour réinitialer votre mot de passe'));
     } on FirebaseAuthException catch (e) {
-      print('error $e');
+      showDialogBox('Error: $e');
       return e;
     }
   }
@@ -82,32 +95,50 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             color: Colors.black.withOpacity(0.1),
           ),
         ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-                'Enter your Email and we will send you a password reset link'),
-            TextField(
-              controller: _emailController,
-              decoration: InputDecoration(
-                labelText: 'Enter your email',
-                labelStyle: AllConstants.placeholder,
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25),
-                  borderSide: const BorderSide(
-                      color: Color.fromARGB(255, 255, 255, 255)),
-                ),
-                // hintText: "kiwi",
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25),
-                  borderSide: const BorderSide(
-                      color: Color.fromARGB(255, 255, 255, 255)),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 20.0),
+                child: Text(
+                    'Enter your Email and we will send you a password reset link'),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 30.0),
+                child: TextField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    labelText: 'Enter your email',
+                    labelStyle: AllConstants.placeholder,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      borderSide: const BorderSide(
+                          color: Color.fromARGB(255, 255, 255, 255)),
+                    ),
+                    // hintText: "kiwi",
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      borderSide: const BorderSide(
+                          color: Color.fromARGB(255, 255, 255, 255)),
+                    ),
+                  ),
                 ),
               ),
-            ),
-            TextButton(
-                onPressed: () {}, child: const Text('Send reset password'))
-          ],
+              SizedBox(
+                width: 250,
+                height: 60,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ConstantsColors.iconColors,
+                    ),
+                    onPressed: _resetPasswordUser,
+                    child: const Text('Send reset password',
+                        style: AllConstants.textBtn)),
+              ),
+            ],
+          ),
         ),
       ],
     ));

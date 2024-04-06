@@ -135,8 +135,12 @@ class _OtherButtonConnexionState extends State<OtherBtnConnexion> {
 class MailButton extends StatefulWidget {
   final String textConnexion;
   final dynamic icon;
+  final dynamic redirection;
   const MailButton(
-      {super.key, required this.textConnexion, required this.icon});
+      {super.key,
+      required this.textConnexion,
+      required this.icon,
+      this.redirection});
 
   @override
   State<MailButton> createState() => _MailButtonConnexionState();
@@ -152,7 +156,7 @@ class _MailButtonConnexionState extends State<MailButton> {
         height: 60,
         child: ElevatedButton(
             onPressed: () {
-              setState(() {}); // routes
+              widget.redirection;
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: ConstantsColors.iconColors,

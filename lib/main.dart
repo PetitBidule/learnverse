@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
       // showPerformanceOverlay: true,
       debugShowCheckedModeBanner: false,
       // checkerboardRasterCacheImages: true,
-      home: isLanguage == false ? const ResetPasswordScreen() : const Account(),
+      home: isLanguage == false ? const Login() : const Account(),
       routes: {
         '/a': (BuildContext context) => const Account(),
         '/b': (BuildContext context) => const Login()
