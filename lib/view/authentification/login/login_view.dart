@@ -8,6 +8,7 @@ import 'package:learnverse/controller/auth_services.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/home/homeTheme_view.dart';
+import 'package:learnverse/view/settings/reset_password_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
 class Login extends StatefulWidget {
@@ -207,13 +208,9 @@ class _LoginState extends State<Login> {
                                           }
                                         });
                                       },
-                                      child: Tooltip(
-                                        message:
-                                            'Le mot de passe doit contenit minimum 8 caracteres',
-                                        child: FaIcon(
-                                          _iconData,
-                                          color: ConstantsColors.iconColors,
-                                        ),
+                                      child: FaIcon(
+                                        _iconData,
+                                        color: ConstantsColors.iconColors,
                                       ),
                                     ),
                                   )
@@ -244,6 +241,31 @@ class _LoginState extends State<Login> {
                     )),
                   ],
                 ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 30.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ResetPasswordScreen(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      'Forgot Password',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF0000ee),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             Padding(

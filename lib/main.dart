@@ -15,6 +15,7 @@ import 'package:learnverse/view/authentification/register/chooseTheme_view.dart'
 import 'package:learnverse/view/authentification/register/register_view.dart';
 import 'package:learnverse/view/homepage_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:learnverse/view/settings/reset_password_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -67,7 +68,7 @@ class MyApp extends StatelessWidget {
       // showPerformanceOverlay: true,
       debugShowCheckedModeBanner: false,
       // checkerboardRasterCacheImages: true,
-      home: isLanguage == false ? const Theme1() : const Account(),
+      home: isLanguage == false ? const Login() : const Account(),
       routes: {
         '/a': (BuildContext context) => const Account(),
         '/b': (BuildContext context) => const Login()
