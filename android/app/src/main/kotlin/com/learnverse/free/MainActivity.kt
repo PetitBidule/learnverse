@@ -1,4 +1,4 @@
-package com.example.learnverse
+package com.learnverse.free
 
 import io.flutter.embedding.android.FlutterActivity
 
