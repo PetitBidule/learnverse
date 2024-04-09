@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/controller/auth_services.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
+import 'package:learnverse/view/authentification/register/language.dart';
 import 'package:learnverse/view/home/homeTheme_view.dart';
 import 'package:learnverse/view/settings/reset_password_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
@@ -63,7 +64,6 @@ class _LoginState extends State<Login> {
     var time2 = DateTime(dateTime.year + 1, dateTime.month, dateTime.day);
     if (time1.compareTo(time2) == -1) {
       getIncrement();
-      print('les categories ont ete mis a jour');
     } else {
       print("les categories n'ont pas changé");
     }
@@ -82,10 +82,7 @@ class _LoginState extends State<Login> {
     }).then((_) => Navigator.pushReplacement<void, void>(
             context,
             MaterialPageRoute<void>(
-              builder: (BuildContext context) => ThemeScreen(
-                languageUser: 'fr',
-              ),
-            )));
+                builder: (BuildContext context) => const language())));
   }
 
   @override

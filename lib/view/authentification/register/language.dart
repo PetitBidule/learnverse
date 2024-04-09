@@ -1,8 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/main.dart';
+import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
+import 'package:learnverse/view/authentification/register/register_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
@@ -16,7 +19,7 @@ class language extends StatefulWidget {
 class _languageState extends State<language> {
   final List<String> languageChooseBackground = [
     'asset/image/france.jpg',
-    'asset/image/pizz2.png',
+    'asset/image/german_language.jpeg',
     'asset/image/usa.png',
     'asset/image/spain.jpg',
   ];
@@ -28,18 +31,12 @@ class _languageState extends State<language> {
   ];
   String language = 'en';
   int? test = 1;
-  // final List<Color> back1 = [
-  //   const Color.fromARGB(255, 255, 255, 255),
-  //   const Color.fromARGB(255, 255, 255, 255),
-  // ];
-  // final List<Color> back2 = [
-  //   const Color.fromARGB(255, 255, 255, 255),
-  //   const Color.fromARGB(255, 255, 255, 255),
-  // ];
-  // final List<Color> back3 = [
-  //   const Color.fromARGB(123, 255, 255, 255),
-  //   const Color.fromARGB(123, 255, 255, 255),
-  // ];
+  final List<Color> _borderColor = [
+    const Color.fromARGB(255, 255, 255, 255),
+    const Color.fromARGB(255, 255, 255, 255),
+    const Color.fromARGB(255, 255, 255, 255),
+    const Color.fromARGB(255, 255, 255, 255),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -84,10 +81,20 @@ class _languageState extends State<language> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Image.asset(
-                            'asset/image/logoLearnVerse.png',
-                            width: 40,
-                            height: 40,
+                          Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: ConstantsColors.iconColors),
+                                borderRadius: BorderRadius.circular(50)),
+                            child: IconButton(
+                                onPressed: () => setState(() {
+                                      Navigator.pop(context);
+                                    }),
+                                icon: const FaIcon(
+                                  FontAwesomeIcons.chevronLeft,
+                                  size: 18,
+                                  color: ConstantsColors.iconColors,
+                                )),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(right: 100.0),
@@ -141,25 +148,39 @@ class _languageState extends State<language> {
                                   setState(() {
                                     if (index == 0) {
                                       language = 'fr';
+
+                                      _borderColor[index] =
+                                          const Color.fromARGB(
+                                              255, 88, 41, 145);
                                     } else if (index == 1) {
                                       language = 'de';
+                                      _borderColor[index] =
+                                          const Color.fromARGB(
+                                              255, 88, 41, 145);
                                     } else if (index == 2) {
                                       language = 'en';
+                                      _borderColor[index] =
+                                          const Color.fromARGB(
+                                              255, 88, 41, 145);
                                     } else {
                                       language = 'es';
+                                      _borderColor[index] =
+                                          const Color.fromARGB(
+                                              255, 88, 41, 145);
                                     }
                                   });
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                          languageChooseBackground[index]),
-                                      fit: BoxFit.contain,
-                                    ),
-                                  ),
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            languageChooseBackground[index]),
+                                        fit: BoxFit.contain,
+                                      ),
+                                      border: Border.all(
+                                          color: _borderColor[index])),
                                   child: Center(
                                       child: Text(
                                     languageChoose[index],
@@ -190,6 +211,11 @@ class _languageState extends State<language> {
                         child: Center(
                           child: TextButton(
                             onPressed: () async {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Account()),
+                              );
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/widgets/square_background.dart';
@@ -95,6 +96,20 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             color: Colors.black.withOpacity(0.1),
           ),
         ),
+        Container(
+          decoration: BoxDecoration(
+              border: Border.all(color: ConstantsColors.iconColors),
+              borderRadius: BorderRadius.circular(50)),
+          child: IconButton(
+              onPressed: () => setState(() {
+                    Navigator.pop(context);
+                  }),
+              icon: const FaIcon(
+                FontAwesomeIcons.chevronLeft,
+                size: 18,
+                color: ConstantsColors.iconColors,
+              )),
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
@@ -117,7 +132,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       borderSide: const BorderSide(
                           color: Color.fromARGB(255, 255, 255, 255)),
                     ),
-                    // hintText: "kiwi",
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25),
                       borderSide: const BorderSide(
