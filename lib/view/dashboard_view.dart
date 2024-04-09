@@ -2,10 +2,8 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/widgets/square_background.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Dashboard extends StatefulWidget {
@@ -137,105 +135,105 @@ class _DashboardState extends State<Dashboard> {
                       )
                     ],
                   ),
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        width: 110,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          color: ConstantsColors.iconColors,
-                          border: Border.all(
-                              color: const Color.fromARGB(255, 255, 255, 255)),
-                          borderRadius: BorderRadius.circular(40),
-                        ),
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton2<String>(
-                            isExpanded: true,
-                            hint: Text(
-                              'filtres',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Theme.of(context).hintColor,
-                              ),
-                            ),
-                            items: filtres
-                                .map((String item) => DropdownMenuItem<String>(
-                                      value: item,
-                                      child: Text(
-                                        item,
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ))
-                                .toList(),
-                            value: _selectedValue,
-                            onChanged: (String? value) => setState(() {
-                              _selectedValue = value;
-                            }),
-                            buttonStyleData: const ButtonStyleData(
-                              padding: EdgeInsets.symmetric(horizontal: 16),
-                              height: 40,
-                              width: 140,
-                            ),
-                            menuItemStyleData: const MenuItemStyleData(
-                              height: 40,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width: 110,
-                          height: 30,
-                          decoration: BoxDecoration(
-                            color: ConstantsColors.iconColors,
-                            border: Border.all(
-                                color:
-                                    const Color.fromARGB(255, 255, 255, 255)),
-                            borderRadius: BorderRadius.circular(40),
-                          ),
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton2<String>(
-                              isExpanded: true,
-                              hint: Text(
-                                'Styles',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Theme.of(context).hintColor,
-                                ),
-                              ),
-                              items: style
-                                  .map(
-                                      (String item) => DropdownMenuItem<String>(
-                                            value: item,
-                                            child: Text(
-                                              item,
-                                              style: const TextStyle(
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                          ))
-                                  .toList(),
-                              value: _selectedValue,
-                              onChanged: (String? value) => setState(() {
-                                _selectedValue = value;
-                              }),
-                              buttonStyleData: const ButtonStyleData(
-                                padding: EdgeInsets.symmetric(horizontal: 16),
-                                height: 40,
-                                width: 140,
-                              ),
-                              menuItemStyleData: const MenuItemStyleData(
-                                height: 40,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   children: <Widget>[
+                  //     Container(
+                  //       width: 110,
+                  //       height: 30,
+                  //       decoration: BoxDecoration(
+                  //         color: ConstantsColors.iconColors,
+                  //         border: Border.all(
+                  //             color: const Color.fromARGB(255, 255, 255, 255)),
+                  //         borderRadius: BorderRadius.circular(40),
+                  //       ),
+                  //       child: DropdownButtonHideUnderline(
+                  //         child: DropdownButton2<String>(
+                  //           isExpanded: true,
+                  //           hint: Text(
+                  //             'filtres',
+                  //             style: TextStyle(
+                  //               fontSize: 14,
+                  //               color: Theme.of(context).hintColor,
+                  //             ),
+                  //           ),
+                  //           items: filtres
+                  //               .map((String item) => DropdownMenuItem<String>(
+                  //                     value: item,
+                  //                     child: Text(
+                  //                       item,
+                  //                       style: const TextStyle(
+                  //                         fontSize: 14,
+                  //                       ),
+                  //                     ),
+                  //                   ))
+                  //               .toList(),
+                  //           value: _selectedValue,
+                  //           onChanged: (String? value) => setState(() {
+                  //             _selectedValue = value;
+                  //           }),
+                  //           buttonStyleData: const ButtonStyleData(
+                  //             padding: EdgeInsets.symmetric(horizontal: 16),
+                  //             height: 40,
+                  //             width: 140,
+                  //           ),
+                  //           menuItemStyleData: const MenuItemStyleData(
+                  //             height: 40,
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //     Padding(
+                  //       padding: const EdgeInsets.all(8.0),
+                  //       child: Container(
+                  //         width: 110,
+                  //         height: 30,
+                  //         decoration: BoxDecoration(
+                  //           color: ConstantsColors.iconColors,
+                  //           border: Border.all(
+                  //               color:
+                  //                   const Color.fromARGB(255, 255, 255, 255)),
+                  //           borderRadius: BorderRadius.circular(40),
+                  //         ),
+                  //         child: DropdownButtonHideUnderline(
+                  //           child: DropdownButton2<String>(
+                  //             isExpanded: true,
+                  //             hint: Text(
+                  //               'Styles',
+                  //               style: TextStyle(
+                  //                 fontSize: 14,
+                  //                 color: Theme.of(context).hintColor,
+                  //               ),
+                  //             ),
+                  //             items: style
+                  //                 .map(
+                  //                     (String item) => DropdownMenuItem<String>(
+                  //                           value: item,
+                  //                           child: Text(
+                  //                             item,
+                  //                             style: const TextStyle(
+                  //                               fontSize: 14,
+                  //                             ),
+                  //                           ),
+                  //                         ))
+                  //                 .toList(),
+                  //             value: _selectedValue,
+                  //             onChanged: (String? value) => setState(() {
+                  //               _selectedValue = value;
+                  //             }),
+                  //             buttonStyleData: const ButtonStyleData(
+                  //               padding: EdgeInsets.symmetric(horizontal: 16),
+                  //               height: 40,
+                  //               width: 140,
+                  //             ),
+                  //             menuItemStyleData: const MenuItemStyleData(
+                  //               height: 40,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 14.0),
                     child: SizedBox(
