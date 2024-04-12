@@ -125,10 +125,10 @@ class _DashboardState extends State<Dashboard> {
                     children: [
                       Text(AppLocalizations.of(context)!.dashboard_screen_title,
                           style: AllConstants.title),
-                      SizedBox(
+                      const SizedBox(
                         child: CircleAvatar(
-                          backgroundImage: NetworkImage(
-                              '${FirebaseAuth.instance.currentUser?.photoURL}'),
+                          backgroundImage:
+                              AssetImage('asset/image/iconProfile.png'),
                           minRadius: 28,
                           maxRadius: 28,
                         ),

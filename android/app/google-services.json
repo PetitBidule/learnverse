@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "1010863199796-bvf2tamnc2t14arb8libf1memcqno6m6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.learnverse",
+            "certificate_hash": "61cb392df69e04c5b6cb120ab331909edd3f5795"
+          }
+        },
+        {
+          "client_id": "1010863199796-loprnied7qk8asocimqeumnmr0earr47.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.learnverse",
+            "certificate_hash": "36c681057f70c41097d87ab935a6a77005731da5"
+          }
+        },
+        {
           "client_id": "1010863199796-3pcp1h09u89geimogqv9tdhdt2047db5.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -40,7 +56,8 @@
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-2207298093010378~9320316542"
     }
   ],
   "configuration_version": "1"

@@ -16,8 +16,16 @@ class ThemeScreen extends StatefulWidget {
   String? pseudoUser;
   int? incrementUser;
   String? languageUser;
+  List<String>? collection9;
+  List? collection10;
+
   ThemeScreen(
-      {super.key, this.pseudoUser, this.incrementUser, this.languageUser});
+      {super.key,
+      this.pseudoUser,
+      this.incrementUser,
+      this.languageUser,
+      this.collection9,
+      this.collection10});
 
   @override
   State<ThemeScreen> createState() => _ThemeScreenState();
@@ -29,6 +37,8 @@ class _ThemeScreenState extends State<ThemeScreen> {
     HomePage2(
       pseudoUser: widget.pseudoUser,
       increment: widget.incrementUser,
+      collection7: widget.collection9,
+      collection8: widget.collection10,
     ),
     const Dashboard(),
     const Setting(),
@@ -80,7 +90,15 @@ class _ThemeScreenState extends State<ThemeScreen> {
 class HomePage2 extends StatefulWidget {
   String? pseudoUser;
   int? increment;
-  HomePage2({super.key, required this.pseudoUser, required this.increment});
+  List? collection8;
+  List<String>? collection7;
+  HomePage2({
+    super.key,
+    required this.pseudoUser,
+    required this.increment,
+    this.collection8,
+    this.collection7,
+  });
 
   @override
   State<HomePage2> createState() => _HomePage2State();
@@ -91,6 +109,26 @@ final controller =
 
 int currentPageIndex = 0;
 int incrementCurrentCategory = 0;
+// List user = [];
+// List test2 = [];
+// Future getUserImage() async {
+//   var docSnapshots = await FirebaseFirestore.instance
+//       .collection('users')
+//       .doc('theo.saint-amand@orange.fr')
+//       .get();
+//   if (docSnapshots.exists) {
+//     Map<String, dynamic>? data = docSnapshots.data();
+//     var value = data?['favorite_theme'];
+//     print('yo $value');
+//     user = value;
+//     for (var i = 0; i < user.length; i++) {
+//       test2.add(user[i]);
+//     }
+//     print('bonjour $test2');
+//     return user;
+//   }
+//   return user;
+// }
 
 List allCollection = [
   MongoDB.getDataCollectionAnime(),
@@ -99,15 +137,56 @@ List allCollection = [
   MongoDB.getDataCollectionMusic(),
   MongoDB.getDataCollectionGaming(),
 ];
-List allNameFields = ['title', 'title', '_name', 'name', 'name'];
+// 'collectionAnime',
+//   'collectionAnime',
+//   'collectionFilm',
+//   'collectionMusic',
+//   'collectionGaming',
+// List<String> classement = [];
+// List allCollectionUsers = [];
+// void _generateUserLikedTheme() {
+//   print(user);
+//   print(test2);
+//   for (var i = 0; i < 4; i++) {
+//     print('20');
+//     if (test2[i] == 'Manga') {
+//       print('3');
+//       allCollectionUsers.add(
+//         MongoDB.getDataCollectionManga(),
+//       );
+//       classement.add('collectionManga');
+//       i++;
+//     } else if (test2[i] == 'Anime') {
+//       allCollectionUsers.add(
+//         MongoDB.getDataCollectionAnime(),
+//       );
+//       classement.add('collectionAnime');
+//       i++;
+//     } else if (test2[i] == 'Jeux Vidéo') {
+//       allCollectionUsers.add(
+//         MongoDB.getDataCollectionGaming(),
+//       );
+//       classement.add('collectionGaming');
+//       i++;
+//     } else if (test2[i] == 'Musique') {
+//       allCollectionUsers.add(
+//         MongoDB.getDataCollectionMusic(),
+//       );
+//       classement.add('collectionMusic');
+//       i++;
+//     } else {
+//       allCollectionUsers.add(
+//         MongoDB.getDataCollectionFilm(),
+//       );
+//       classement.add('collectionFilm');
+//       i++;
+//     }
+//   }
+//   print('bn ${allCollectionUsers[1]}');
+//   print('bn ${allCollection[1]}');
+// }
 
-List<String> classement = [
-  'collectionAnime',
-  'collectionManga',
-  'collectionFilm',
-  'collectionMusic',
-  'collectionGaming',
-];
+List allNameFields = ['title', 'title', '_name', 'name', 'name'];
 
 List<MostPopularCategory> categoriesComponents = [
   MostPopularCategory(
@@ -150,6 +229,8 @@ List<MostPopularCategory> categoriesComponents = [
 class _HomePage2State extends State<HomePage2> {
   @override
   Widget build(BuildContext context) {
+    print(widget.collection8);
+    print(widget.collection7);
     var size = MediaQuery.of(context).size;
     return SafeArea(
       child: Column(
@@ -171,8 +252,7 @@ class _HomePage2State extends State<HomePage2> {
                 ),
                 SizedBox(
                   child: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHFpaHJyMHQ5bjlmYWNiNXB5eDF5ZXBpdG9scGRseWxoZmxkaGJ2cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YRThiAEEYVNtC5acLO/giphy.gif'),
+                    backgroundImage: AssetImage('asset/image/iconProfile.png'),
                     minRadius: 28,
                     maxRadius: 28,
                   ),
@@ -207,15 +287,15 @@ class _HomePage2State extends State<HomePage2> {
                   height: size.height * 0.50,
                   child: PageView.builder(
                       controller: controller,
-                      itemCount: allCollection.length,
+                      itemCount: widget.collection8?.length,
                       itemBuilder: (BuildContext context, int index) {
                         return GestureDetector(
                           onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => DisplayDataCategories(
-                                snapshot2: allCollection[index],
-                                collectionChoose: classement[index],
+                                snapshot2: widget.collection8![index],
+                                collectionChoose: widget.collection7![index],
                                 // a changer par widget.incrementUser!
                                 incrementCategory: 1,
                               ),
@@ -223,9 +303,9 @@ class _HomePage2State extends State<HomePage2> {
                           ),
                           // faire la meme chose pour categories.dart
                           child: CollectionMongoDB(
-                            snapshot2: allCollection[index],
+                            snapshot2: widget.collection8![index],
                             nameField: allNameFields[index],
-                            collectionChoose: classement[index],
+                            collectionChoose: widget.collection7![index],
                             // a changer par widget.incrementUser!
                             incrementCategory: 1,
                             // nameField: allNameFields[index],
@@ -235,7 +315,7 @@ class _HomePage2State extends State<HomePage2> {
                 ),
                 SmoothPageIndicator(
                   controller: controller,
-                  count: allCollection.length,
+                  count: widget.collection8!.length,
                   textDirection: TextDirection.ltr,
                   effect: const ExpandingDotsEffect(
                     dotWidth: 12,

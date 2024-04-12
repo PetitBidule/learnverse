@@ -17,10 +17,6 @@ class Setting extends StatefulWidget {
   State<Setting> createState() => _SettingState();
 }
 
-Future signOut() async {
-  await FirebaseAuth.instance.signOut();
-}
-
 class _SettingState extends State<Setting> {
   @override
   Widget build(BuildContext context) {
@@ -87,9 +83,9 @@ class _SettingState extends State<Setting> {
                 height: 130,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(999),
-                    image: DecorationImage(
-                        image: NetworkImage(
-                            '${FirebaseAuth.instance.currentUser?.photoURL}'))),
+                    image: const DecorationImage(
+                      image: AssetImage('asset/image/iconProfile.png'),
+                    )),
               ),
             ),
             Padding(
@@ -106,19 +102,58 @@ class _SettingState extends State<Setting> {
               child: ListView(
                 children: <Widget>[
                   MailButton(
-                      redirection: Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => (const ResetPasswordScreen()),
-                        ),
-                      ),
-                      textConnexion:
-                          AppLocalizations.of(context)!.settings_screen_btn1,
-                      icon: FontAwesomeIcons.key),
-                  MailButton(
                       textConnexion:
                           AppLocalizations.of(context)!.settings_screen_btn2,
                       icon: FontAwesomeIcons.headset),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12.0, vertical: 8.0),
+                    child: SizedBox(
+                      width: 400,
+                      height: 60,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      (const ResetPasswordScreen()),
+                                ),
+                              );
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: ConstantsColors.iconColors,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const FaIcon(
+                                FontAwesomeIcons.key,
+                                color: ConstantsColors.blackColors,
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!
+                                    .settings_screen_btn1,
+                                style: const TextStyle(
+                                    color: ConstantsColors.blackColors,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    letterSpacing: 0.8),
+                              ),
+                              const FaIcon(
+                                size: 16,
+                                FontAwesomeIcons.chevronRight,
+                                color: ConstantsColors.blackColors,
+                              ),
+                            ],
+                          )),
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 12.0, vertical: 8.0),

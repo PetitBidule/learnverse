@@ -29,16 +29,17 @@ class Categories extends StatefulWidget {
 
 class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
   var db = FirebaseFirestore.instance;
-  late final _isLike = FirebaseFirestore.instance
-      .collection('users')
-      .doc('${FirebaseAuth.instance.currentUser?.email}')
-      .collection(widget.categories)
-      .doc(widget.title);
+  late bool _isLike = false;
+  // FirebaseFirestore.instance
+  //     .collection('users')
+  //     .doc('${FirebaseAuth.instance.currentUser?.email}')
+  //     .collection(widget.categories)
+  //     .doc(widget.title);
 
-  late final r = _isLike.get();
+  // late final r = _isLike.get();
 
   bool _isFavorite = false;
-  bool _isLikeComment = false;
+  // final bool _isLikeComment = false;
   final List<String> titleFav = [];
   int _incrementCommentUser = 0;
 
@@ -259,18 +260,18 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                         onPressed: () => setState(() {
                                               allComments.clear();
                                               if (_isLike == false) {
-                                                db
-                                                    .collection('users')
-                                                    .doc(
-                                                        '${FirebaseAuth.instance.currentUser?.email}')
-                                                    .collection(
-                                                        widget.categories)
-                                                    .doc(widget.title)
-                                                    .update({'isLiked': true});
-                                                // _isLike = true;
+                                                // db
+                                                //     .collection('users')
+                                                //     .doc(
+                                                //         '${FirebaseAuth.instance.currentUser?.email}')
+                                                //     .collection(
+                                                //         widget.categories)
+                                                //     .doc(widget.title)
+                                                //     .update({'isLiked': true});
+                                                _isLike = true;
                                                 _controllerLike.forward();
                                               } else {
-                                                // _isLike = false;
+                                                _isLike = false;
                                                 _controllerLike.reverse();
                                               }
                                             }),
@@ -335,14 +336,13 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            // update text
                             Text('Synopsis', style: AllConstants.subtitle),
                             Text(
                               'Theme',
                               style: AllConstants.subtitle,
                             ),
                             Text(
-                              'More Information',
+                              'Comment',
                               style: AllConstants.subtitle,
                             ),
                           ],
@@ -386,7 +386,6 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                           .doc(
                                               '${FirebaseAuth.instance.currentUser?.email} ($_incrementCommentUser)')
                                           .set({
-                                        // displayName marche que pour les compte google
                                         'user': FirebaseAuth
                                             .instance.currentUser?.displayName,
                                         'comment': _controller.text,
@@ -409,77 +408,57 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                       return SizedBox(
                                         height: 400,
                                         child: ListView.builder(
-                                            // a revoir
                                             shrinkWrap: true,
                                             physics:
                                                 const ClampingScrollPhysics(),
                                             itemCount: allComments.length,
                                             itemBuilder: (context, int index) {
                                               return ListTile(
-                                                  leading: CircleAvatar(
-                                                    backgroundImage:
-                                                        NetworkImage(
-                                                            allImageUser[
-                                                                index]),
-                                                  ),
-                                                  title: Text(allUser[index]),
-                                                  subtitle:
-                                                      Text(allComments[index]),
-                                                  trailing: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      GestureDetector(
-                                                        onTap: () {
-                                                          setState(() {
-                                                            for (var i = 0;
-                                                                i <
-                                                                    allComments
-                                                                        .length;
-                                                                i++) {
-                                                              if (allLikeUser[
-                                                                      i] ==
-                                                                  false) {
-                                                                _isLikeComment =
-                                                                    true;
-                                                              } else {
-                                                                _isLikeComment =
-                                                                    false;
-                                                              }
-                                                            }
-                                                          });
-
-                                                          // db.collection("comment")
-                                                          //     .doc(widget
-                                                          //         .categories)
-                                                          //     .collection(
-                                                          //         widget.title)
-                                                          //     .
-                                                          //     .update({
-                                                          //   "like": FieldValue
-                                                          //       .increment(50)
-                                                          // });
-                                                        },
-                                                        child: _isLikeComment ==
-                                                                false
-                                                            ? const FaIcon(
-                                                                FontAwesomeIcons
-                                                                    .heart,
-                                                                size: 15,
-                                                              )
-                                                            : const FaIcon(
-                                                                FontAwesomeIcons
-                                                                    .heart,
-                                                                size: 15,
-                                                                color:
-                                                                    Colors.red,
-                                                              ),
-                                                      ),
-                                                      Text(
-                                                          '${allLikeUser[index]}')
-                                                    ],
-                                                  ));
+                                                leading: CircleAvatar(
+                                                  backgroundImage: NetworkImage(
+                                                      allImageUser[index]),
+                                                ),
+                                                title: Text(allUser[index]),
+                                                subtitle:
+                                                    Text(allComments[index]),
+                                                // trailing: Column(
+                                                //   mainAxisAlignment:
+                                                //       MainAxisAlignment
+                                                //           .center,
+                                                //   children: [
+                                                //     GestureDetector(
+                                                //       onTap: () {
+                                                //         // db.collection("comment")
+                                                //         //     .doc(widget
+                                                //         //         .categories)
+                                                //         //     .collection(
+                                                //         //         widget.title)
+                                                //         //     .
+                                                //         //     .update({
+                                                //         //   "like": FieldValue
+                                                //         //       .increment(50)
+                                                //         // });
+                                                //       },
+                                                //       child: _isLikeComment ==
+                                                //               false
+                                                //           ? const FaIcon(
+                                                //               FontAwesomeIcons
+                                                //                   .heart,
+                                                //               size: 15,
+                                                //             )
+                                                //           : const FaIcon(
+                                                //               FontAwesomeIcons
+                                                //                   .heart,
+                                                //               size: 15,
+                                                //               color:
+                                                //                   Colors.red,
+                                                //             ),
+                                                //     ),
+                                                //     Text(
+                                                //         '${allLikeUser[index]}')
+                                                //   ],
+                                                // )
+                                              );
                                             }),
                                       );
                                     }

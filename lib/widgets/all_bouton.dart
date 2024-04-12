@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/view/home/hometheme_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:learnverse/view/settings/reset_password_view.dart';
 
 //ignore: must_be_immutable
 class ButtonConnexion extends StatefulWidget {
@@ -156,7 +157,14 @@ class _MailButtonConnexionState extends State<MailButton> {
         height: 60,
         child: ElevatedButton(
             onPressed: () {
-              widget.redirection;
+              // setState(() {
+              //   Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (context) => (const ResetPasswordScreen()),
+              //     ),
+              //   );
+              // });
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: ConstantsColors.iconColors,

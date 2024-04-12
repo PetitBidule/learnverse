@@ -1,9 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:learnverse/Model/dbHelper/mongo_db.dart';
 import 'package:learnverse/Model/themechoose_model.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
+import 'package:learnverse/view/home/homeTheme_view.dart';
 import 'package:learnverse/view/settings/privacy_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -79,7 +81,7 @@ class _Theme1State extends State<Theme1> {
       theme: AppLocalizations.of(context)!.chooseTheme_item10,
       backgroundColor: const Color.fromRGBO(237, 215, 19, 1),
       backgroundImage: const AssetImage('asset/image/imageS.png'),
-      isDispo: true,
+      isDispo: false,
     )
   ];
   final List<Color> back3 = [
@@ -90,32 +92,110 @@ class _Theme1State extends State<Theme1> {
     const Color.fromRGBO(252, 188, 188, 0.40),
   ];
   int _valueSelected = 0;
-  final List<String> _userFavoritesThemes = [];
+  late final List<String> _userFavoritesThemes = [
+    AppLocalizations.of(context)!.chooseTheme_item3,
+    AppLocalizations.of(context)!.chooseTheme_item5,
+    AppLocalizations.of(context)!.chooseTheme_item6,
+    AppLocalizations.of(context)!.chooseTheme_item7,
+    AppLocalizations.of(context)!.chooseTheme_item4,
+  ];
+
+  void _sortUserTheme(String selectTheme) {
+    for (var i = 0; i < _userFavoritesThemes.length; i++) {
+      if (_userFavoritesThemes[i] == selectTheme) {
+        _userFavoritesThemes.removeAt(i);
+        _userFavoritesThemes.insert(0, selectTheme);
+        i++;
+      }
+    }
+  }
+
+  List test2 = [];
+  List user = [];
+
+  Future getUserImage() async {
+    var docSnapshots = await FirebaseFirestore.instance
+        .collection('users')
+        .doc('theo.saint-amand@orange.fr')
+        .get();
+    if (docSnapshots.exists) {
+      Map<String, dynamic>? data = docSnapshots.data();
+      var value = data?['favorite_theme'];
+      user = value;
+      for (var i = 0; i < user.length; i++) {
+        test2.add(user[i]);
+      }
+      return user;
+    }
+    return user;
+  }
+
+  List<String> classement = [];
+  List allCollectionUsers = [];
+  void _generateUserLikedTheme() {
+    for (var i = 0; i < test2.length; i++) {
+      if (test2[i] == 'Manga') {
+        allCollectionUsers.add(
+          MongoDB.getDataCollectionManga(),
+        );
+        classement.add('collectionManga');
+      } else if (test2[i] == 'Anime') {
+        allCollectionUsers.add(
+          MongoDB.getDataCollectionAnime(),
+        );
+        classement.add('collectionAnime');
+      } else if (test2[i] == 'Jeux vidéo') {
+        allCollectionUsers.add(
+          MongoDB.getDataCollectionGaming(),
+        );
+        classement.add('collectionGaming');
+      } else if (test2[i] == 'Musique') {
+        allCollectionUsers.add(
+          MongoDB.getDataCollectionMusic(),
+        );
+        classement.add('collectionMusic');
+      } else {
+        allCollectionUsers.add(
+          MongoDB.getDataCollectionFilm(),
+        );
+        classement.add('collectionFilm');
+      }
+    }
+    print('bn ${allCollectionUsers.length}');
+    print('bn ${classement.length}');
+  }
 
   Future addUserTheme() async {
     await FirebaseFirestore.instance
         .collection('users')
         .doc('theo.saint-amand@orange.fr')
-        .update({'favorite_theme': _userFavoritesThemes}).then(
-            (_) => Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Privacy()),
-                ));
+        .update({'favorite_theme': _userFavoritesThemes})
+        .then((_) => getUserImage())
+        .then((_) => _generateUserLikedTheme())
+        .then((_) => Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ThemeScreen(
+                        collection9: classement,
+                        collection10: allCollectionUsers,
+                      )),
+            ));
   }
 
   void _selectedTheme(int x, int y) {
     if (y == 0) {
       if (chooseTheme[x].backgroundColor != back3[x] &&
           chooseTheme[x].isDispo == true) {
+        print('a');
         chooseTheme[x].backgroundColor = back3[x];
-        _userFavoritesThemes.add(chooseTheme[x].theme);
+        _sortUserTheme(chooseTheme[x].theme);
         _valueSelected++;
       }
     } else {
       if (chooseTheme2[x].backgroundColor != back3[x] &&
           chooseTheme2[x].isDispo == true) {
         chooseTheme2[x].backgroundColor = back3[x];
-        _userFavoritesThemes.add(chooseTheme2[x].theme);
+        _sortUserTheme(chooseTheme2[x].theme);
         _valueSelected++;
       }
     }
@@ -147,6 +227,7 @@ class _Theme1State extends State<Theme1> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -296,7 +377,7 @@ class _Theme1State extends State<Theme1> {
                                       ))))),
                   Container(
                     width: double.infinity,
-                    height: 85,
+                    height: height * 0.23,
                     decoration: const BoxDecoration(
                       color: Color.fromRGBO(132, 132, 221, 1),
                       boxShadow: [

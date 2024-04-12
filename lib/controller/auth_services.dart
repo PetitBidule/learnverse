@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -25,4 +26,31 @@ class AuthService {
       return e.message;
     }
   }
+
+  Future getIncrementCategories(int increment) async {
+    var docSnapshots = await FirebaseFirestore.instance
+        .collection('users')
+        .doc('theo.saint-amand@orange.fr')
+        .get();
+    if (docSnapshots.exists) {
+      Map<String, dynamic>? data = docSnapshots.data();
+      var value = data?['currentPage'];
+      increment = value;
+      return increment;
+    }
+    return increment;
+  }
+
+  // Future getUserImage() async {
+  //   var docSnapshots = await FirebaseFirestore.instance
+  //       .collection('users')
+  //       .doc('theo.saint-amand@orange.fr')
+  //       .get();
+  //   if (docSnapshots.exists) {
+  //     Map<String, dynamic>? data = docSnapshots.data();
+  //     var value = data?['imageUrl'];
+  //     print(value);
+  //     return value;
+  //   }
+  // }
 }

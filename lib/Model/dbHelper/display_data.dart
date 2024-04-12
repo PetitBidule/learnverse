@@ -28,7 +28,7 @@ class CollectionMongoDB extends StatelessWidget {
                 collection = ThemeChooseHome(
                   nametheme: snapshot.data[0]['results'][incrementCategory]
                       ['title'],
-                  noteTheme: '12',
+                  noteTheme: '',
                   nameCategories: 'Movies',
                   backGroundTheme: snapshot.data[0]['results']
                       [incrementCategory]['backdrop_path'],
@@ -36,7 +36,7 @@ class CollectionMongoDB extends StatelessWidget {
               } else if (collectionChoose == 'collectionMusic') {
                 collection = ThemeChooseHome(
                     nametheme: snapshot.data[0]['tracks'][0]['name'],
-                    noteTheme: '12',
+                    noteTheme: '',
                     nameCategories: 'Music',
                     backGroundTheme: snapshot.data[0]['tracks'][0]['album']
                         ['images'][0]['url']);
@@ -44,14 +44,14 @@ class CollectionMongoDB extends StatelessWidget {
                 collection = ThemeChooseHome(
                     nametheme: snapshot.data[0]['results'][incrementCategory]
                         ['name'],
-                    noteTheme: '12',
+                    noteTheme: '',
                     nameCategories: 'Gaming',
                     backGroundTheme: snapshot.data[0]['results']
                         [incrementCategory]['background_image']);
               } else {
                 collection = ThemeChooseHome(
-                  nametheme: snapshot.data[incrementCategory][nameField],
-                  noteTheme: '8',
+                  nametheme: snapshot.data[incrementCategory]['title'],
+                  noteTheme: '',
                   nameCategories: 'Manga',
                   backGroundTheme: snapshot.data[incrementCategory]
                       ['main_picture']['medium'],
@@ -108,7 +108,7 @@ class DisplayDataCategories extends StatelessWidget {
                   title: snapshot.data[0]['results'][incrementCategory]['name'],
                   backgroundBanner: snapshot.data[0]['results']
                       [incrementCategory]['background_image'],
-                  synopsis: 'bonjour les enfants',
+                  synopsis: 'Under development',
                   description: '',
                   categories: 'gaming',
                 );

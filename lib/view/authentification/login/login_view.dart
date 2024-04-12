@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learnverse/controller/auth_services.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
+import 'package:learnverse/view/authentification/register/chooseTheme_view.dart';
 import 'package:learnverse/view/authentification/register/language.dart';
 import 'package:learnverse/view/home/homeTheme_view.dart';
 import 'package:learnverse/view/settings/reset_password_view.dart';
@@ -24,6 +25,7 @@ class _LoginState extends State<Login> {
       List.generate(2, (int index) => TextEditingController());
 
   final _formKey = GlobalKey<FormState>();
+  int incrementn = 0;
 
   final List<String> _labelText = [
     'Email',
@@ -43,20 +45,18 @@ class _LoginState extends State<Login> {
     });
   }
 
-  int incrementn = 0;
-
-  Future getIncrementCategories() async {
-    var docSnapshots = await FirebaseFirestore.instance
-        .collection('users')
-        .doc('theo.saint-amand@orange.fr')
-        .get();
-    if (docSnapshots.exists) {
-      Map<String, dynamic>? data = docSnapshots.data();
-      var value = data?['currentPage'];
-      incrementn = value;
-      return incrementn;
-    }
-  }
+  // Future getIncrementCategories() async {
+  //   var docSnapshots = await FirebaseFirestore.instance
+  //       .collection('users')
+  //       .doc('theo.saint-amand@orange.fr')
+  //       .get();
+  //   if (docSnapshots.exists) {
+  //     Map<String, dynamic>? data = docSnapshots.data();
+  //     var value = data?['currentPage'];
+  //     incrementn = value;
+  //     return incrementn;
+  //   }
+  // }
 
   void incrementCurrrentPage() async {
     var dateTime = DateTime.now();
@@ -79,10 +79,11 @@ class _LoginState extends State<Login> {
       'dateTime': DateTime.now(),
       'imageProfile': FirebaseAuth.instance.currentUser?.photoURL,
       'watchlist': [],
-    }).then((_) => Navigator.pushReplacement<void, void>(
-            context,
-            MaterialPageRoute<void>(
-                builder: (BuildContext context) => const language())));
+    });
+  }
+
+  void testFunction() async {
+    int incrementValue = await AuthService().getIncrementCategories(incrementn);
   }
 
   @override
@@ -281,19 +282,17 @@ class _LoginState extends State<Login> {
                         ),
                         onPressed: () async {
                           AuthService()
-                              .signIn(_controller[0].text, _controller[1].text);
-                          incrementCurrrentPage();
-                          getIncrementCategories();
-                          int incrementValue = await getIncrementCategories();
-                          print(incrementValue);
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ThemeScreen(
-                                      incrementUser: incrementValue,
-                                      languageUser: 'fr',
-                                    )),
-                          );
+                              .signIn(_controller[0].text.trim(),
+                                  _controller[1].text.trim())
+                              // .then((_) => incrementCurrrentPage())
+                              // .then((_) => AuthService()
+                              //     .getIncrementCategories(incrementn))
+                              // .then((_) => testFunction())
+                              .then((_) => Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const Theme1()),
+                                  ));
                         },
                         child: const Text(
                           'Log in',
@@ -312,10 +311,18 @@ class _LoginState extends State<Login> {
                     height: 60,
                     child: ElevatedButton(
                         onPressed: () async {
-                          User? user;
-                          user = await AuthService().signInWithGoogle();
-                          incrementCurrrentPage();
-                          addUserDetailsGoogle();
+                          // User? user;
+                          try {
+                            print('1');
+                            await AuthService().signInWithGoogle();
+                            print('2');
+
+                            // incrementCurrrentPage();
+                            // addUserDetailsGoogle();
+                            // Navigator.pushNamed(context, '/hompage');
+                          } catch (e) {
+                            print('object');
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: ConstantsColors.iconColors,

@@ -8,7 +8,7 @@
     "chooseTheme_title": "Que voulez-vous voir sur LearnVerse ?",
     "chooseTheme_subtitle": "Sélectionnez au moins 3 centres d'intérêt pour personnaliser votre expérience LearnVerse.",
     "chooseTheme_btn": "Suivant",
-    "categories_widget_text": "kiwi jaune {widgetSynopsis}",
+    "categories_widget_text": "{widgetSynopsis}",
     "sign": "Commencer",
     "login": "Se connecter",
      "registe_screen_title": "S'inscrire",

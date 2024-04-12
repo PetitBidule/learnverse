@@ -10,7 +10,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:learnverse/firebase_options.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:learnverse/l10n/l10n.dart';
+import 'package:learnverse/view/authentification/register/chooseTheme_view.dart';
 import 'package:learnverse/view/authentification/register/register_view.dart';
+import 'package:learnverse/view/home/homeTheme_view.dart';
 import 'package:learnverse/view/homepage_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -22,19 +24,26 @@ void main() async {
   FlutterNativeSplash.remove();
 
   try {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    ).then((value) => print("bonjour c'est firebase"));
+    if (TargetPlatform.android == true) {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+    } else {
+      await Firebase.initializeApp(
+        name: 'learnverse-ebdd6',
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+    }
     await MongoDB.connect();
     print('tout est connecte chef');
   } catch (e) {
     print('Erreur:$e');
   }
 
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) => runApp(MyApp(
-            languages: 'en',
+            languages: 'fr',
             isLanguage: false,
           )));
 }
@@ -57,6 +66,11 @@ class MyApp extends StatelessWidget {
       supportedLocales: L10n.all,
       debugShowCheckedModeBanner: false,
       home: isLanguage == false ? const ScreenLog() : const Account(),
+      routes: {
+        '/hompage': (context) => ThemeScreen(
+              incrementUser: 2,
+            ),
+      },
     );
   }
 }
