@@ -8,8 +8,6 @@ import 'package:learnverse/controller/auth_services.dart';
 import 'package:learnverse/utils/constantsColors.dart';
 import 'package:learnverse/utils/constantsFont.dart';
 import 'package:learnverse/view/authentification/register/chooseTheme_view.dart';
-import 'package:learnverse/view/authentification/register/language.dart';
-import 'package:learnverse/view/home/homeTheme_view.dart';
 import 'package:learnverse/view/settings/reset_password_view.dart';
 import 'package:learnverse/widgets/square_background.dart';
 
